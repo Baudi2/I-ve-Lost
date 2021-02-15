@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/fragmentMain">
+
+    <fragment
+        android:id="@+id/fragmentMain"
+        android:name="ru.startandroid.develop.testprojectnavigation.FragmentMain"
+        android:label="I've Lost"
+        tools:layout="@layout/fragment_main">
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentSecond"
+            app:destination="@id/fragmentLost"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <action
+            android:id="@+id/action_fragmentMain_to_fragmentFound"
+            app:destination="@id/fragmentFound"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentLost"
+        android:name="ru.startandroid.develop.testprojectnavigation.lost.FragmentLost"
+        android:label="Потерял"
+        tools:layout="@layout/fragment_lost">
+        <action
+            android:id="@+id/action_fragmentLost_to_Описание"
+            app:destination="@id/fragmentDetails"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentFound"
+        android:name="ru.startandroid.develop.testprojectnavigation.found.FragmentFound"
+        android:label="Нашел"
+        tools:layout="@layout/fragment_found">
+        <action
+            android:id="@+id/action_fragmentFound_to_fragmentDetailsFound2"
+            app:destination="@id/fragmentDetailsFound"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentProfile"
+        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentProfile"
+        android:label="Профиль"
+        tools:layout="@layout/fragment_profile" />
+    <action
+        android:id="@+id/action_global_fragmentProfile"
+        app:destination="@id/fragmentProfile"
+        app:enterAnim="@anim/slide_in_top"
+        app:exitAnim="@anim/slide_out_bottom"
+        app:popEnterAnim="@anim/slide_in_bottom"
+        app:popExitAnim="@anim/slide_out_top" />
+    <fragment
+        android:id="@+id/fragmentSettings"
+        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentSettings"
+        android:label="Настройки"
+        tools:layout="@layout/fragment_settings" />
+    <action
+        android:id="@+id/action_global_fragmentSettings"
+        app:destination="@id/fragmentSettings"
+        app:enterAnim="@anim/slide_in_top"
+        app:exitAnim="@anim/slide_out_bottom"
+        app:popEnterAnim="@anim/slide_in_bottom"
+        app:popExitAnim="@anim/slide_out_top" />
+    <fragment
+        android:id="@+id/fragmentAbout"
+        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAbout"
+        android:label="О нас"
+        tools:layout="@layout/fragment_about" />
+    <action
+        android:id="@+id/action_global_fragmentAbout"
+        app:destination="@id/fragmentAbout"
+        app:enterAnim="@anim/slide_in_top"
+        app:exitAnim="@anim/slide_out_bottom"
+        app:popEnterAnim="@anim/slide_in_bottom"
+        app:popExitAnim="@anim/slide_out_top" />
+    <fragment
+        android:id="@+id/fragmentDetails"
+        android:name="ru.startandroid.develop.testprojectnavigation.lost.FragmentDetails"
+        android:label="Описание"
+        tools:layout="@layout/fragment_details" />
+    <fragment
+        android:id="@+id/fragmentDetailsFound"
+        android:name="ru.startandroid.develop.testprojectnavigation.found.FragmentDetailsFound"
+        android:label="Описание"
+        tools:layout="@layout/fragment_details_found" />
+    <fragment
+        android:id="@+id/fragmentReview"
+        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentReview"
+        android:label="fragment_review"
+        tools:layout="@layout/fragment_review" />
+    <action
+        android:id="@+id/action_global_fragmentReview"
+        app:destination="@id/fragmentReview"
+        app:enterAnim="@anim/slide_in_top"
+        app:exitAnim="@anim/slide_out_bottom"
+        app:popEnterAnim="@anim/slide_in_bottom"
+        app:popExitAnim="@anim/slide_out_top" />
+    <fragment
+        android:id="@+id/fragmentMessages"
+        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentMessages"
+        android:label="Сообщения"
+        tools:layout="@layout/fragment_messages" />
+    <action
+        android:id="@+id/action_global_fragmentMessages"
+        app:destination="@id/fragmentMessages"
+        app:enterAnim="@anim/slide_in_top"
+        app:exitAnim="@anim/slide_out_bottom"
+        app:popEnterAnim="@anim/slide_in_bottom"
+        app:popExitAnim="@anim/slide_out_top" />
+    <fragment
+        android:id="@+id/fragmentAdd"
+        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAdd"
+        android:label="Добавить"
+        tools:layout="@layout/fragment_add" />
+    <action
+        android:id="@+id/action_global_fragmentAdd"
+        app:destination="@id/fragmentAdd"
+        app:enterAnim="@anim/slide_in_top"
+        app:exitAnim="@anim/slide_out_bottom"
+        app:popEnterAnim="@anim/slide_in_bottom"
+        app:popExitAnim="@anim/slide_out_top"/>
+</navigation>

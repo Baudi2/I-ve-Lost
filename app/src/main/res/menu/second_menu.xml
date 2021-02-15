@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:title="Профиль"
+        android:id="@+id/fragmentProfile"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="Сообщения"
+        android:id="@+id/fragmentMessages"
+        app:showAsAction="never"/>
+
+    <item
+        android:title="Добавить"
+        android:id="@+id/fragmentAdd"
+        app:showAsAction="never"/>
+
+
+
+</menu>

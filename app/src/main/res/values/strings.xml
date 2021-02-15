@@ -1,0 +1,23 @@
+<resources>
+    <string name="app_name">Test project navigation</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="fragment_main">Fragment Main</string>
+
+    <string name="lost_1_header">Потерял паспорт</string>
+    <string name="lost_2_header">Потерял деньги</string>
+    <string name="lost_3_header">Потерял кота</string>
+    <string name="lost_4_header">Потерял самолет</string>
+    <string name="lost_5_header">Потерял телефон</string>
+
+    <string name="lost_1_description">Потерял паспорт в Висаитовском районе</string>
+    <string name="lost_2_description">Потерял деньги в Заводском районе</string>
+    <string name="lost_3_description">Потерял кота в Первомайском районе</string>
+    <string name="lost_4_description">Потерял самолет в Ленинском районе</string>
+    <string name="lost_5_description">Потерял телефон в Октябрьском районе</string>
+    <string name="lost">Потерял</string>
+    <string name="profile">Профиль</string>
+    <string name="settings">Настройки</string>
+    <string name="about_us">О нас</string>
+    <string name="wish">Пожелания</string>
+</resources>
