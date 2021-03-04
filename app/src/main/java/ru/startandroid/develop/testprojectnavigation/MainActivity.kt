@@ -2,8 +2,6 @@ package ru.startandroid.develop.testprojectnavigation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.Menu
-import android.widget.Toolbar
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -11,8 +9,6 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
-import com.google.android.material.bottomnavigation.BottomNavigationMenu
-import com.google.android.material.navigation.NavigationView
 import ru.startandroid.develop.testprojectnavigation.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {

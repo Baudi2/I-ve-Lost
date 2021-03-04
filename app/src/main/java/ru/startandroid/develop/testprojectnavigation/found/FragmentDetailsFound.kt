@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import ru.startandroid.develop.testprojectnavigation.R
-import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsBinding
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsFoundBinding
 
 class FragmentDetailsFound : Fragment(R.layout.fragment_details_found){

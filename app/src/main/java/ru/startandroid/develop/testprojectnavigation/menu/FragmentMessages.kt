@@ -6,10 +6,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import ru.startandroid.develop.testprojectnavigation.R
-import ru.startandroid.develop.testprojectnavigation.databinding.FragmentAboutBinding
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentMessagesBinding
-import ru.startandroid.develop.testprojectnavigation.databinding.FragmentProfileBinding
-import ru.startandroid.develop.testprojectnavigation.databinding.FragmentSettingsBinding
 
 class FragmentMessages : Fragment(R.layout.fragment_messages){
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt

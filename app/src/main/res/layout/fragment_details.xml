@@ -15,7 +15,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_perosn"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="ContentDescription,VectorDrawableCompat" />
 
     <TextView
         android:id="@+id/textView3"
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Потерян документ"
+        android:text="@string/lost_document"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
@@ -34,8 +34,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="16dp"
-        android:text="Вы потеряли сумку с документами? Или ваши вещи были украдены? Не волнуйтесь!
-Вы сможете восстановить все документы."
+        android:text="@string/long_text_lost_document"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView3" />

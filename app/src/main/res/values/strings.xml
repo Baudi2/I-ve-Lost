@@ -25,4 +25,15 @@
     <string name="add">Добавить</string>
     <string name="profile">Профиль</string>
     <string name="found">Нашёл</string>
+    <string name="lost_document">Потерян документ</string>
+    <string name="lost_document_visaitovskiy">Потерял документ в Висаитовском районе</string>
+    <string name="fragment_about_us">Фрагмент О нас</string>
+    <string name="fragment_add">Фрагмент Добавить</string>
+    <string name="long_text_lost_document">Вы потеряли сумку с документами? Или ваши вещи были украдены? Не волнуйтесь! Вы сможете восстановить все документы.</string>
+    <string name="found_document">Найден документ</string>
+    <string name="long_text_found_document">Кемеровская область, Новокузнецкий г.о., Новокузнецк, Запорожская ул., 7А р-н Центральный</string>
+    <string name="fragment_messages">Фрагмент Сообщений</string>
+    <string name="fragment_profile">Фрагмент Профиля</string>
+    <string name="fragment_wishes">Фрагмент Пожеланий</string>
+    <string name="fragment_settings">Фрагмент Настроек</string>
 </resources>
