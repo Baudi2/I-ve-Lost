@@ -29,7 +29,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
-
+    // активируем viewBinding
     buildFeatures {
         viewBinding true
     }
@@ -51,7 +51,7 @@ dependencies {
     implementation "androidx.navigation:navigation-fragment-ktx:$navigationVersion"
     implementation "androidx.navigation:navigation-ui-ktx:$navigationVersion"
 
-    // Recycler View
-    implementation "androidx.recyclerview:recyclerview:1.1.0"
-    implementation "androidx.cardview:cardview:1.0.0"
+    // Recycler View & CardView
+    implementation "androidx.recyclerview:recyclerview:$recyclerViewVersion"
+    implementation "androidx.cardview:cardview:$cardViewVersion"
 }

@@ -7,29 +7,40 @@ import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentLostBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.ExampleAdapter
 import ru.startandroid.develop.testprojectnavigation.recyclerView.ExampleItem
 
-class FragmentLost : Fragment(R.layout.fragment_lost), ExampleAdapter.OnItemClickListener{
-
-    private lateinit var binding : FragmentLostBinding
+class FragmentLost : Fragment(R.layout.fragment_lost), ExampleAdapter.OnItemClickListener {
+    //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
+    private lateinit var binding: FragmentLostBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLostBinding.bind(view)
 
-        setHasOptionsMenu(true)
-
         val exampleList = generateItemList(30)
 
+        //? recyclerView закоментирован в FragmentFound тут тоже самое что и там
         binding.recyclerLostView.adapter = ExampleAdapter(exampleList, this)
         binding.apply {
             recyclerLostView.layoutManager = LinearLayoutManager(requireContext())
             recyclerLostView.setHasFixedSize(true)
+
+            bottomNavLost.setupWithNavController(findNavController())
+            bottomNavLost.itemIconSize = 80
+
+            fabLost.setOnClickListener {
+                val action = FragmentLostDirections.actionGlobalFragmentAdd()
+                findNavController().navigate(action)
+            }
         }
+
+
     }
 
     private fun generateItemList(size: Int): ArrayList<ExampleItem> {
@@ -75,29 +86,5 @@ class FragmentLost : Fragment(R.layout.fragment_lost), ExampleAdapter.OnItemClic
     override fun onItemClick(position: Int) {
         val action = FragmentLostDirections.actionFragmentLostToОписание()
         findNavController().navigate(action)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        requireActivity().menuInflater.inflate(R.menu.second_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.fragmentProfile -> {
-                val action = FragmentLostDirections.actionGlobalFragmentProfile()
-                findNavController().navigate(action)
-            }
-            R.id.fragmentMessages -> {
-                val action = FragmentLostDirections.actionGlobalFragmentMessages()
-                findNavController().navigate(action)
-            }
-            R.id.fragmentAdd -> {
-                val action = FragmentLostDirections.actionGlobalFragmentAdd()
-                findNavController().navigate(action)
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 }

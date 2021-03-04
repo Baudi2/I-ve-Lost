@@ -1,12 +1,15 @@
 package ru.startandroid.develop.testprojectnavigation.found
 
 import android.os.Bundle
+import android.util.TypedValue
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.AppBarConfiguration
+import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentFoundBinding
@@ -14,25 +17,34 @@ import ru.startandroid.develop.testprojectnavigation.lost.FragmentLostDirections
 import ru.startandroid.develop.testprojectnavigation.recyclerView.ExampleAdapter
 import ru.startandroid.develop.testprojectnavigation.recyclerView.ExampleItem
 
-class FragmentFound : Fragment(R.layout.fragment_found), ExampleAdapter.OnItemClickListener{
-
-    private lateinit var binding : FragmentFoundBinding
+class FragmentFound : Fragment(R.layout.fragment_found), ExampleAdapter.OnItemClickListener {
+    //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
+    private lateinit var binding: FragmentFoundBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFoundBinding.bind(view)
 
-        setHasOptionsMenu(true)
-
         val exampleItem = generateItemList(30)
 
+        //? задаем recyclerView адаптер, для этого нужно передать список данных для заполнения и контекст
         binding.recyclerFoundView.adapter = ExampleAdapter(exampleItem, this)
         binding.apply {
             recyclerFoundView.layoutManager = LinearLayoutManager(requireContext())
+            //? оптимизирует работу recyclerView если у его items размер фиксированный
             recyclerFoundView.setHasFixedSize(true)
+
+            bottomNavFound.setupWithNavController(findNavController())
+            bottomNavFound.itemIconSize = 80
+
+            fabFound.setOnClickListener {
+                val action = FragmentFoundDirections.actionGlobalFragmentAdd()
+                findNavController().navigate(action)
+            }
         }
     }
 
+    //? метод для создание случайных данных для заполнения ими recyclerView
     private fun generateItemList(size: Int): ArrayList<ExampleItem> {
         // the we create new empty arrayList<>
         val list = ArrayList<ExampleItem>()
@@ -76,29 +88,5 @@ class FragmentFound : Fragment(R.layout.fragment_found), ExampleAdapter.OnItemCl
     override fun onItemClick(position: Int) {
         val action = FragmentFoundDirections.actionFragmentFoundToFragmentDetailsFound2()
         findNavController().navigate(action)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        requireActivity().menuInflater.inflate(R.menu.second_menu, menu)
-        super.onCreateOptionsMenu(menu, inflater)
-    }
-
-    override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        when(item.itemId) {
-            R.id.fragmentProfile -> {
-                val action = FragmentFoundDirections.actionGlobalFragmentProfile()
-                findNavController().navigate(action)
-            }
-            R.id.fragmentMessages -> {
-                val action = FragmentFoundDirections.actionGlobalFragmentMessages()
-                findNavController().navigate(action)
-            }
-            R.id.fragmentAdd -> {
-                val action = FragmentFoundDirections.actionGlobalFragmentAdd()
-                findNavController().navigate(action)
-            }
-        }
-
-        return super.onOptionsItemSelected(item)
     }
 }

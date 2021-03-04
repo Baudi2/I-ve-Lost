@@ -1,17 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".lost.FragmentLost"
-    android:background="@color/teal_700">
+    android:background="@color/teal_700"
+    tools:context=".lost.FragmentLost">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_lost_view"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
         android:clipToPadding="false"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        tools:listitem="@layout/example_item"/>
+        app:layout_constraintBottom_toTopOf="@+id/bottom_nav_lost"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/example_item" />
 
-</RelativeLayout>
+    <!-- app:labelVisibilityMode="labeled" - без этого аттрибута текст под
+    иконка будет отображаться только у той иконка которая сейчас выбрана
+    (в фокусе).
+
+    app:menu="@menu/bottom_nav_found_menu" - привязываем наше меню к
+    bottomNavigation
+    -->
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottom_nav_lost"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:menu="@menu/bottom_nav_found_menu" >
+
+        <!-- Размер одной иконки нельзя увелечить, только все вместе.
+        Поэтому мы не увеличиваем иконку плюс а просто перекрываем её
+        большой floating action button делая вид будто сама иконка больше
+
+        app:borderWidth="0dp" - ставим на 0 чтобы скрыть рамки самой кнопки
+        чтобы эти рамки не выделяли её
+
+        app:elevation="0dp" - ставим на 0 чтобы убрать тень которая тоже выдеает
+        наличие "чужого" view
+
+        app:maxImageSize="56dp" - только через этот аттрибут можно менять
+        размер картинки внутри кнопки
+        -->
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/fab_lost"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:layout_gravity="center"
+            android:layout_marginBottom="1dp"
+            android:scaleType="center"
+            android:src="@drawable/icon_right_center_add"
+            app:backgroundTint="@color/white"
+            app:borderWidth="0dp"
+            app:elevation="0dp"
+            app:maxImageSize="56dp"
+            tools:ignore="ContentDescription" />
+
+    </com.google.android.material.bottomnavigation.BottomNavigationView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

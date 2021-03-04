@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:icon="@drawable/icon_loster"
+        android:title="@string/lost"
+        android:id="@+id/fragmentLost"/>
+
+    <item
+        android:icon="@drawable/icon_found"
+        android:title="@string/found"
+        android:id="@+id/fragmentFound"/>
+
+    <item
+        android:icon="@drawable/icon_right_center_add"
+        android:id="@+id/fragmentAdd"
+        android:title=""/>
+
+    <item
+        android:icon="@drawable/icon_messsages"
+        android:title="@string/messages"
+        android:id="@+id/fragmentMessages"
+        />
+
+
+    <item
+        android:icon="@drawable/icon_account"
+        android:title="@string/profile"
+        android:id="@+id/fragmentProfile"
+        />
+
+</menu>

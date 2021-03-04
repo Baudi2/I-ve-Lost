@@ -15,9 +15,14 @@
     <string name="lost_3_description">Потерял кота в Первомайском районе</string>
     <string name="lost_4_description">Потерял самолет в Ленинском районе</string>
     <string name="lost_5_description">Потерял телефон в Октябрьском районе</string>
-    <string name="lost">Потерял</string>
-    <string name="profile">Профиль</string>
+    <string name="lostest">Потерял</string>
+    <string name="profiler">Профиль</string>
     <string name="settings">Настройки</string>
     <string name="about_us">О нас</string>
     <string name="wish">Пожелания</string>
+    <string name="messages">Сообщения</string>
+    <string name="lost">Потерял</string>
+    <string name="add">Добавить</string>
+    <string name="profile">Профиль</string>
+    <string name="found">Нашёл</string>
 </resources>
