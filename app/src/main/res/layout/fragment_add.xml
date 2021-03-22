@@ -1,21 +1,116 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:tools="http://schemas.android.com/tools"
-    tools:context=".menu.FragmentAdd"
-    android:background="@android:color/holo_orange_dark">
+    android:background="@color/light_dark"
+    tools:context=".menu.FragmentAdd">
 
     <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_add"
+        android:id="@+id/text_view_lost_document"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginTop="144dp"
+        android:text="@string/lost_document_text"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="@dimen/lost_text_views_text_size"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <TextView
+        android:id="@+id/text_view_lost_money"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/lost_money_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lost_text_views_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_lost_document" />
+
+    <TextView
+        android:id="@+id/text_view_lost_animals"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/lost_animal_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lost_text_views_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_lost_money" />
+
+    <TextView
+        android:id="@+id/text_view_lost_people"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/lost_people_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lost_text_views_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_lost_animals" />
+
+    <TextView
+        android:id="@+id/text_view_what_you_lost"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="16dp"
+        android:text="Что вы потеряли?"
+        android:textColor="@color/white"
+        android:textSize="32sp"
+        app:layout_constraintBottom_toTopOf="@+id/text_view_lost_document"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/text_view_lost_jewelry"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/lost_jewelry_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lost_text_views_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_lost_people" />
+
+    <TextView
+        android:id="@+id/text_view_lost_equipment"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/lost_personal_belongings_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lost_text_views_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_lost_jewelry" />
+
+    <TextView
+        android:id="@+id/text_view_lost_other"
+        android:layout_width="0dp"
+        android:layout_height="45dp"
+        android:layout_marginTop="24dp"
+        android:text="@string/lost_other_text"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="@dimen/lost_text_views_text_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/text_view_lost_equipment" />
 </androidx.constraintlayout.widget.ConstraintLayout>

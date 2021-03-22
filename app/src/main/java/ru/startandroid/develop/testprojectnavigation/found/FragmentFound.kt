@@ -5,13 +5,13 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
-import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.GridLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentFoundBinding
-import ru.startandroid.develop.testprojectnavigation.recyclerView.ExampleAdapter
-import ru.startandroid.develop.testprojectnavigation.recyclerView.ExampleItem
+import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
+import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutItem
 
-class FragmentFound : Fragment(R.layout.fragment_found), ExampleAdapter.OnItemClickListener {
+class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnItemClickListener {
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
     private lateinit var binding: FragmentFoundBinding
 
@@ -20,28 +20,29 @@ class FragmentFound : Fragment(R.layout.fragment_found), ExampleAdapter.OnItemCl
         binding = FragmentFoundBinding.bind(view)
 
         val exampleItem = generateItemList(30)
+        val manager = GridLayoutManager(activity, 2)
 
         //? задаем recyclerView адаптер, для этого нужно передать список данных для заполнения и контекст
-        binding.recyclerFoundView.adapter = ExampleAdapter(exampleItem, this)
+        binding.recyclerFoundView.adapter = GridLayoutAdapter(exampleItem, this)
         binding.apply {
-            recyclerFoundView.layoutManager = LinearLayoutManager(requireContext())
+            recyclerFoundView.layoutManager = manager
             //? оптимизирует работу recyclerView если у его items размер фиксированный
             recyclerFoundView.setHasFixedSize(true)
 
             bottomNavFound.setupWithNavController(findNavController())
-            bottomNavFound.itemIconSize = 80
+            bottomNavFound.itemIconSize = 70
 
             fabFound.setOnClickListener {
-                val action = FragmentFoundDirections.actionGlobalFragmentAdd()
+                val action = FragmentFoundDirections.actionGlobalFragmentAddLostFind2()
                 findNavController().navigate(action)
             }
         }
     }
 
     //? метод для создание случайных данных для заполнения ими recyclerView
-    private fun generateItemList(size: Int): ArrayList<ExampleItem> {
+    private fun generateItemList(size: Int): ArrayList<GridLayoutItem> {
         // the we create new empty arrayList<>
-        val list = ArrayList<ExampleItem>()
+        val list = ArrayList<GridLayoutItem>()
 
         // and it uses the size value in the for loop to fill this list with data
         // Note: this is a custom algorithm that has nothing to do neither with android nor recyclerView
@@ -64,15 +65,31 @@ class FragmentFound : Fragment(R.layout.fragment_found), ExampleAdapter.OnItemCl
             }
 
             val description = when (i % 5) {
-                0 -> "Нашел паспорт в Висаитовском районе"
-                1 -> "Нашел деньги в Заводском районе"
-                2 -> "Нашел кота в Первомайском районе"
-                3 -> "Нашел самолет в Ленинском районе"
-                else -> "Нашел телефон в Октябрьском районе"
+                0 -> "Висаитовский район"
+                1 -> "Заводский район"
+                2 -> "Первомайский район"
+                3 -> "Ленинский район"
+                else -> "Октябрьский район"
+            }
+
+            val time = when (i % 5) {
+                0 -> "Сегодня, 16:38"
+                1 -> "Вчера, 10:21"
+                2 -> "Завтра, 22:19"
+                3 -> "Сегодня, 15:03"
+                else -> "Вчера, 04:31"
+            }
+
+            val views = when (i % 5) {
+                0 -> 900
+                1 -> 619
+                2 -> 532
+                3 -> 238
+                else -> 152
             }
 
             // creates new ExampleItem and passes through its constructor the necessary data
-            val item = ExampleItem(drawable, header, description)
+            val item = GridLayoutItem(drawable, header, description, time, views)
             list += item
         }
         // after filling the list with data we eventually return it

@@ -10,11 +10,11 @@
     <string name="lost_4_header">Потерял самолет</string>
     <string name="lost_5_header">Потерял телефон</string>
 
-    <string name="lost_1_description">Потерял паспорт в Висаитовском районе</string>
-    <string name="lost_2_description">Потерял деньги в Заводском районе</string>
-    <string name="lost_3_description">Потерял кота в Первомайском районе</string>
-    <string name="lost_4_description">Потерял самолет в Ленинском районе</string>
-    <string name="lost_5_description">Потерял телефон в Октябрьском районе</string>
+    <string name="lost_1_description">Висаитовский район</string>
+    <string name="lost_2_description">Заводской район</string>
+    <string name="lost_3_description">Первомайский район</string>
+    <string name="lost_4_description">Ленинский район</string>
+    <string name="lost_5_description">Октябрьский район</string>
     <string name="lostest">Потерял</string>
     <string name="profiler">Профиль</string>
     <string name="settings">Настройки</string>
@@ -36,4 +36,22 @@
     <string name="fragment_profile">Фрагмент Профиля</string>
     <string name="fragment_wishes">Фрагмент Пожеланий</string>
     <string name="fragment_settings">Фрагмент Настроек</string>
+    <string name="lost_location_one">Висаитовский район</string>
+    <string name="what_you_lost">Что вы потеряли?</string>
+    <string name="what_you_found">Что вы нашли?</string>
+
+
+
+    <string name="enter_message">Enter message</string>
+    <string name="button_send">Send</string>
+    <string name="lost_document_text">Документы</string>
+    <string name="lost_money_text">Деньги</string>
+    <string name="lost_animal_text">Животное</string>
+    <string name="lost_people_text">Люди</string>
+    <string name="lost_jewelry_text">Драгоценности</string>
+    <string name="lost_other_text">Другое</string>
+    <string name="lost_personal_belongings_text">Личные вещи</string>
+    
+    <string name="lost_post">Объявление о потери</string>
+    <string name="found_post">Объявление о находке</string>
 </resources>

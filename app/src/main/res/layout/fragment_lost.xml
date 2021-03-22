@@ -4,14 +4,16 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
-    tools:context=".lost.FragmentLost">
+    android:background="@color/white"
+    tools:context=".lost.FragmentLost"
+    android:id="@+id/fragment_lost_parent">
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycler_lost_view"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:clipToPadding="false"
+        android:padding="6dp"
         app:layout_constraintBottom_toTopOf="@+id/bottom_nav_lost"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

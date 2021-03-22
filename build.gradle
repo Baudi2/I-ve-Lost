@@ -8,8 +8,8 @@ buildscript {
         cardViewVersion = "1.0.0"
     }
     repositories {
-        google()
         jcenter()
+        google()
     }
     dependencies {
         classpath "com.android.tools.build:gradle:4.1.1"

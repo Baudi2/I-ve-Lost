@@ -18,9 +18,9 @@ private lateinit var appBarConfiguration: AppBarConfiguration
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        //? подключение binding для активити немного отличается от процесса подключение binding к фрагменту
-        //? но код всегда одинаковый так что можно просто записать где-нибудь.
+
         binding = ActivityMainBinding.inflate(layoutInflater)
+        explain_binding() //!.
         val view = binding.root
         setContentView(view)
 
@@ -28,18 +28,16 @@ private lateinit var appBarConfiguration: AppBarConfiguration
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
         navController = navHostFragment.findNavController()
 
-        //? appBarConfiguration нужен чтобы отметить высокоуровневые фрагменты т.е. те фрагменты после перехода на которые
-        //? не будет на верху показываться backButton. appBarConfiguration нужно передать в setupActionBarWithNavController
-        //? чтобы он заробатал.
+        explain_AppBar() //!.
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.fragmentFound, R.id.fragmentLost,
             R.id.fragmentMessages, R.id.fragmentProfile)
         )
 
-        //? подключаем верхний тулбар так чтобы он показывался во всех фрагментах.То что мы настраиваем тут имеет эффект на все
-        //? фрагменты поэтому мы объявили bottomNavigation напрямую в фрагментах т.к. он нам не нужен во всех фрагментах
+
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
+        explain_setSupportActionBar() //!.
 
         //? тут пока недоделано, это должен был быть drawerLayout т.е. бургер, но пока не понятно.
         binding.navView.setupWithNavController(navController)

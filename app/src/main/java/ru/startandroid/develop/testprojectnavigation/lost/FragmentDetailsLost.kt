@@ -6,7 +6,7 @@ import androidx.fragment.app.Fragment
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsBinding
 
-class FragmentDetails : Fragment(R.layout.fragment_details){
+class FragmentDetailsLost : Fragment(R.layout.fragment_details){
 
     private lateinit var binding : FragmentDetailsBinding
 
@@ -14,5 +14,7 @@ class FragmentDetails : Fragment(R.layout.fragment_details){
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailsBinding.bind(view)
 
+        //TODO: add horizontal recyclerView where the pictures of items goes, карусель наверхну
+        //TODO: add location in the bottom, beneath the description.
     }
 }

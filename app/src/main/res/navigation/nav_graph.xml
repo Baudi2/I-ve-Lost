@@ -89,7 +89,7 @@
         app:popExitAnim="@anim/slide_out_top" />
     <fragment
         android:id="@+id/fragmentDetails"
-        android:name="ru.startandroid.develop.testprojectnavigation.lost.FragmentDetails"
+        android:name="ru.startandroid.develop.testprojectnavigation.lost.FragmentDetailsLost"
         android:label="Описание"
         tools:layout="@layout/fragment_details" />
     <fragment
@@ -111,9 +111,17 @@
         app:popExitAnim="@anim/slide_out_top" />
     <fragment
         android:id="@+id/fragmentMessages"
-        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentMessages"
+        android:name="ru.startandroid.develop.testprojectnavigation.messages.FragmentMessages"
         android:label="Сообщения"
-        tools:layout="@layout/fragment_messages" />
+        tools:layout="@layout/fragment_messages" >
+        <action
+            android:id="@+id/action_fragmentMessages_to_fragmentChats"
+            app:destination="@id/fragmentChats"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+    </fragment>
     <action
         android:id="@+id/action_global_fragmentMessages"
         app:destination="@id/fragmentMessages"
@@ -125,13 +133,53 @@
     <fragment
         android:id="@+id/fragmentAdd"
         android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAdd"
-        android:label="Добавить"
-        tools:layout="@layout/fragment_add" />
+        android:label="Категории"
+        tools:layout="@layout/fragment_add" >
+        <argument
+            android:name="lost_found"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentAdd_to_fragmentAddEdit"
+            app:destination="@id/fragmentAddEdit" />
+        <argument
+            android:name="isLost"
+            app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentChats"
+        android:name="ru.startandroid.develop.testprojectnavigation.messages.FragmentChats"
+        android:label="Название чата"
+        tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/fragmentAddLostFind2"
+        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAddLostFind"
+        android:label="Выбор"
+        tools:layout="@layout/fragment_choose_lost_found">
+        <action
+            android:id="@+id/action_fragmentAddLostFind2_to_fragmentAdd"
+            app:destination="@id/fragmentAdd"
+            app:enterAnim="@anim/fade_in"
+            app:exitAnim="@anim/fade_out"
+            app:popEnterAnim="@anim/fade_in"
+            app:popExitAnim="@anim/fade_out" />
+    </fragment>
     <action
-        android:id="@+id/action_global_fragmentAdd"
-        app:destination="@id/fragmentAdd"
-        app:enterAnim="@anim/slide_in_top"
-        app:exitAnim="@anim/slide_out_bottom"
-        app:popEnterAnim="@anim/slide_in_bottom"
-        app:popExitAnim="@anim/slide_out_top"/>
+        android:id="@+id/action_global_fragmentAddLostFind2"
+        app:destination="@id/fragmentAddLostFind2"
+        app:enterAnim="@anim/fade_in"
+        app:exitAnim="@anim/fade_out"
+        app:popEnterAnim="@anim/fade_in"
+        app:popExitAnim="@anim/fade_out" />
+    <fragment
+        android:id="@+id/fragmentAddEdit"
+        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAddEdit"
+        android:label="{topic}"
+        tools:layout="@layout/fragment_add_edit">
+        <argument
+            android:name="topic"
+            app:argType="string" />
+        <argument
+            android:name="isLost"
+            app:argType="boolean" />
+    </fragment>
 </navigation>

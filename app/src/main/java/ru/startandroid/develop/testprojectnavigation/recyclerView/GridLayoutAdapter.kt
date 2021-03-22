@@ -8,10 +8,10 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 
-class ExampleAdapter(
-    private val exampleList: List<ExampleItem>,
+class GridLayoutAdapter(
+    private val gridLayoutList: List<GridLayoutItem>,
     private val listener: OnItemClickListener
-) : RecyclerView.Adapter<ExampleAdapter.ExampleViewHolder>() {
+) : RecyclerView.Adapter<GridLayoutAdapter.ExampleViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ExampleViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.example_item,
@@ -21,19 +21,23 @@ class ExampleAdapter(
     }
 
     override fun onBindViewHolder(holder: ExampleViewHolder, position: Int) {
-        val currentItem = exampleList[position]
+        val currentItem = gridLayoutList[position]
 
         holder.imageView.setImageResource(currentItem.imageResource)
         holder.textHeader.text = currentItem.headerText
         holder.textDescription.text = currentItem.descriptionText
+        holder.textViewTime.text = currentItem.timeText
+        holder.textViewViewCount.text = currentItem.viewsCount.toString()
     }
 
-    override fun getItemCount() = exampleList.size
+    override fun getItemCount() = gridLayoutList.size
 
     inner class ExampleViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         val imageView : ImageView = itemView.findViewById(R.id.image_holder)
         val textHeader : TextView = itemView.findViewById(R.id.text_view_header)
-        val textDescription: TextView = itemView.findViewById(R.id.text_view_description)
+        val textDescription: TextView = itemView.findViewById(R.id.text_view_location)
+        val textViewTime: TextView = itemView.findViewById(R.id.text_view_time)
+        val textViewViewCount: TextView = itemView.findViewById(R.id.text_view_views)
 
         init {
             itemView.setOnClickListener {
