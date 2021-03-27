@@ -7,6 +7,7 @@ import android.widget.ImageView
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 
+//? нужно будет тут заменить на нормальный ресайкл который поддерживает два viewHolder
 class HorizontalAdapter(private val horizontalItem: List<HorizontalLayoutItem>,
     private val listener: HorizontalItemClickListener)
     : RecyclerView.Adapter<HorizontalAdapter.HorizontalViewHolder>() {
