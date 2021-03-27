@@ -8,18 +8,17 @@
     tools:context=".lost.FragmentDetailsLost"
     android:id="@+id/fragment_lost_details_parent">
 
-    <ImageView
-        android:id="@+id/imageView2"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/details_recycler_view"
         android:layout_width="0dp"
-        android:layout_height="200dp"
+        android:layout_height="250dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_perosn"
-        tools:ignore="ContentDescription,VectorDrawableCompat" />
+        tools:listitem="@layout/horizontal_recycler_view_item" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/header_details_lost"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -27,10 +26,10 @@
         android:layout_marginTop="16dp"
         android:text="@string/lost_document"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+        app:layout_constraintTop_toBottomOf="@+id/details_recycler_view" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/description_details_lost"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -38,5 +37,5 @@
         android:text="@string/long_text_lost_document"
         android:textSize="20sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintTop_toBottomOf="@+id/header_details_lost" />
 </androidx.constraintlayout.widget.ConstraintLayout>

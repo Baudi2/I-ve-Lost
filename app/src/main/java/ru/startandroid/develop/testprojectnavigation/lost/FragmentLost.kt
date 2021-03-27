@@ -14,12 +14,12 @@ import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutItem
 class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemClickListener {
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
     private lateinit var binding: FragmentLostBinding
+    private val exampleList = generateItemList(30)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLostBinding.bind(view)
 
-        val exampleList = generateItemList(30)
         val manager = GridLayoutManager(activity, 2)
 
         //? recyclerView закоментирован в FragmentFound тут тоже самое что и там
@@ -65,11 +65,11 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
             }
 
             val description = when (i % 5) {
-                0 -> "Висаитовский район"
-                1 -> "Заводский район"
-                2 -> "Первомайский район"
-                3 -> "Ленинский район"
-                else -> "Октябрьский район"
+                0 -> "Потерял паспорт в Висаитовском районе около пару дней назад. Никак не могу найти, пожалуйста помогите!"
+                1 -> "Потерял деньги в Заводском районе вчера в райное 6 вечера, рядом с магазином Магнит. Сумма небольшая"
+                2 -> "Потерял кота в Первомайском районе. Кот породой британец, около 6 месяцев, также на нем был ошейник розового цвета. Откликается на имя Барсик"
+                3 -> "Потерял коллекционный игрушечный самолет в Ленинском районе 15 сентября 2019 года. Вознраграждение есть!"
+                else -> "Потерял телефон в Октябрьском районе телефон марки XiaoMi модель Mi 10T купил совсем недавно."
             }
 
             val time = when (i % 5) {
@@ -89,7 +89,7 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
             }
 
             // creates new ExampleItem and passes through its constructor the necessary data
-            val item = GridLayoutItem(drawable, header, description, time, views)
+            val item = GridLayoutItem(drawable, header!!, description, time, views)
             list += item
         }
         // after filling the list with data we eventually return it
@@ -97,7 +97,9 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
     }
 
     override fun onItemClick(position: Int) {
-        val action = FragmentLostDirections.actionFragmentLostToОписание()
+        val clickedItemHeader = exampleList[position].headerText
+        val clickedItemDescription = exampleList[position].descriptionText
+        val action = FragmentLostDirections.actionFragmentLostToОписание(clickedItemHeader, clickedItemDescription)
         findNavController().navigate(action)
     }
 }

@@ -1,6 +1,5 @@
 package ru.startandroid.develop.testprojectnavigation.lost
 
-import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
@@ -73,10 +72,10 @@ class FragmentLostTest {
         onView(withId(R.id.fragment_lost_details_parent)).check(matches(isDisplayed()))
 
         //? проверяем видимость картинки
-        onView(withId(R.id.imageView2)).check(matches(isDisplayed()))
+        onView(withId(R.id.details_recycler_view)).check(matches(isDisplayed()))
 
         //? проверяем видимость двух textView
-        onView(withId(R.id.textView3)).check(matches(isDisplayed()))
-        onView(withId(R.id.textView4)).check(matches(isDisplayed()))
+        onView(withId(R.id.header_details_lost)).check(matches(isDisplayed()))
+        onView(withId(R.id.description_details_lost)).check(matches(isDisplayed()))
     }
 }

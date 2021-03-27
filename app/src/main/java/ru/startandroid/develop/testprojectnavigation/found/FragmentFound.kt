@@ -14,12 +14,12 @@ import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutItem
 class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnItemClickListener {
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
     private lateinit var binding: FragmentFoundBinding
+    private val exampleItem = generateItemList(30)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFoundBinding.bind(view)
 
-        val exampleItem = generateItemList(30)
         val manager = GridLayoutManager(activity, 2)
 
         //? задаем recyclerView адаптер, для этого нужно передать список данных для заполнения и контекст
@@ -65,11 +65,11 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
             }
 
             val description = when (i % 5) {
-                0 -> "Висаитовский район"
-                1 -> "Заводский район"
-                2 -> "Первомайский район"
-                3 -> "Ленинский район"
-                else -> "Октябрьский район"
+                0 -> "Найден паспорт гражданина Соединенных Штатов Америки в Висаитовском районе. Если ваша фамилия Brown то отзовитесь!"
+                1 -> "Найдена небольшая сумма денег от 1000руб. до 10000руб. в Заводском районе. Деньги лежали рядом с магазином Магнит, отклинитесь!"
+                2 -> "Найден кот британец по породе рядом с остановкой в Первомайском районе. На коте был розовый ошейник, привел пока домой, съел всю рыбу в доме."
+                3 -> "Найден коллекционный игрушечный самолет 1998 года лимитированного издания в Ленинском районе. Был найдем вчера около 6 вечера."
+                else -> "Найден телефон выглядит новым, марка XiaoMi модель телефона Mi 10T в Октябрьском районе, не смог разблокировать и позвонить родственникам владельца."
             }
 
             val time = when (i % 5) {
@@ -97,7 +97,9 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
     }
 
     override fun onItemClick(position: Int) {
-        val action = FragmentFoundDirections.actionFragmentFoundToFragmentDetailsFound2()
+        val clickedItemHeader = exampleItem[position].headerText
+        val clickedItemDescription = exampleItem[position].descriptionText
+        val action = FragmentFoundDirections.actionFragmentFoundToFragmentDetailsFound2(clickedItemHeader, clickedItemDescription)
         findNavController().navigate(action)
     }
 }

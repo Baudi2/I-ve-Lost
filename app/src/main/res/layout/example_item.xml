@@ -47,7 +47,7 @@
             android:layout_height="23dp"
             android:layout_marginTop="2dp"
             android:ellipsize="end"
-            android:maxLines="2"
+            android:maxLines="1"
             android:text="@string/lost_location_one"
             android:textSize="@dimen/text_view_location_time"
             app:layout_constraintEnd_toEndOf="@+id/text_view_header"

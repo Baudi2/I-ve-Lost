@@ -91,12 +91,40 @@
         android:id="@+id/fragmentDetails"
         android:name="ru.startandroid.develop.testprojectnavigation.lost.FragmentDetailsLost"
         android:label="Описание"
-        tools:layout="@layout/fragment_details" />
+        tools:layout="@layout/fragment_details" >
+        <action
+            android:id="@+id/action_fragmentDetails_to_fragmentDetailsSelectedPhoto"
+            app:destination="@id/fragmentDetailsSelectedPhoto"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="header"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentDetailsFound"
         android:name="ru.startandroid.develop.testprojectnavigation.found.FragmentDetailsFound"
         android:label="Описание"
-        tools:layout="@layout/fragment_details_found" />
+        tools:layout="@layout/fragment_details_found" >
+        <action
+            android:id="@+id/action_fragmentDetailsFound_to_fragmentDetailsSelectedPhoto"
+            app:destination="@id/fragmentDetailsSelectedPhoto"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
+        <argument
+            android:name="header"
+            app:argType="string" />
+        <argument
+            android:name="description"
+            app:argType="string" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentReview"
         android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentReview"
@@ -157,11 +185,7 @@
         tools:layout="@layout/fragment_choose_lost_found">
         <action
             android:id="@+id/action_fragmentAddLostFind2_to_fragmentAdd"
-            app:destination="@id/fragmentAdd"
-            app:enterAnim="@anim/fade_in"
-            app:exitAnim="@anim/fade_out"
-            app:popEnterAnim="@anim/fade_in"
-            app:popExitAnim="@anim/fade_out" />
+            app:destination="@id/fragmentAdd" />
     </fragment>
     <action
         android:id="@+id/action_global_fragmentAddLostFind2"
@@ -181,5 +205,17 @@
         <argument
             android:name="isLost"
             app:argType="boolean" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentDetailsSelectedPhoto"
+        android:name="ru.startandroid.develop.testprojectnavigation.other.FragmentDetailsSelectedPhoto"
+        android:label="Фото"
+        tools:layout="@layout/details_selected_photo">
+        <argument
+            android:name="selectedPhoto"
+            app:argType="integer" />
+        <argument
+            android:name="startPosition"
+            app:argType="integer" />
     </fragment>
 </navigation>
