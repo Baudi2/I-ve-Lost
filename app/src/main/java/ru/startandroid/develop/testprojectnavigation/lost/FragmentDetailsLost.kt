@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -12,6 +14,7 @@ import androidx.recyclerview.widget.SnapHelper
 import ru.startandroid.develop.testprojectnavigation.LinePagerIndicatorDecoration
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsBinding
+import ru.startandroid.develop.testprojectnavigation.other.FragmentDetailsSelectedPhoto
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalLayoutItem
 
@@ -30,8 +33,8 @@ class FragmentDetailsLost : Fragment(R.layout.fragment_details), HorizontalAdapt
 
         val manager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         val snapHelper: SnapHelper = PagerSnapHelper()
-
-        binding.detailsRecyclerView.adapter = HorizontalAdapter(dummyData, this)
+        val adapter = HorizontalAdapter(dummyData, this)
+        binding.detailsRecyclerView.adapter = adapter
         binding.apply {
             detailsRecyclerView.layoutManager = manager
             detailsRecyclerView.setHasFixedSize(true)
@@ -43,8 +46,6 @@ class FragmentDetailsLost : Fragment(R.layout.fragment_details), HorizontalAdapt
             headerDetailsLost.text = header
             descriptionDetailsLost.text = description
         }
-
-        //TODO: add location in the bottom, beneath the description.
     }
 
     override fun onHorizontalItemClickListener(position: Int) {
@@ -73,7 +74,7 @@ class FragmentDetailsLost : Fragment(R.layout.fragment_details), HorizontalAdapt
             }
 
             // creates new ExampleItem and passes through its constructor the necessary data
-            val item = HorizontalLayoutItem(drawable)
+            val item = HorizontalLayoutItem(drawable, 0)
             list += item
         }
         // after filling the list with data we eventually return it

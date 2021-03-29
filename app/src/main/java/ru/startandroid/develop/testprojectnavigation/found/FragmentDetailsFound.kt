@@ -46,6 +46,8 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
         }
     }
 
+
+
     override fun onHorizontalItemClickListener(position: Int) {
         val clickedItem = dummyData[position].image
         val action = FragmentDetailsFoundDirections.actionFragmentDetailsFoundToFragmentDetailsSelectedPhoto(clickedItem, position)
@@ -71,7 +73,7 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
             }
 
             // creates new ExampleItem and passes through its constructor the necessary data
-            val item = HorizontalLayoutItem(drawable)
+            val item = HorizontalLayoutItem(drawable, 0)
             list += item
         }
         // after filling the list with data we eventually return it
