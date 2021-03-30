@@ -4,9 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -14,11 +11,11 @@ import androidx.recyclerview.widget.SnapHelper
 import ru.startandroid.develop.testprojectnavigation.LinePagerIndicatorDecoration
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.DetailsSelectedPhotoBinding
-import ru.startandroid.develop.testprojectnavigation.lost.FragmentDetailsLost
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalLayoutItem
 
-class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo), HorizontalAdapter.HorizontalItemClickListener {
+class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo),
+    HorizontalAdapter.HorizontalItemClickListener {
     private lateinit var binding: DetailsSelectedPhotoBinding
     private val args: FragmentDetailsSelectedPhotoArgs by navArgs()
     private val dummyData = generateItemList(6)

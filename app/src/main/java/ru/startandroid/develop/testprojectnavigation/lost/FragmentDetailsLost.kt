@@ -2,10 +2,7 @@ package ru.startandroid.develop.testprojectnavigation.lost
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.MutableLiveData
-import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -14,7 +11,6 @@ import androidx.recyclerview.widget.SnapHelper
 import ru.startandroid.develop.testprojectnavigation.LinePagerIndicatorDecoration
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsBinding
-import ru.startandroid.develop.testprojectnavigation.other.FragmentDetailsSelectedPhoto
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalLayoutItem
 

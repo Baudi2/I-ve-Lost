@@ -16,7 +16,6 @@ import ru.startandroid.develop.testprojectnavigation.R
 
 @RunWith(AndroidJUnit4ClassRunner::class)
 class FragmentLostTest {
-    //TODO: написать такие же тесты только для фрагмента Нашёл
 
     //? проверяю показывается ли фрагмент потерял при запуске приложения
     @Test

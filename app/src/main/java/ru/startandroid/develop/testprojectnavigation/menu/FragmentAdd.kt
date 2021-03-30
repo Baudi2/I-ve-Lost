@@ -92,5 +92,3 @@ class FragmentAdd : Fragment(R.layout.fragment_add){
         }
     }
 }
-
-//TODO: setup recyclerView adding new item like in todo list apps

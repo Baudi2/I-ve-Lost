@@ -2,28 +2,39 @@ package ru.startandroid.develop.testprojectnavigation.found
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentFoundBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutItem
+import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
+import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalLayoutItem
 
 class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnItemClickListener {
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
     private lateinit var binding: FragmentFoundBinding
     private val exampleItem = generateItemList(30)
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFoundBinding.bind(view)
 
         val manager = GridLayoutManager(activity, 2)
+        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int) = when(position) {
+                0 -> 2
+                else -> 1
+            }
+        }
 
         //? задаем recyclerView адаптер, для этого нужно передать список данных для заполнения и контекст
-        binding.recyclerFoundView.adapter = GridLayoutAdapter(exampleItem, this)
+        binding.recyclerFoundView.adapter = GridLayoutAdapter(exampleItem, this, requireContext())
         binding.apply {
             recyclerFoundView.layoutManager = manager
             //? оптимизирует работу recyclerView если у его items размер фиксированный
@@ -39,7 +50,6 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
         }
     }
 
-    //? метод для создание случайных данных для заполнения ими recyclerView
     private fun generateItemList(size: Int): ArrayList<GridLayoutItem> {
         // the we create new empty arrayList<>
         val list = ArrayList<GridLayoutItem>()

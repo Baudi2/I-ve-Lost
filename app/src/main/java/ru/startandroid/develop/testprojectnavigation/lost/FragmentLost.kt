@@ -2,28 +2,44 @@ package ru.startandroid.develop.testprojectnavigation.lost
 
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
+import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.PagerSnapHelper
+import androidx.recyclerview.widget.SnapHelper
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentLostBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutItem
+import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
+import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalLayoutItem
 
 class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemClickListener {
+
+    //TODO: change recyclerView header positioning, so that we scroll down it gets scrolled
+    //TODO: change the way clicks are handled in header or gridLayout since grid layout stops app after click
+
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
     private lateinit var binding: FragmentLostBinding
-    private val exampleList = generateItemList(30)
+    private val exampleList = generateItemListGridLayout(30)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLostBinding.bind(view)
 
         val manager = GridLayoutManager(activity, 2)
+        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int) = when(position) {
+                0 -> 2
+                else -> 1
+            }
+        }
 
         //? recyclerView закоментирован в FragmentFound тут тоже самое что и там
-        binding.recyclerLostView.adapter = GridLayoutAdapter(exampleList, this)
+        binding.recyclerLostView.adapter = GridLayoutAdapter(exampleList, this, requireContext())
         binding.apply {
             recyclerLostView.layoutManager = manager
             recyclerLostView.setHasFixedSize(true)
@@ -36,11 +52,10 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
                 findNavController().navigate(action)
             }
         }
-
-
     }
 
-    private fun generateItemList(size: Int): ArrayList<GridLayoutItem> {
+
+    private fun generateItemListGridLayout(size: Int): ArrayList<GridLayoutItem> {
         // the we create new empty arrayList<>
         val list = ArrayList<GridLayoutItem>()
 
@@ -102,4 +117,5 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
         val action = FragmentLostDirections.actionFragmentLostToОписание(clickedItemHeader, clickedItemDescription)
         findNavController().navigate(action)
     }
+
 }
