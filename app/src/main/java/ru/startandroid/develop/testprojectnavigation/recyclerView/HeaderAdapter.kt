@@ -23,7 +23,7 @@ private val headerItemList: List<HeaderItem>): RecyclerView.Adapter<RecyclerView
         (holder as HeaderItemViewHolder).bind(headerItemList[position])
     }
 
-    override fun getItemCount() = 7
+    override fun getItemCount() = 8
 
     inner class HeaderItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
         fun bind(headerItem: HeaderItem) {

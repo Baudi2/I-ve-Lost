@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Test project navigation</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragment_main">Fragment Main</string>
 
@@ -74,4 +73,5 @@
     <string name="lost_time_stamp_three">Завтра, 22:19</string>
     <string name="lost_time_stamp_four">Сегодня, 15:03</string>
     <string name="lost_time_stamp_five">Вчера, 04:31</string>
+    <string name="search_menu">Поиск</string>
 </resources>

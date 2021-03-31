@@ -176,8 +176,15 @@
     <fragment
         android:id="@+id/fragmentChats"
         android:name="ru.startandroid.develop.testprojectnavigation.messages.FragmentChats"
-        android:label="Название чата"
-        tools:layout="@layout/fragment_chat" />
+        android:label="{userName}"
+        tools:layout="@layout/fragment_chat">
+        <argument
+            android:name="userName"
+            app:argType="string" />
+        <argument
+            android:name="userPhoto"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/fragmentAddLostFind2"
         android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAddLostFind"

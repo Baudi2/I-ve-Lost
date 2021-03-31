@@ -1,26 +1,23 @@
 package ru.startandroid.develop.testprojectnavigation.lost
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
 import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.PagerSnapHelper
-import androidx.recyclerview.widget.SnapHelper
+import com.google.android.material.snackbar.Snackbar
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentLostBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutItem
-import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
-import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalLayoutItem
 
 class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemClickListener {
 
-    //TODO: change recyclerView header positioning, so that we scroll down it gets scrolled
-    //TODO: change the way clicks are handled in header or gridLayout since grid layout stops app after click
 
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
     private lateinit var binding: FragmentLostBinding
@@ -52,6 +49,36 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
                 findNavController().navigate(action)
             }
         }
+
+        // подключаем поиск на тулбар с иконкой поиска
+        setHasOptionsMenu(true)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        // инициализируем поисковое меню
+        inflater.inflate(R.menu.menu_search, menu)
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    // пока просто показываем тост и отображаем строку которую пользователь ввел в поиск
+                    Toast.makeText(requireContext(), query, Toast.LENGTH_SHORT).show()
+
+                    // убирает клавиатуру с видимости как только запрос был завершен
+                    searchView.clearFocus()
+                }
+                return true
+            }
+
+            // здесь ничего не делаем потому что мы не хотем выполнять запрос пока мы все ещё пишем
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
     }
 
 

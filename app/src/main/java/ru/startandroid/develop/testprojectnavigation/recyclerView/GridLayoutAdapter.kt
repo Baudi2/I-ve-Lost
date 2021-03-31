@@ -62,7 +62,7 @@ class GridLayoutAdapter(
         val theList: List<HeaderItem>
 
         init {
-            theList = generateItemListHorizontalLayout(7)
+            theList = generateItemListHorizontalLayout(8)
 
             val headerAdapter = HeaderAdapter(context, this, theList)
             val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
@@ -85,23 +85,25 @@ class GridLayoutAdapter(
         // Note: this is a custom algorithm that has nothing to do neither with android nor recyclerView
         for (i in 0 until size) {
             // this part is only responsible for alternating between our 5 drawables
-            val drawable = when (i % 7) {
-                0 -> R.drawable.icon_documents
-                1 -> R.drawable.icon_money
-                2 -> R.drawable.icon_paw
-                3 -> R.drawable.icon_people
-                4 -> R.drawable.icon_jewelry
-                5 -> R.drawable.icon_personal_belongings
+            val drawable = when (i % 8) {
+                0 -> R.drawable.icon_all_topics
+                1 -> R.drawable.icon_documents
+                2 -> R.drawable.icon_money
+                3 -> R.drawable.icon_paw
+                4 -> R.drawable.icon_people
+                5 -> R.drawable.icon_jewelry
+                6 -> R.drawable.icon_personal_belongings
                 else -> R.drawable.icon_other
             }
 
-            val header = when (i % 7) {
-                0 -> "Документы"
-                1 -> "Деньги"
-                2 -> "Животные"
-                3 -> "Люди"
-                4 -> "Драгоценности"
-                5 -> "Личные вещи"
+            val header = when (i % 8) {
+                0 -> "Все"
+                1 -> "Документы"
+                2 -> "Деньги"
+                3 -> "Животные"
+                4 -> "Люди"
+                5 -> "Драгоценности"
+                6 -> "Личные вещи"
                 else -> "Другое"
             }
 
