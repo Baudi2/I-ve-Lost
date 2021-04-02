@@ -3,19 +3,19 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@color/slightly_grey">
+    android:layout_height="wrap_content">
 
 
-    <ImageView
-        android:id="@+id/horizontal_image_recycle"
-        android:layout_width="match_parent"
-        android:layout_height="250dp"
-        android:layout_marginTop="8dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/fragmentLostHorizontalTopicRecyclerView"
+        android:layout_width="0dp"
+        android:layout_height="50dp"
+        android:layout_marginBottom="4dp"
+        android:clipToPadding="false"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/icon_perosn"
-        tools:ignore="VectorDrawableCompat" />
+        tools:listitem="@layout/header_item_lost_found" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

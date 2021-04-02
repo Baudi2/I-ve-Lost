@@ -67,5 +67,4 @@
             tools:ignore="ContentDescription" />
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

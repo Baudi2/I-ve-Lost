@@ -1,6 +1,5 @@
 <resources>
     <string name="app_name">Test project navigation</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragment_main">Fragment Main</string>
 
@@ -74,4 +73,20 @@
     <string name="lost_time_stamp_three">Завтра, 22:19</string>
     <string name="lost_time_stamp_four">Сегодня, 15:03</string>
     <string name="lost_time_stamp_five">Вчера, 04:31</string>
+    <string name="search_menu">Поиск</string>
+    <string name="username_edit_text">Имя пользователя</string>
+    <string name="email_edit_text">Электронная почта</string>
+    <string name="password_edit_text">Пароль</string>
+    <string name="button_register">Регистрация</string>
+    <string name="already_have_an_account_question">У вас уже есть аккаунт?</string>
+    <string name="select_photo_button">Веберите фото</string>
+    <string name="edit_text_login">Логин</string>
+    <string name="back_to_registration">Вернуться на регистрацию</string>
+    <string name="register_alert_dialog_header">Внимание!</string>
+    <string name="register_alert_dialog_message">Чтобы пройти дальше вам сначало надо зарегистрироваться.</string>
+    <string name="register_alert_dialog_positive_button">Регистрация</string>
+    <string name="register_alert_dialog_negative_button">Отмена</string>
+    <string name="register_alert_dialog_negative_toast">К сожалению, вы не можете зайти в профиль без регистрации.</string>
+    <string name="fragment_register_login_toast_fill_data">Пожалуйста заполните все данные</string>
+
 </resources>

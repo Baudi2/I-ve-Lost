@@ -12,4 +12,6 @@
     <color name="the_grey">#808080</color>
     <color name="slightly_grey">#FBFBFB</color>
     <color name="light_dark">#595959</color>
+    <color name="test_color">#5AB577</color>
+    <!--#DC6F6F-->
 </resources>

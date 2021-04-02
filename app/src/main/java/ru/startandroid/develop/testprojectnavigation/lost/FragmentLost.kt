@@ -1,7 +1,11 @@
 package ru.startandroid.develop.testprojectnavigation.lost
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -12,18 +16,26 @@ import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdap
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutItem
 
 class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemClickListener {
+
+
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
     private lateinit var binding: FragmentLostBinding
-    private val exampleList = generateItemList(30)
+    private val exampleList = generateItemListGridLayout(30)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentLostBinding.bind(view)
 
         val manager = GridLayoutManager(activity, 2)
+        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int) = when(position) {
+                0 -> 2
+                else -> 1
+            }
+        }
 
         //? recyclerView закоментирован в FragmentFound тут тоже самое что и там
-        binding.recyclerLostView.adapter = GridLayoutAdapter(exampleList, this)
+        binding.recyclerLostView.adapter = GridLayoutAdapter(exampleList, this, requireContext())
         binding.apply {
             recyclerLostView.layoutManager = manager
             recyclerLostView.setHasFixedSize(true)
@@ -37,10 +49,39 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
             }
         }
 
-
+        // подключаем поиск на тулбар с иконкой поиска
+        setHasOptionsMenu(true)
     }
 
-    private fun generateItemList(size: Int): ArrayList<GridLayoutItem> {
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        // инициализируем поисковое меню
+        inflater.inflate(R.menu.menu_search, menu)
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    // пока просто показываем тост и отображаем строку которую пользователь ввел в поиск
+                    Toast.makeText(requireContext(), query, Toast.LENGTH_SHORT).show()
+
+                    // убирает клавиатуру с видимости как только запрос был завершен
+                    searchView.clearFocus()
+                }
+                return true
+            }
+
+            // здесь ничего не делаем потому что мы не хотем выполнять запрос пока мы все ещё пишем
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
+    }
+
+
+    private fun generateItemListGridLayout(size: Int): ArrayList<GridLayoutItem> {
         // the we create new empty arrayList<>
         val list = ArrayList<GridLayoutItem>()
 
@@ -89,7 +130,7 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
             }
 
             // creates new ExampleItem and passes through its constructor the necessary data
-            val item = GridLayoutItem(drawable, header!!, description, time, views)
+            val item = GridLayoutItem(drawable, header, description, time, views)
             list += item
         }
         // after filling the list with data we eventually return it

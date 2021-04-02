@@ -31,7 +31,8 @@ private lateinit var appBarConfiguration: AppBarConfiguration
         explain_AppBar() //!.
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.fragmentFound, R.id.fragmentLost,
-            R.id.fragmentMessages, R.id.fragmentProfile)
+            R.id.fragmentMessages, R.id.fragmentProfile,
+            R.id.fragmentLogin)
         )
 
 
@@ -47,9 +48,6 @@ private lateinit var appBarConfiguration: AppBarConfiguration
     override fun onSupportNavigateUp(): Boolean {
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
-    //TODO: баги с навигацией, при переходе на другой высокоуровневый фрагмент после
-// TODO: нажатия кнопки назад не выводит из приложения а кидает на FragmentLost
 }
 
 

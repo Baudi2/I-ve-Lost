@@ -8,18 +8,18 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentMessagesBinding
-import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutItem
 import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageFragmentAdapter
 import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageItem
 
 class FragmentMessages : Fragment(R.layout.fragment_messages), MessageFragmentAdapter.OnItemClickListener{
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
     private lateinit var binding : FragmentMessagesBinding
+    private var dummyData = ArrayList<MessageItem>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val manager = LinearLayoutManager(activity)
-        val dummyData = generateItemList(5)
+        dummyData = generateItemList(5)
         binding = FragmentMessagesBinding.bind(view)
 
         //TODO: передавать при навигации имя юзера чтобы поставить в тулбар
@@ -72,7 +72,7 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessageFragmentAd
             }
 
             // creates new ExampleItem and passes through its constructor the necessary data
-            val item = MessageItem(userImage, userName, lastMessage)
+            val item = MessageItem(userImage, userName, lastMessage, 0)
             list += item
         }
         // after filling the list with data we eventually return it
@@ -80,7 +80,10 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessageFragmentAd
     }
 
     override fun onItemClick(position: Int) {
-        val action = FragmentMessagesDirections.actionFragmentMessagesToFragmentChats()
+        val clickedUserName = dummyData[position].userName
+        val clickedUserPhoto = dummyData[position].userImage
+
+        val action = FragmentMessagesDirections.actionFragmentMessagesToFragmentChats(clickedUserName, clickedUserPhoto)
         findNavController().navigate(action)
     }
 }

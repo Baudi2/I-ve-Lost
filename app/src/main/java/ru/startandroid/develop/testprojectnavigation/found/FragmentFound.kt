@@ -1,7 +1,11 @@
 package ru.startandroid.develop.testprojectnavigation.found
 
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
 import android.view.View
+import android.widget.Toast
+import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
@@ -16,14 +20,21 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
     private lateinit var binding: FragmentFoundBinding
     private val exampleItem = generateItemList(30)
 
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFoundBinding.bind(view)
 
         val manager = GridLayoutManager(activity, 2)
+        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int) = when(position) {
+                0 -> 2
+                else -> 1
+            }
+        }
 
         //? задаем recyclerView адаптер, для этого нужно передать список данных для заполнения и контекст
-        binding.recyclerFoundView.adapter = GridLayoutAdapter(exampleItem, this)
+        binding.recyclerFoundView.adapter = GridLayoutAdapter(exampleItem, this, requireContext())
         binding.apply {
             recyclerFoundView.layoutManager = manager
             //? оптимизирует работу recyclerView если у его items размер фиксированный
@@ -37,9 +48,38 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
                 findNavController().navigate(action)
             }
         }
+
+        // подключаем поиск на тулбар с иконкой поиска
+        setHasOptionsMenu(true)
     }
 
-    //? метод для создание случайных данных для заполнения ими recyclerView
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+
+        // инициализируем поисковое меню
+        inflater.inflate(R.menu.menu_search, menu)
+        val searchItem = menu.findItem(R.id.action_search)
+        val searchView = searchItem.actionView as SearchView
+
+        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                if (query != null) {
+                    // пока просто показываем тост и отображаем строку которую пользователь ввел в поиск
+                    Toast.makeText(requireContext(), query, Toast.LENGTH_SHORT).show()
+
+                    // убирает клавиатуру с видимости как только запрос был завершен
+                    searchView.clearFocus()
+                }
+                return true
+            }
+
+            // здесь ничего не делаем потому что мы не хотем выполнять запрос пока мы все ещё пишем
+            override fun onQueryTextChange(newText: String?): Boolean {
+                return true
+            }
+        })
+    }
+
     private fun generateItemList(size: Int): ArrayList<GridLayoutItem> {
         // the we create new empty arrayList<>
         val list = ArrayList<GridLayoutItem>()

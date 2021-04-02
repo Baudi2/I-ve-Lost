@@ -1,9 +1,7 @@
 package ru.startandroid.develop.testprojectnavigation.menu
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -92,5 +90,3 @@ class FragmentAdd : Fragment(R.layout.fragment_add){
         }
     }
 }
-
-//TODO: setup recyclerView adding new item like in todo list apps
