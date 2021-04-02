@@ -25,14 +25,16 @@ class GridLayoutAdapter(
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        return when(viewType) {
+        return when (viewType) {
             TYPE_HEADER -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.header_lost_found, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.header_lost_found, parent, false)
                 HeaderViewHolder(view)
             }
 
             TYPE_ITEM -> {
-                val view = LayoutInflater.from(parent.context).inflate(R.layout.example_item, parent, false)
+                val view = LayoutInflater.from(parent.context)
+                    .inflate(R.layout.example_item, parent, false)
                 ItemViewHolder(view)
             }
             else -> throw IllegalArgumentException("Invalid view type")
@@ -58,7 +60,8 @@ class GridLayoutAdapter(
     }
 
     @SuppressLint("CutPasteId")
-    inner class HeaderViewHolder(itemView: View): RecyclerView.ViewHolder(itemView), HeaderAdapter.HeaderItemListener {
+    inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
+        HeaderAdapter.HeaderItemListener {
         val theList: List<HeaderItem>
 
         init {
@@ -67,8 +70,10 @@ class GridLayoutAdapter(
             val headerAdapter = HeaderAdapter(context, this, theList)
             val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-            itemView.findViewById<RecyclerView>(R.id.fragmentLostHorizontalTopicRecyclerView).layoutManager = layoutManager
-            itemView.findViewById<RecyclerView>(R.id.fragmentLostHorizontalTopicRecyclerView).adapter = headerAdapter
+            itemView.findViewById<RecyclerView>(R.id.fragmentLostHorizontalTopicRecyclerView).layoutManager =
+                layoutManager
+            itemView.findViewById<RecyclerView>(R.id.fragmentLostHorizontalTopicRecyclerView).adapter =
+                headerAdapter
         }
 
         fun bind(gridLayoutList: GridLayoutItem) {}
@@ -77,46 +82,46 @@ class GridLayoutAdapter(
             Toast.makeText(context, theList[position].headerTopic, Toast.LENGTH_SHORT).show()
         }
 
-            private fun generateItemListHorizontalLayout(size: Int): ArrayList<HeaderItem> {
-        // the we create new empty arrayList<>
-        val list = ArrayList<HeaderItem>()
+        private fun generateItemListHorizontalLayout(size: Int): ArrayList<HeaderItem> {
+            // the we create new empty arrayList<>
+            val list = ArrayList<HeaderItem>()
 
-        // and it uses the size value in the for loop to fill this list with data
-        // Note: this is a custom algorithm that has nothing to do neither with android nor recyclerView
-        for (i in 0 until size) {
-            // this part is only responsible for alternating between our 5 drawables
-            val drawable = when (i % 8) {
-                0 -> R.drawable.icon_all_topics
-                1 -> R.drawable.icon_documents
-                2 -> R.drawable.icon_money
-                3 -> R.drawable.icon_paw
-                4 -> R.drawable.icon_people
-                5 -> R.drawable.icon_jewelry
-                6 -> R.drawable.icon_personal_belongings
-                else -> R.drawable.icon_other
+            // and it uses the size value in the for loop to fill this list with data
+            // Note: this is a custom algorithm that has nothing to do neither with android nor recyclerView
+            for (i in 0 until size) {
+                // this part is only responsible for alternating between our 5 drawables
+                val drawable = when (i % 8) {
+                    0 -> R.drawable.icon_all_topics
+                    1 -> R.drawable.icon_documents
+                    2 -> R.drawable.icon_money
+                    3 -> R.drawable.icon_paw
+                    4 -> R.drawable.icon_people
+                    5 -> R.drawable.icon_jewelry
+                    6 -> R.drawable.icon_personal_belongings
+                    else -> R.drawable.icon_other
+                }
+
+                val header = when (i % 8) {
+                    0 -> "Все"
+                    1 -> "Документы"
+                    2 -> "Деньги"
+                    3 -> "Животные"
+                    4 -> "Люди"
+                    5 -> "Драгоценности"
+                    6 -> "Личные вещи"
+                    else -> "Другое"
+                }
+
+                // creates new ExampleItem and passes through its constructor the necessary data
+                val item = HeaderItem(header, drawable)
+                list += item
             }
-
-            val header = when (i % 8) {
-                0 -> "Все"
-                1 -> "Документы"
-                2 -> "Деньги"
-                3 -> "Животные"
-                4 -> "Люди"
-                5 -> "Драгоценности"
-                6 -> "Личные вещи"
-                else -> "Другое"
-            }
-
-            // creates new ExampleItem and passes through its constructor the necessary data
-            val item = HeaderItem(header, drawable)
-            list += item
+            // after filling the list with data we eventually return it
+            return list
         }
-        // after filling the list with data we eventually return it
-        return list
-    }
     }
 
-    inner class ItemViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    inner class ItemViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         init {
             itemView.setOnClickListener {
@@ -128,11 +133,14 @@ class GridLayoutAdapter(
         }
 
         fun bind(gridLayoutList: GridLayoutItem) {
-            itemView.findViewById<ImageView>(R.id.image_holder).setImageResource(gridLayoutList.imageResource)
+            itemView.findViewById<ImageView>(R.id.image_holder)
+                .setImageResource(gridLayoutList.imageResource)
             itemView.findViewById<TextView>(R.id.text_view_header).text = gridLayoutList.headerText
-            itemView.findViewById<TextView>(R.id.text_view_location).text = gridLayoutList.descriptionText
+            itemView.findViewById<TextView>(R.id.text_view_location).text =
+                gridLayoutList.descriptionText
             itemView.findViewById<TextView>(R.id.text_view_time).text = gridLayoutList.timeText
-            itemView.findViewById<TextView>(R.id.text_view_views).text = gridLayoutList.viewsCount.toString()
+            itemView.findViewById<TextView>(R.id.text_view_views).text =
+                gridLayoutList.viewsCount.toString()
         }
     }
 

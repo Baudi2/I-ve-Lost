@@ -16,7 +16,7 @@ class FragmentAddLostFind : Fragment(R.layout.fragment_choose_lost_found){
         binding = FragmentChooseLostFoundBinding.bind(view)
         val sentStringLost = context?.getString(R.string.what_you_lost)
         val sentStringFound = context?.getString(R.string.what_you_found)
-        var sentIsLost = true
+        var sentIsLost: Boolean
 
         binding.apply {
             textLost.setOnClickListener {

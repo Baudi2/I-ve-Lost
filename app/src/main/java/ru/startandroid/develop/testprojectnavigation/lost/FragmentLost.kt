@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
-import com.google.android.material.snackbar.Snackbar
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentLostBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
@@ -131,7 +130,7 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
             }
 
             // creates new ExampleItem and passes through its constructor the necessary data
-            val item = GridLayoutItem(drawable, header!!, description, time, views)
+            val item = GridLayoutItem(drawable, header, description, time, views)
             list += item
         }
         // after filling the list with data we eventually return it
@@ -144,5 +143,4 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
         val action = FragmentLostDirections.actionFragmentLostToОписание(clickedItemHeader, clickedItemDescription)
         findNavController().navigate(action)
     }
-
 }

@@ -31,7 +31,8 @@ private lateinit var appBarConfiguration: AppBarConfiguration
         explain_AppBar() //!.
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.fragmentFound, R.id.fragmentLost,
-            R.id.fragmentMessages, R.id.fragmentProfile)
+            R.id.fragmentMessages, R.id.fragmentProfile,
+            R.id.fragmentLogin)
         )
 
 

@@ -10,12 +10,14 @@ import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 
-private const val ZOOMABLE_PHOTO_VIEW_HOLDER = 0
-private const val DETAILS_REGULAR_VIEW_HOLDER = 1
-
 class HorizontalAdapter(private val horizontalItem: List<HorizontalLayoutItem>,
     val listener: HorizontalItemClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+
+    companion object {
+        private const val ZOOMABLE_PHOTO_VIEW_HOLDER = 0
+        private const val DETAILS_REGULAR_VIEW_HOLDER = 1
+    }
     
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         if (viewType == DETAILS_REGULAR_VIEW_HOLDER) {

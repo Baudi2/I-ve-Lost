@@ -8,7 +8,6 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentMessagesBinding
-import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutItem
 import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageFragmentAdapter
 import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageItem
 
@@ -73,7 +72,7 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessageFragmentAd
             }
 
             // creates new ExampleItem and passes through its constructor the necessary data
-            val item = MessageItem(userImage, userName, lastMessage)
+            val item = MessageItem(userImage, userName, lastMessage, 0)
             list += item
         }
         // after filling the list with data we eventually return it
