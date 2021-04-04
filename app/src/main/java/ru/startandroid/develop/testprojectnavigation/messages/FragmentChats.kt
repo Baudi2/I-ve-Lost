@@ -1,19 +1,30 @@
 package ru.startandroid.develop.testprojectnavigation.messages
 
+import android.annotation.SuppressLint
+import android.location.GnssAntennaInfo
 import android.os.Bundle
+import android.view.Gravity
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import android.widget.PopupMenu
 import android.widget.Toast
+import androidx.appcompat.view.menu.MenuBuilder
+import androidx.appcompat.view.menu.MenuBuilder.Callback
+import androidx.appcompat.view.menu.MenuPopupHelper
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentChatBinding
+import ru.startandroid.develop.testprojectnavigation.other.hideKeyboard
 import ru.startandroid.develop.testprojectnavigation.recyclerView.ChatMessageAdapter
 import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageItem
 
 class FragmentChats : Fragment(R.layout.fragment_chat), ChatMessageAdapter.OnMessageClickListener{
     private lateinit var binding: FragmentChatBinding
-    private var dummyMessages = generateChatMessages(5)
+    private var dummyMessages = generateChatMessages(7)
     private val args: FragmentChatsArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -21,18 +32,75 @@ class FragmentChats : Fragment(R.layout.fragment_chat), ChatMessageAdapter.OnMes
         binding = FragmentChatBinding.bind(view)
 
         val manager = LinearLayoutManager(requireContext())
+        val adapter = ChatMessageAdapter(dummyMessages, this)
 
+        adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                if (itemCount != -1 || itemCount != 0) {
+                    binding.recyclerviewFragmentChat.scrollToPosition(positionStart - itemCount + 1)
+                }
+            }
 
-        binding.recyclerviewFragmentChat.adapter = ChatMessageAdapter(dummyMessages, this)
+            override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
+                binding.recyclerviewFragmentChat.scrollToPosition(itemCount)
+            }
+        })
+
+        binding.recyclerviewFragmentChat.adapter = adapter
         binding.apply {
             recyclerviewFragmentChat.setHasFixedSize(true)
             recyclerviewFragmentChat.layoutManager = manager
         }
+
+        binding.recyclerviewFragmentChat.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, oldBottom ->
+            if (bottom < oldBottom) {
+                binding.recyclerviewFragmentChat.postDelayed({
+                    if (binding.recyclerviewFragmentChat.adapter!!.itemCount != -1) {
+                        binding.recyclerviewFragmentChat.scrollToPosition(
+                            binding.recyclerviewFragmentChat.adapter!!.itemCount - 1
+                        )
+                    }
+                }, 0)
+            }
+        }
     }
 
-    override fun onMessageClick(position: Int) {
-        Toast.makeText(requireContext(), dummyMessages[position].lastMessageText, Toast.LENGTH_SHORT).show()
+    override fun onMessageClick(position: Int, itemView: View) {
+        showPopup(itemView)
     }
+
+    @SuppressLint("RestrictedApi")
+    private fun showPopup(view: View) {
+        val menuBuilder = MenuBuilder(requireContext())
+        val menuInflater = MenuInflater(requireContext())
+        menuInflater.inflate(R.menu.chat_fragment_popup_menu, menuBuilder)
+        val optionsMenu = MenuPopupHelper(requireContext(), menuBuilder, view)
+        optionsMenu.setForceShowIcon(true)
+        optionsMenu.setGravity(Gravity.END)
+
+
+        menuBuilder.setCallback((object:MenuBuilder.Callback{
+            override fun onMenuItemSelected(menu: MenuBuilder, item: MenuItem): Boolean {
+                when(item.itemId) {
+                    R.id.chat_fragment_popup_delete -> {
+                        Toast.makeText(requireContext(), "Сообщение удалено", Toast.LENGTH_SHORT).show()
+                        return true
+                    }
+                    else -> return false
+                }
+            }
+
+            override fun onMenuModeChange(menu: MenuBuilder) {}
+        }))
+        optionsMenu.show()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        hideKeyboard(requireView(), requireActivity())
+    }
+
+
 
     private fun generateChatMessages(size: Int): ArrayList<MessageItem> {
         // the we create new empty arrayList<>

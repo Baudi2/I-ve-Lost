@@ -63,7 +63,9 @@
             app:popEnterAnim="@anim/slide_in_right"/>
         <action
             android:id="@+id/action_fragmentProfile_to_fragmentLost"
-            app:destination="@id/fragmentLost" />
+            app:destination="@id/fragmentLost"
+            app:popUpToInclusive="true"
+            app:popUpTo="@+id/fragmentLost"/>
         <argument
             android:name="isRegistered"
             app:argType="boolean"

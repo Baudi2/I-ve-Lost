@@ -41,7 +41,7 @@
 
 
 
-    <string name="enter_message">Enter message</string>
+    <string name="enter_message">Введите сообщение</string>
     <string name="button_send">Send</string>
     <string name="lost_document_text">Документы</string>
     <string name="lost_money_text">Деньги</string>
@@ -88,5 +88,6 @@
     <string name="register_alert_dialog_negative_button">Отмена</string>
     <string name="register_alert_dialog_negative_toast">К сожалению, вы не можете зайти в профиль без регистрации.</string>
     <string name="fragment_register_login_toast_fill_data">Пожалуйста заполните все данные</string>
+    <string name="chat_fragment_popup_menu_delete">Удалить</string>
 
 </resources>

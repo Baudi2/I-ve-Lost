@@ -16,6 +16,7 @@ import androidx.navigation.fragment.findNavController
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentRegisterBinding
 import ru.startandroid.develop.testprojectnavigation.explain_activtyForResultPhoto
+import ru.startandroid.develop.testprojectnavigation.other.hideKeyboard
 import java.lang.Exception
 
 //? макет фрагмента готов, остается подключить логику.
@@ -56,7 +57,7 @@ class FragmentRegister: Fragment(R.layout.fragment_register) {
             val action = FragmentRegisterDirections.actionFragmentRegisterToFragmentProfile(isRegistered)
             findNavController().navigate(action)
             //? прячем клавиатуру по завершению
-            hideKeyboard(view)
+            hideKeyboard(view, requireActivity())
         } else {
             //? если поля пустым предупреждаем юзера что их надо заполнить
             Toast.makeText(requireContext(), R.string.fragment_register_login_toast_fill_data, Toast.LENGTH_SHORT).show()
@@ -106,17 +107,6 @@ class FragmentRegister: Fragment(R.layout.fragment_register) {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
-        }
-    }
-
-    //? Чтобы скрыть клавиатуру после нажатия кнопки
-    private fun hideKeyboard(view: View) {
-        try {
-            val imn =
-                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imn.hideSoftInputFromWindow(view.windowToken, 0)
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 }

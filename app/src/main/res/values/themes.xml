@@ -12,5 +12,11 @@
         <!-- Status bar color. -->
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         <!-- Customize your theme here. -->
+        <item name="popupMenuStyle">@style/ChatPopupMenu</item>
+    </style>
+    
+    <style name="ChatPopupMenu" parent="@style/Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:dropDownHorizontalOffset">-60dp</item>
+        <item name="android:dropDownVerticalOffset">55dp</item>
     </style>
 </resources>
