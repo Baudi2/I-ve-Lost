@@ -37,7 +37,6 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
             snapHelper.attachToRecyclerView(detailtFoundRecyclerView)
             // pager indicator
             detailtFoundRecyclerView.addItemDecoration(LinePagerIndicatorDecoration())
-            detailtFoundRecyclerView.setBackgroundColor(resources.getColor(R.color.slightly_grey))
 
             headerFoundDetails.text = header
             descriptionFoundDetails.text = description

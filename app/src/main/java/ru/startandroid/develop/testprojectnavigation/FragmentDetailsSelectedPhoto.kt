@@ -22,7 +22,6 @@ class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = DetailsSelectedPhotoBinding.bind(view)
-        val receivedImage = args.selectedPhoto
 
         val adapter = HorizontalAdapter(dummyData, this)
         val manager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
@@ -34,7 +33,6 @@ class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo),
             detailsSelectedRecyclerView.setHasFixedSize(true)
             snapHelper.attachToRecyclerView(detailsSelectedRecyclerView)
             detailsSelectedRecyclerView.addItemDecoration(LinePagerIndicatorDecoration())
-            detailsSelectedRecyclerView.setBackgroundColor(resources.getColor(R.color.slightly_grey))
             respondToPhotoTextView.setOnClickListener {
                 Toast.makeText(requireContext(), "Перенаправляем на фрагмент с сообещниями", Toast.LENGTH_SHORT).show()
             }

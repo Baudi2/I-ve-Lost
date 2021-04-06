@@ -13,7 +13,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentRegisterBinding
-import ru.startandroid.develop.testprojectnavigation.explain_activtyForResultPhoto
+import ru.startandroid.develop.testprojectnavigation.utils.explainActivityForResultPhoto
 import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
 import java.lang.Exception
 
@@ -80,7 +80,7 @@ class FragmentRegister: Fragment(R.layout.fragment_register) {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             //? продолжаем и проверяем, какое было выбранное изображение
 
-            explain_activtyForResultPhoto() //!.
+            explainActivityForResultPhoto() //!.
             selectedPhotoUri = data.data
 
             try {

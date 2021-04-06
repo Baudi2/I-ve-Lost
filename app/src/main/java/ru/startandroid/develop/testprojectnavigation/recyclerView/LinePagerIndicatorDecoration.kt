@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 class LinePagerIndicatorDecoration: RecyclerView.ItemDecoration() {
     private val colorActive = 0xDE000000.toInt()
-    private val colorInactive = 0x33000000.toInt()
+    private val colorInactive = 0x33000000
 
     companion object{
         private val DP = Resources.getSystem().displayMetrics.density
@@ -61,7 +61,7 @@ class LinePagerIndicatorDecoration: RecyclerView.ItemDecoration() {
 
         // center horizontally, calculate width and subtract half from center
         val totalLength = mIndicatorItemLength * itemCount!!
-        val paddingBetweenItems = Math.max(0, itemCount -1) * mIndicatorItemPadding
+        val paddingBetweenItems = 0.coerceAtLeast(itemCount - 1) * mIndicatorItemPadding
         val indicatorTotalWidth = totalLength + paddingBetweenItems
         val indicatorStartX = (parent.width - indicatorTotalWidth) / 2F
 
@@ -81,7 +81,7 @@ class LinePagerIndicatorDecoration: RecyclerView.ItemDecoration() {
         val activeChild = layoutManager.findViewByPosition(activePosition)
         val left = activeChild?.left
         val width = activeChild?.width
-        var right = activeChild?.right
+        activeChild?.right
 
         // on swipe the active item will be positioned from [-width, 0]
         // interpolate offset for smooth animation
@@ -90,7 +90,7 @@ class LinePagerIndicatorDecoration: RecyclerView.ItemDecoration() {
         drawHighlights(c, indicatorStartX, indicatorPosY, activePosition, progress, itemCount)
     }
 
-    fun drawInactiveIndicators(c: Canvas, indicatorStartX: Float, indicatorPosY: Float, itemCount: Int) {
+    private fun drawInactiveIndicators(c: Canvas, indicatorStartX: Float, indicatorPosY: Float, itemCount: Int) {
         mPaint.color = colorInactive
 
         // width of item indicator including padding
@@ -104,8 +104,8 @@ class LinePagerIndicatorDecoration: RecyclerView.ItemDecoration() {
         }
     }
 
-    fun drawHighlights(c: Canvas, indicatorStartX: Float, indicatorPosY: Float,
-                       highlightPosition: Int, progress: Float, itemCount: Int) {
+    private fun drawHighlights(c: Canvas, indicatorStartX: Float, indicatorPosY: Float,
+                               highlightPosition: Int, progress: Float, itemCount: Int) {
         mPaint.color = colorActive
 
         // width of item indicator including padding

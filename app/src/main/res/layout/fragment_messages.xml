@@ -4,45 +4,51 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+    android:background="@color/white"
     tools:context=".messages.FragmentMessages">
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_messages_view"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toTopOf="@id/bottom_nav_messages"
+        android:id="@+id/recyclerview_fragment_chat"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@android:color/holo_green_light"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        app:layout_constraintBottom_toTopOf="@id/edittext_chat_log"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
-    <!-- bottomNav и floatingActionButton объяснены в fragment_lost-->
-
-    <com.google.android.material.bottomnavigation.BottomNavigationView
-        android:id="@+id/bottom_nav_messages"
-        android:layout_width="match_parent"
+    <EditText
+        android:id="@+id/edittext_chat_log"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:labelVisibilityMode="labeled"
+        android:layout_marginBottom="8dp"
+        android:background="@color/white"
+        android:hint="@string/enter_message"
+        android:inputType="textMultiLine"
+        android:maxLines="6"
+        android:paddingStart="8dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="18dp"
+        android:paddingBottom="18dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/send_button_fragment_chat"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_found_menu" >
+        app:layout_constraintTop_toBottomOf="@+id/recyclerview_fragment_chat"
+        tools:ignore="Autofill,TextFields" />
 
-        <com.google.android.material.floatingactionbutton.FloatingActionButton
-            android:id="@+id/fab_messages"
-            android:layout_width="56dp"
-            android:layout_height="56dp"
-            android:layout_gravity="center"
-            android:layout_marginBottom="1dp"
-            android:scaleType="center"
-            android:src="@drawable/icon_right_center_add"
-            app:backgroundTint="@color/white"
-            app:borderWidth="0dp"
-            app:elevation="0dp"
-            app:maxImageSize="56dp"
-            tools:ignore="ContentDescription" />
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/send_button_fragment_chat"
+        android:layout_width="45dp"
+        android:layout_height="45dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp"
+        android:background="@drawable/icon_send_message"
+        android:textColor="@color/white"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
-    </com.google.android.material.bottomnavigation.BottomNavigationView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -83,7 +83,6 @@ class ChatMessageAdapter(
         fun onMessageClick(position: Int, itemView: View)
     }
 
-    class ChatMessageDiffUtil() {}
 
 //TODO: Add DiffUtil callback, figure out what to do with primary key id, maybe increment them in bind fun
     //? video: https://www.youtube.com/watch?v=y31fzLe2Ajw

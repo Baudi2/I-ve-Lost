@@ -44,7 +44,8 @@
             app:layout_constraintStart_toEndOf="@+id/lost_found_item_text_view"
             app:layout_constraintTop_toTopOf="@+id/lost_found_item_text_view"
             app:srcCompat="@drawable/icon_paw"
-            tools:ignore="VectorDrawableCompat" />
+            tools:ignore="VectorDrawableCompat"
+            android:contentDescription="@string/header_for_main_recyclerview" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

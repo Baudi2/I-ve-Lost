@@ -89,5 +89,10 @@
     <string name="register_alert_dialog_negative_toast">К сожалению, вы не можете зайти в профиль без регистрации.</string>
     <string name="fragment_register_login_toast_fill_data">Пожалуйста заполните все данные</string>
     <string name="chat_fragment_popup_menu_delete">Удалить</string>
+    <string name="delete_me_later">Новое объявление</string>
+    <string name="fragment_choose_lost_direction">Потерял</string>
+    <string name="fragment_choose_found_direction">Нашел</string>
+    <string name="header_for_main_recyclerview">header for main recyclerView</string>
+    <string name="fragment_details_horizontal_recyclerview_item">fragment details horizontal recyclerView item</string>
 
 </resources>

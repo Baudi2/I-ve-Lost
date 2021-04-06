@@ -37,7 +37,6 @@ class FragmentDetailsLost : Fragment(R.layout.fragment_details), HorizontalAdapt
             snapHelper.attachToRecyclerView(detailsRecyclerView)
             // pager indicator
             detailsRecyclerView.addItemDecoration(LinePagerIndicatorDecoration())
-            detailsRecyclerView.setBackgroundColor(resources.getColor(R.color.slightly_grey))
 
             headerDetailsLost.text = header
             descriptionDetailsLost.text = description

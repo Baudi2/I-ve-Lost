@@ -24,7 +24,6 @@ class GridLayoutAdapter(
     companion object {
         private const val TYPE_HEADER = 0
         private const val TYPE_ITEM = 1
-        private const val GRID_ITEM = -1
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -46,7 +45,7 @@ class GridLayoutAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == TYPE_HEADER) {
-            (holder as HeaderViewHolder).bind(gridLayoutList[position])
+            (holder as HeaderViewHolder).bind()
         } else {
             (holder as ItemViewHolder).bind(gridLayoutList[position])
         }
@@ -55,17 +54,17 @@ class GridLayoutAdapter(
     override fun getItemCount() = gridLayoutList.size
 
     override fun getItemViewType(position: Int): Int {
-        if (position == 0) {
-            return TYPE_HEADER
+        return if (position == 0) {
+            TYPE_HEADER
         } else {
-            return TYPE_ITEM
+            TYPE_ITEM
         }
     }
 
     @SuppressLint("CutPasteId")
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         HeaderAdapter.HeaderItemListener {
-        val theList: List<HeaderItem>
+        private val theList: List<HeaderItem>
 
         init {
             theList = generateItemListHorizontalLayout(8)
@@ -79,7 +78,7 @@ class GridLayoutAdapter(
                 headerAdapter
         }
 
-        fun bind(gridLayoutList: GridLayoutItem) {}
+        fun bind() {}
 
         override fun onHeaderItemListener(position: Int) {
             Toast.makeText(context, theList[position].headerTopic, Toast.LENGTH_SHORT).show()

@@ -134,9 +134,9 @@
         app:popExitAnim="@anim/slide_out_top" />
     <fragment
         android:id="@+id/fragmentMessages"
-        android:name="ru.startandroid.develop.testprojectnavigation.messages.FragmentMessages"
+        android:name="ru.startandroid.develop.testprojectnavigation.messages.FragmentChats"
         android:label="Сообщения"
-        tools:layout="@layout/fragment_messages" >
+        tools:layout="@layout/fragment_chats" >
         <action
             android:id="@+id/action_fragmentMessages_to_fragmentChats"
             app:destination="@id/fragmentChats"
@@ -170,9 +170,9 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentChats"
-        android:name="ru.startandroid.develop.testprojectnavigation.messages.FragmentChats"
+        android:name="ru.startandroid.develop.testprojectnavigation.messages.FragmentMessages"
         android:label="{userName}"
-        tools:layout="@layout/fragment_chat">
+        tools:layout="@layout/fragment_messages">
         <argument
             android:name="userName"
             app:argType="string" />
