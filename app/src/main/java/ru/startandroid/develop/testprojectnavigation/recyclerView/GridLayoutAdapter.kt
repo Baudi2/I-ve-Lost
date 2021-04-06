@@ -153,7 +153,6 @@ class GridLayoutAdapter(
         fun onItemClick(position: Int)
     }
 
-    //TODO: make a new showPopup menu resource file specifically for grid layout, i.e. add hide option
     @SuppressLint("RestrictedApi")
     private fun showPopup(view: View, context: Context) {
         val menuBuilder = MenuBuilder(context)

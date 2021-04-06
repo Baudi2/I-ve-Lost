@@ -5,6 +5,7 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentChatsBinding
@@ -25,7 +26,6 @@ class FragmentChats : Fragment(R.layout.fragment_chats), MessageFragmentAdapter.
         binding.recyclerMessagesView.adapter = MessageFragmentAdapter(dummyData, this)
         binding.apply {
             bottomNavMessages.setupWithNavController(findNavController())
-            bottomNavMessages.itemIconSize = 70
 
             fabMessages.setOnClickListener {
                 val action = FragmentMessagesDirections.actionGlobalFragmentAddLostFind2()
@@ -34,6 +34,7 @@ class FragmentChats : Fragment(R.layout.fragment_chats), MessageFragmentAdapter.
 
             recyclerMessagesView.layoutManager = manager
             recyclerMessagesView.setHasFixedSize(true)
+            recyclerMessagesView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
     }
 

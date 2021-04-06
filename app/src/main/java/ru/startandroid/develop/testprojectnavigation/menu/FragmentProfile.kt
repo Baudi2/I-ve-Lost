@@ -28,7 +28,6 @@ class FragmentProfile : Fragment(R.layout.fragment_profile){
         binding.apply {
             //? подключаем bottomNavigation к нашему фрагменту и задаем размер иконок
             bottomNavProfile.setupWithNavController(findNavController())
-            bottomNavProfile.itemIconSize = 70
 
                 //? ставим слушатель нажатий на наш floatingActionButton коротко "fab" и переходим на фрагмент добавить при нажатии.
             fabProfile.setOnClickListener {

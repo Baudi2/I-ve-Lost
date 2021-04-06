@@ -43,7 +43,6 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
             recyclerLostView.setHasFixedSize(true)
 
             bottomNavLost.setupWithNavController(findNavController())
-            bottomNavLost.itemIconSize = 70
 
             fabLost.setOnClickListener {
                 val action = FragmentLostDirections.actionGlobalFragmentAddLostFind2()

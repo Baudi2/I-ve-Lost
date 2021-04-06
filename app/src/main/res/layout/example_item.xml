@@ -104,7 +104,6 @@
             app:layout_constraintBottom_toBottomOf="@+id/text_view_views"
             app:layout_constraintEnd_toEndOf="@+id/text_view_location"
             app:layout_constraintTop_toTopOf="@+id/text_view_views"
-            app:layout_constraintVertical_bias="0.45"
             app:srcCompat="@drawable/icon_lost_found_horiz_menu"
             tools:ignore="VectorDrawableCompat" />
 
