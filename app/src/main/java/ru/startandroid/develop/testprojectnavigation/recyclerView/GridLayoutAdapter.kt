@@ -11,6 +11,8 @@ import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
+import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
+import ru.startandroid.develop.testprojectnavigation.module.HeaderItem
 import java.lang.IllegalArgumentException
 
 class GridLayoutAdapter(
@@ -22,6 +24,7 @@ class GridLayoutAdapter(
     companion object {
         private const val TYPE_HEADER = 0
         private const val TYPE_ITEM = 1
+        private const val GRID_ITEM = -1
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {

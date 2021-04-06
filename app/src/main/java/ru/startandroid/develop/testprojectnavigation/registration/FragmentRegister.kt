@@ -1,7 +1,6 @@
 package ru.startandroid.develop.testprojectnavigation.registration
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -9,14 +8,13 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentRegisterBinding
 import ru.startandroid.develop.testprojectnavigation.explain_activtyForResultPhoto
-import ru.startandroid.develop.testprojectnavigation.other.hideKeyboard
+import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
 import java.lang.Exception
 
 //? макет фрагмента готов, остается подключить логику.

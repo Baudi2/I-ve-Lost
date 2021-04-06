@@ -6,26 +6,6 @@
     app:startDestination="@id/fragmentLost">
 
     <fragment
-        android:id="@+id/fragmentMain"
-        android:name="ru.startandroid.develop.testprojectnavigation.FragmentMain"
-        android:label="I've Lost"
-        tools:layout="@layout/fragment_main">
-        <action
-            android:id="@+id/action_fragmentMain_to_fragmentSecond"
-            app:destination="@id/fragmentLost"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_fragmentMain_to_fragmentFound"
-            app:destination="@id/fragmentFound"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
-    <fragment
         android:id="@+id/fragmentLost"
         android:name="ru.startandroid.develop.testprojectnavigation.lost.FragmentLost"
         android:label="Потерял"
@@ -174,16 +154,16 @@
         app:popExitAnim="@anim/slide_out_top"
         app:popUpToInclusive="false" />
     <fragment
-        android:id="@+id/fragmentAdd"
-        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAdd"
+        android:id="@+id/fragmentAddChooseCategory"
+        android:name="ru.startandroid.develop.testprojectnavigation.add.FragmentAddChooseCategory"
         android:label="Категории"
-        tools:layout="@layout/fragment_add" >
+        tools:layout="@layout/fragment_add_choose_category" >
         <argument
             android:name="lost_found"
             app:argType="string" />
         <action
             android:id="@+id/action_fragmentAdd_to_fragmentAddEdit"
-            app:destination="@id/fragmentAddEdit" />
+            app:destination="@id/fragmentAdd" />
         <argument
             android:name="isLost"
             app:argType="boolean" />
@@ -202,12 +182,12 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentAddLostFind2"
-        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAddLostFind"
+        android:name="ru.startandroid.develop.testprojectnavigation.add.FragmentAddLostFind"
         android:label="Выбор"
         tools:layout="@layout/fragment_choose_lost_found">
         <action
             android:id="@+id/action_fragmentAddLostFind2_to_fragmentAdd"
-            app:destination="@id/fragmentAdd" />
+            app:destination="@id/fragmentAddChooseCategory" />
     </fragment>
     <action
         android:id="@+id/action_global_fragmentAddLostFind2"
@@ -217,10 +197,10 @@
         app:popEnterAnim="@anim/fade_in"
         app:popExitAnim="@anim/fade_out" />
     <fragment
-        android:id="@+id/fragmentAddEdit"
-        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAddEdit"
+        android:id="@+id/fragmentAdd"
+        android:name="ru.startandroid.develop.testprojectnavigation.add.FragmentAdd"
         android:label="{topic}"
-        tools:layout="@layout/fragment_add_edit">
+        tools:layout="@layout/fragment_add">
         <argument
             android:name="topic"
             app:argType="string" />
@@ -230,7 +210,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentDetailsSelectedPhoto"
-        android:name="ru.startandroid.develop.testprojectnavigation.other.FragmentDetailsSelectedPhoto"
+        android:name="ru.startandroid.develop.testprojectnavigation.FragmentDetailsSelectedPhoto"
         android:label="Фото"
         tools:layout="@layout/details_selected_photo">
         <argument

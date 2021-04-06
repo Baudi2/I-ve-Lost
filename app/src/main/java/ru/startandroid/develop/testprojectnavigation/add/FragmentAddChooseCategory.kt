@@ -1,4 +1,4 @@
-package ru.startandroid.develop.testprojectnavigation.menu
+package ru.startandroid.develop.testprojectnavigation.add
 
 import android.os.Bundle
 import android.view.View
@@ -9,56 +9,63 @@ import androidx.navigation.fragment.navArgs
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.*
 
-class FragmentAdd : Fragment(R.layout.fragment_add){
+class FragmentAddChooseCategory : Fragment(R.layout.fragment_add_choose_category){
 
-    private lateinit var binding : FragmentAddBinding
-    private val args: FragmentAddArgs by navArgs()
+    private lateinit var binding : FragmentAddChooseCategoryBinding
+    private val args: FragmentAddChooseCategoryArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentAddBinding.bind(view)
+        binding = FragmentAddChooseCategoryBinding.bind(view)
         val sentBoolean = args.isLost
 
         binding.apply {
             textViewLostDocument.setOnClickListener {
                 val sent = context?.getString(R.string.lost_document_text)
-                val action = FragmentAddDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
+                val action =
+                    FragmentAddChooseCategoryDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
                 findNavController().navigate(action)
             }
 
             textViewLostMoney.setOnClickListener {
                 val sent = context?.getString(R.string.lost_money_text)
-                val action = FragmentAddDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
+                val action =
+                    FragmentAddChooseCategoryDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
                 findNavController().navigate(action)
             }
 
             textViewLostAnimals.setOnClickListener {
                 val sent = context?.getString(R.string.lost_animal_text)
-                val action = FragmentAddDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
+                val action =
+                    FragmentAddChooseCategoryDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
                 findNavController().navigate(action)
             }
 
             textViewLostPeople.setOnClickListener {
                 val sent = context?.getString(R.string.lost_people_text)
-                val action = FragmentAddDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
+                val action =
+                    FragmentAddChooseCategoryDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
                 findNavController().navigate(action)
             }
 
             textViewLostJewelry.setOnClickListener {
                 val sent = context?.getString(R.string.lost_jewelry_text)
-                val action = FragmentAddDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
+                val action =
+                    FragmentAddChooseCategoryDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
                 findNavController().navigate(action)
             }
 
             textViewLostEquipment.setOnClickListener {
                 val sent = context?.getString(R.string.lost_personal_belongings_text)
-                val action = FragmentAddDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
+                val action =
+                    FragmentAddChooseCategoryDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
                 findNavController().navigate(action)
             }
 
             textViewLostOther.setOnClickListener {
                 val sent = context?.getString(R.string.lost_other_text)
-                val action = FragmentAddDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
+                val action =
+                    FragmentAddChooseCategoryDirections.actionFragmentAddToFragmentAddEdit(sent!!, sentBoolean)
                 findNavController().navigate(action)
             }
         }

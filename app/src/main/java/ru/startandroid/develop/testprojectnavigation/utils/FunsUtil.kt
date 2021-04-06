@@ -1,4 +1,4 @@
-package ru.startandroid.develop.testprojectnavigation.other
+package ru.startandroid.develop.testprojectnavigation.utils
 
 import android.app.Activity
 import android.content.Context

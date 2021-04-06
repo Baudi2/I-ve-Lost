@@ -4,14 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
+import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
 
 class HorizontalAdapter(private val horizontalItem: List<HorizontalLayoutItem>,
-    val listener: HorizontalItemClickListener)
+                        val listener: HorizontalItemClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {

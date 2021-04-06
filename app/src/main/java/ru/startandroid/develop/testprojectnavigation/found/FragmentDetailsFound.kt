@@ -8,11 +8,11 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
-import ru.startandroid.develop.testprojectnavigation.LinePagerIndicatorDecoration
+import ru.startandroid.develop.testprojectnavigation.recyclerView.LinePagerIndicatorDecoration
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsFoundBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
-import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalLayoutItem
+import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
 
 class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), HorizontalAdapter.HorizontalItemClickListener{
 

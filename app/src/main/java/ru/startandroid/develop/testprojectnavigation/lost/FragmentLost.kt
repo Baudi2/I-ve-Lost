@@ -13,7 +13,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentLostBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
-import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutItem
+import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
 
 class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemClickListener {
 
@@ -34,8 +34,9 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
             }
         }
 
+        val adapter = GridLayoutAdapter(exampleList, this, requireContext())
         //? recyclerView закоментирован в FragmentFound тут тоже самое что и там
-        binding.recyclerLostView.adapter = GridLayoutAdapter(exampleList, this, requireContext())
+        binding.recyclerLostView.adapter = adapter
         binding.apply {
             recyclerLostView.layoutManager = manager
             recyclerLostView.setHasFixedSize(true)

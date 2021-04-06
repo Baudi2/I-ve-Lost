@@ -5,9 +5,9 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
+import ru.startandroid.develop.testprojectnavigation.module.MessageItem
 
 class ChatMessageAdapter(
     private val messageItem: List<MessageItem>,
@@ -60,7 +60,6 @@ class ChatMessageAdapter(
         fun bind(messageItem: MessageItem) {
             itemView.findViewById<ImageView>(R.id.imageview_receiving_person).setImageResource(messageItem.userImage)
             itemView.findViewById<TextView>(R.id.textview_chat_left_from).text = messageItem.lastMessageText
-            messageItem.itemId++
         }
     }
 
@@ -77,7 +76,6 @@ class ChatMessageAdapter(
         fun bind(messageItem: MessageItem) {
             itemView.findViewById<ImageView>(R.id.current_user_chat_imageview).setImageResource(messageItem.userImage)
             itemView.findViewById<TextView>(R.id.textview_chat_right_to).text = messageItem.lastMessageText
-            messageItem.itemId++
         }
     }
 
@@ -85,27 +83,7 @@ class ChatMessageAdapter(
         fun onMessageClick(position: Int, itemView: View)
     }
 
-    class ChatMessageDiffUtil(
-        var oldMessageList: List<MessageItem>,
-        var newMessageList: List<MessageItem>
-    ): DiffUtil.Callback() {
-        override fun getOldListSize() = oldMessageList.size
-
-        override fun getNewListSize() = newMessageList.size
-
-        //? used to discover if an item was moved, removed or added
-        override fun areItemsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            //? here we'll check if old item and new one are the same via their ids
-            return oldMessageList[oldItemPosition].itemId == newMessageList[newItemPosition].itemId
-        }
-
-        //? to determine if an item has changed
-        override fun areContentsTheSame(oldItemPosition: Int, newItemPosition: Int): Boolean {
-            //? performing an equality check on the items. this will check all the fields of these objects
-            //? because we've defined our SleepNight as a data class
-            return oldMessageList[oldItemPosition] == newMessageList[newItemPosition]
-        }
-    }
+    class ChatMessageDiffUtil() {}
 
 //TODO: Add DiffUtil callback, figure out what to do with primary key id, maybe increment them in bind fun
     //? video: https://www.youtube.com/watch?v=y31fzLe2Ajw

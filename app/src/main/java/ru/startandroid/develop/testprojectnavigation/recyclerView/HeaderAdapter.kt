@@ -8,6 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
+import ru.startandroid.develop.testprojectnavigation.module.HeaderItem
 
 //? типичный класс адаптер, единственная разница от обычного адаптера то что в качестве viewHolder
 //? мы используем не одноименный класс а RecyclerView.ViewHolder, это позволяет нам использовать в

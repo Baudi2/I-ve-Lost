@@ -1,4 +1,4 @@
-package ru.startandroid.develop.testprojectnavigation.menu
+package ru.startandroid.develop.testprojectnavigation.add
 
 import android.os.Bundle
 import android.view.View
@@ -21,13 +21,19 @@ class FragmentAddLostFind : Fragment(R.layout.fragment_choose_lost_found){
         binding.apply {
             textLost.setOnClickListener {
                 sentIsLost = true
-                val action = FragmentAddLostFindDirections.actionFragmentAddLostFind2ToFragmentAdd(sentStringLost!!, sentIsLost)
+                val action = FragmentAddLostFindDirections.actionFragmentAddLostFind2ToFragmentAdd(
+                    sentStringLost!!,
+                    sentIsLost
+                )
                 findNavController().navigate(action)
             }
 
             textFound.setOnClickListener {
                 sentIsLost = false
-                val action = FragmentAddLostFindDirections.actionFragmentAddLostFind2ToFragmentAdd(sentStringFound!!, sentIsLost)
+                val action = FragmentAddLostFindDirections.actionFragmentAddLostFind2ToFragmentAdd(
+                    sentStringFound!!,
+                    sentIsLost
+                )
                 findNavController().navigate(action)
             }
         }

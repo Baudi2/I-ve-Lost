@@ -1,7 +1,6 @@
-package ru.startandroid.develop.testprojectnavigation.recyclerView
+package ru.startandroid.develop.testprojectnavigation.module
 
 data class MessageItem(
-    var itemId: Long,
     val userImage: Int,
     val userName: String,
     val lastMessageText: String,

@@ -15,7 +15,7 @@
 
     <item
         android:icon="@drawable/icon_right_center_add"
-        android:id="@+id/fragmentAdd"
+        android:id="@+id/fragmentAddChooseCategory"
         android:title=""/>
 
     <item

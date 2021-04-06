@@ -1,4 +1,4 @@
-package ru.startandroid.develop.testprojectnavigation
+package ru.startandroid.develop.testprojectnavigation.recyclerView
 
 import android.content.res.Resources
 import android.graphics.Canvas

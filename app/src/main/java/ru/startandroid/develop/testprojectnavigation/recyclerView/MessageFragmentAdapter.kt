@@ -7,9 +7,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
+import ru.startandroid.develop.testprojectnavigation.module.MessageItem
 
 class MessageFragmentAdapter (private val messageItemList: List<MessageItem>,
-private val listener: OnItemClickListener) : RecyclerView.Adapter<MessageFragmentAdapter.MessageViewHolder>() {
+                              private val listener: OnItemClickListener) : RecyclerView.Adapter<MessageFragmentAdapter.MessageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
         val itemView = LayoutInflater.from(parent.context).inflate(R.layout.message_item,

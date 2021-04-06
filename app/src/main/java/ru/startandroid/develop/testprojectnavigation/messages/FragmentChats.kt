@@ -1,16 +1,13 @@
 package ru.startandroid.develop.testprojectnavigation.messages
 
 import android.annotation.SuppressLint
-import android.location.GnssAntennaInfo
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.PopupMenu
 import android.widget.Toast
 import androidx.appcompat.view.menu.MenuBuilder
-import androidx.appcompat.view.menu.MenuBuilder.Callback
 import androidx.appcompat.view.menu.MenuPopupHelper
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
@@ -18,9 +15,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentChatBinding
-import ru.startandroid.develop.testprojectnavigation.other.hideKeyboard
+import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
 import ru.startandroid.develop.testprojectnavigation.recyclerView.ChatMessageAdapter
-import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageItem
+import ru.startandroid.develop.testprojectnavigation.module.MessageItem
 
 class FragmentChats : Fragment(R.layout.fragment_chat), ChatMessageAdapter.OnMessageClickListener{
     private lateinit var binding: FragmentChatBinding

@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentMessagesBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageFragmentAdapter
-import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageItem
+import ru.startandroid.develop.testprojectnavigation.module.MessageItem
 
 class FragmentMessages : Fragment(R.layout.fragment_messages), MessageFragmentAdapter.OnItemClickListener{
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt

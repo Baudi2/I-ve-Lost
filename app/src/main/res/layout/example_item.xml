@@ -7,7 +7,8 @@
     android:layout_height="wrap_content"
     android:layout_marginStart="4dp"
     android:layout_marginEnd="4dp"
-    android:layout_marginBottom="8dp">
+    android:layout_marginBottom="8dp"
+    android:foreground="?selectableItemBackground">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
@@ -76,21 +77,23 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/text_view_time"
             app:layout_constraintTop_toTopOf="@+id/text_view_time"
-            app:srcCompat="@drawable/ic_eye" />
+            app:srcCompat="@drawable/ic_eye"
+            tools:ignore="VectorDrawableCompat" />
 
         <TextView
             android:id="@+id/text_view_views"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            android:text="TextView"
             android:textColor="@color/black"
             android:textSize="9sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/text_view_location"
             app:layout_constraintStart_toEndOf="@+id/imageView"
             app:layout_constraintTop_toTopOf="@+id/text_view_time"
-            tools:text="100" />
+            tools:text="100"
+            tools:ignore="SmallSp" />
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
