@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/holo_blue_bright"
+    android:background="@android:color/white"
     tools:context=".messages.FragmentChats">
 
     <androidx.recyclerview.widget.RecyclerView
@@ -14,7 +14,8 @@
         app:layout_constraintBottom_toTopOf="@id/bottom_nav_messages"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:listitem="@layout/message_item"/>
 
 
     <!-- bottomNav и floatingActionButton объяснены в fragment_lost-->
