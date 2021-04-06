@@ -16,22 +16,24 @@
 
         <ImageView
             android:id="@+id/image_holder"
-            android:layout_width="150dp"
+            android:layout_width="0dp"
             android:layout_height="150dp"
             android:src="@drawable/icon_perosn"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.466"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.134"
+            app:layout_constraintVertical_bias="0.0"
             tools:ignore="ContentDescription" />
 
         <TextView
             android:id="@+id/text_view_header"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="8dp"
             android:layout_marginTop="8dp"
+            android:layout_marginEnd="8dp"
             android:ellipsize="end"
             android:maxLines="2"
             android:text="@string/lost_document"
@@ -62,37 +64,49 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
             android:layout_marginBottom="4dp"
-            tools:text="Сегодня, 18:43"
             android:textSize="@dimen/text_view_location_time"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="@+id/text_view_location"
-            app:layout_constraintTop_toBottomOf="@+id/text_view_location" />
+            app:layout_constraintTop_toBottomOf="@+id/text_view_location"
+            tools:text="Сегодня, 18:43" />
 
         <ImageView
             android:id="@+id/imageView"
             android:layout_width="17dp"
             android:layout_height="17dp"
-            android:layout_marginStart="42dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/text_view_time"
+            android:layout_marginEnd="2dp"
+            android:contentDescription="@string/grid_layout_view_counter"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_time"
+            app:layout_constraintEnd_toStartOf="@+id/text_view_views"
             app:layout_constraintTop_toTopOf="@+id/text_view_time"
+            app:layout_constraintVertical_bias="1.0"
             app:srcCompat="@drawable/ic_eye"
-            tools:ignore="VectorDrawableCompat"
-            android:contentDescription="@string/grid_layout_view_counter" />
+            tools:ignore="VectorDrawableCompat" />
 
         <TextView
             android:id="@+id/text_view_views"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
+            android:layout_marginEnd="32dp"
             android:textColor="@color/black"
             android:textSize="9sp"
             app:layout_constraintBottom_toBottomOf="@+id/imageView"
             app:layout_constraintEnd_toEndOf="@+id/text_view_location"
-            app:layout_constraintStart_toEndOf="@+id/imageView"
-            app:layout_constraintTop_toTopOf="@+id/text_view_time"
-            tools:text="100"
-            tools:ignore="SmallSp" />
+            app:layout_constraintTop_toTopOf="@+id/imageView"
+            tools:ignore="SmallSp"
+            tools:text="100" />
+
+        <ImageView
+            android:id="@+id/grid_layout_item_options"
+            android:layout_width="wrap_content"
+            android:layout_height="30dp"
+            android:contentDescription="@string/grid_layout_item_options_button_menu"
+            app:layout_constraintBottom_toBottomOf="@+id/text_view_views"
+            app:layout_constraintEnd_toEndOf="@+id/text_view_location"
+            app:layout_constraintTop_toTopOf="@+id/text_view_views"
+            app:layout_constraintVertical_bias="0.45"
+            app:srcCompat="@drawable/icon_lost_found_horiz_menu"
+            tools:ignore="VectorDrawableCompat" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

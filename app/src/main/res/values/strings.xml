@@ -95,5 +95,6 @@
     <string name="header_for_main_recyclerview">header for main recyclerView</string>
     <string name="fragment_details_horizontal_recyclerview_item">fragment details horizontal recyclerView item</string>
     <string name="grid_layout_view_counter">grid layout view counter</string>
+    <string name="grid_layout_item_options_button_menu">Grid layout item options button menu</string>
 
 </resources>

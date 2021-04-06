@@ -6,7 +6,6 @@ import android.view.Gravity
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.view.menu.MenuPopupHelper
 import androidx.fragment.app.Fragment
@@ -18,6 +17,7 @@ import ru.startandroid.develop.testprojectnavigation.databinding.FragmentMessage
 import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
 import ru.startandroid.develop.testprojectnavigation.recyclerView.ChatMessageAdapter
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
+import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 
 class FragmentMessages : Fragment(R.layout.fragment_messages), ChatMessageAdapter.OnMessageClickListener{
     private lateinit var binding: FragmentMessagesBinding
@@ -70,7 +70,7 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), ChatMessageAdapte
     private fun showPopup(view: View) {
         val menuBuilder = MenuBuilder(requireContext())
         val menuInflater = MenuInflater(requireContext())
-        menuInflater.inflate(R.menu.chat_fragment_popup_menu, menuBuilder)
+        menuInflater.inflate(R.menu.message_fragment_popup_menu, menuBuilder)
         val optionsMenu = MenuPopupHelper(requireContext(), menuBuilder, view)
         optionsMenu.setForceShowIcon(true)
         optionsMenu.gravity = Gravity.END
@@ -80,7 +80,7 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), ChatMessageAdapte
             override fun onMenuItemSelected(menu: MenuBuilder, item: MenuItem): Boolean {
                 return when(item.itemId) {
                     R.id.chat_fragment_popup_delete -> {
-                        Toast.makeText(requireContext(), "Сообщение удалено", Toast.LENGTH_SHORT).show()
+                        shortToast("Сообщение удалено")
                         true
                     }
                     else -> false
@@ -94,7 +94,7 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), ChatMessageAdapte
 
     override fun onStop() {
         super.onStop()
-        hideKeyboard(requireView(), requireActivity())
+        hideKeyboard(requireView())
     }
 
 

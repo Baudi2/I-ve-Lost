@@ -12,6 +12,7 @@ import ru.startandroid.develop.testprojectnavigation.recyclerView.LinePagerIndic
 import ru.startandroid.develop.testprojectnavigation.databinding.DetailsSelectedPhotoBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
+import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 
 class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo),
     HorizontalAdapter.HorizontalItemClickListener {
@@ -34,7 +35,7 @@ class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo),
             snapHelper.attachToRecyclerView(detailsSelectedRecyclerView)
             detailsSelectedRecyclerView.addItemDecoration(LinePagerIndicatorDecoration())
             respondToPhotoTextView.setOnClickListener {
-                Toast.makeText(requireContext(), "Перенаправляем на фрагмент с сообещниями", Toast.LENGTH_SHORT).show()
+                shortToast("Перенаправляем на фрагмент с сообещниями")
             }
         }
     }

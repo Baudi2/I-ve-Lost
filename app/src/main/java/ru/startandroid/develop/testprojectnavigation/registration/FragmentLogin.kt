@@ -37,7 +37,7 @@ class FragmentLogin: Fragment(R.layout.fragment_login) {
         if (email.isNotEmpty() && password.isNotEmpty()) {
             val action = FragmentLoginDirections.actionFragmentLoginToFragmentProfile(isRegistered)
             findNavController().navigate(action)
-            hideKeyboard(view, requireActivity())
+            hideKeyboard(view)
         } else {
             Toast.makeText(requireContext(), R.string.fragment_register_login_toast_fill_data, Toast.LENGTH_SHORT).show()
         }

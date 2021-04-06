@@ -14,6 +14,7 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentFoundBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
+import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 
 class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnItemClickListener {
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
@@ -65,7 +66,7 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
                     // пока просто показываем тост и отображаем строку которую пользователь ввел в поиск
-                    Toast.makeText(requireContext(), query, Toast.LENGTH_SHORT).show()
+                    shortToast(query)
 
                     // убирает клавиатуру с видимости как только запрос был завершен
                     searchView.clearFocus()

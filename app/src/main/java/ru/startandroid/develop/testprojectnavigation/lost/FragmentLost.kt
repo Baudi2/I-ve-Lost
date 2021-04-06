@@ -14,6 +14,7 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentLostBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
+import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 
 class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemClickListener {
 
@@ -66,7 +67,7 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
                     // пока просто показываем тост и отображаем строку которую пользователь ввел в поиск
-                    Toast.makeText(requireContext(), query, Toast.LENGTH_SHORT).show()
+                    shortToast(query)
 
                     // убирает клавиатуру с видимости как только запрос был завершен
                     searchView.clearFocus()
@@ -91,11 +92,11 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
         for (i in 0 until size) {
             // this part is only responsible for alternating between our 5 drawables
             val drawable = when (i % 5) {
-                0 -> R.drawable.icon_perosn
-                1 -> R.drawable.ic_airplane
-                2 -> R.drawable.ic_money
-                3 -> R.drawable.ic_wallet
-                else -> R.drawable.ic_anchor
+                0 -> R.drawable.ic_airplane
+                1 -> R.drawable.ic_money
+                2 -> R.drawable.ic_wallet
+                3 -> R.drawable.ic_anchor
+                else -> R.drawable.icon_perosn
             }
 
             val header = when (i % 5) {

@@ -55,7 +55,7 @@ class FragmentRegister: Fragment(R.layout.fragment_register) {
             val action = FragmentRegisterDirections.actionFragmentRegisterToFragmentProfile(isRegistered)
             findNavController().navigate(action)
             //? прячем клавиатуру по завершению
-            hideKeyboard(view, requireActivity())
+            hideKeyboard(view)
         } else {
             //? если поля пустым предупреждаем юзера что их надо заполнить
             Toast.makeText(requireContext(), R.string.fragment_register_login_toast_fill_data, Toast.LENGTH_SHORT).show()
@@ -106,6 +106,11 @@ class FragmentRegister: Fragment(R.layout.fragment_register) {
                 e.printStackTrace()
             }
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        hideKeyboard(requireView())
     }
 }
 
