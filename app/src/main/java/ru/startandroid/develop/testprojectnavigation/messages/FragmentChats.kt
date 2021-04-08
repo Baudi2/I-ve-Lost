@@ -11,6 +11,7 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentChatsBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.ChatsFragmentAdapter
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
+import ru.startandroid.develop.testprojectnavigation.utils.stringGet
 
 class FragmentChats : Fragment(R.layout.fragment_chats), ChatsFragmentAdapter.OnItemClickListener{
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
@@ -55,19 +56,19 @@ class FragmentChats : Fragment(R.layout.fragment_chats), ChatsFragmentAdapter.On
             }
 
             val userName = when (i % 5) {
-                0 -> "Хьасан"
-                1 -> "Сулиман"
-                2 -> "Зайнап"
-                3 -> "Адам"
-                else -> "Ильяс"
+                0 -> stringGet(R.string.messages_names_one)
+                1 -> stringGet(R.string.messages_names_two)
+                2 -> stringGet(R.string.messages_names_three)
+                3 -> stringGet(R.string.messages_names_four)
+                else -> stringGet(R.string.messages_names_five)
             }
 
             val lastMessage = when (i % 5) {
-                0 -> "Нашел твой потерянный документ по адресу Висоитовский район дом 146. Очень длинное сообщение"
-                1 -> "Брат можешь по больше информации предоставить?"
-                2 -> "Какого цвета была найденная кошка?"
-                3 -> "Ассаламу Аллейкум. Объявление всё ещё акутальное?"
-                else -> "Нашел ваш самолет у себя в гараже."
+                0 -> stringGet(R.string.messages_messages_one)
+                1 -> stringGet(R.string.messages_messages_two)
+                2 -> stringGet(R.string.messages_messages_three)
+                3 -> stringGet(R.string.messages_messages_four)
+                else -> stringGet(R.string.messages_messages_five)
             }
 
             // creates new ExampleItem and passes through its constructor the necessary data

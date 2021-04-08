@@ -99,6 +99,20 @@
     <string name="found_description_airplane">Найден коллекционный игрушечный самолет 1998 года лимитированного издания в Ленинском районе. Был найдем вчера около 6 вечера.</string>
     <string name="found_description_phone">Найден телефон выглядит новым, марка XiaoMi модель телефона Mi 10T в Октябрьском районе, не смог разблокировать и позвонить родственникам владельца.</string>
 
+    <!-- Строки для имен в фрагментах чат и сообщения -->
+    <string name="messages_names_one">Хьасан</string>
+    <string name="messages_names_two">Сулиман</string>
+    <string name="messages_names_three">Зайнап</string>
+    <string name="messages_names_four">Адам</string>
+    <string name="messages_names_five">Ильяс</string>
+
+    <!-- Строки для сообщений в фрагментах чат и сообщения -->
+    <string name="messages_messages_one">Нашел твой потерянный документ по адресу Висоитовский район дом 146. Очень длинное сообщение</string>
+    <string name="messages_messages_two">Брат можешь по больше информации предоставить?</string>
+    <string name="messages_messages_three">Какого цвета была найденная кошка?</string>
+    <string name="messages_messages_four">Ассаламу Аллейкум. Объявление всё ещё акутальное?</string>
+    <string name="messages_messages_five">Нашел ваш самолет у себя в гараже.</string>
+
 
     <string name="search_menu">Поиск</string>
     <string name="username_edit_text">Имя пользователя</string>

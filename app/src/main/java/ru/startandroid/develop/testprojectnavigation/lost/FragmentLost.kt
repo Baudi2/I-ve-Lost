@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import android.widget.Toast
 import androidx.appcompat.widget.SearchView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -14,7 +13,6 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentLostBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
-import ru.startandroid.develop.testprojectnavigation.utils.APP_ACTIVITY
 import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 import ru.startandroid.develop.testprojectnavigation.utils.stringGet
 
