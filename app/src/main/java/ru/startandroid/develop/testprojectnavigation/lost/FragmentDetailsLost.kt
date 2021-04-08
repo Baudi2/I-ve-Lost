@@ -13,7 +13,6 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
-import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 
 class FragmentDetailsLost : Fragment(R.layout.fragment_details), HorizontalAdapter.HorizontalItemClickListener{
 
