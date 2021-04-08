@@ -2,4 +2,6 @@
 <resources>
     <dimen name="text_view_location_time">12sp</dimen>
     <dimen name="lost_text_views_text_size">24sp</dimen>
+    <dimen name="fragment_details_text_views">20sp</dimen>
+    <dimen name="look_on_the_map">18sp</dimen>
 </resources>

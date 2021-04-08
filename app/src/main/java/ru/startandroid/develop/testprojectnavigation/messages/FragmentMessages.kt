@@ -15,11 +15,11 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentMessagesBinding
 import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
-import ru.startandroid.develop.testprojectnavigation.recyclerView.ChatMessageAdapter
+import ru.startandroid.develop.testprojectnavigation.recyclerView.MessagesAdapter
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
 import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 
-class FragmentMessages : Fragment(R.layout.fragment_messages), ChatMessageAdapter.OnMessageClickListener{
+class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.OnMessageClickListener{
     private lateinit var binding: FragmentMessagesBinding
     private var dummyMessages = generateChatMessages(7)
     private val args: FragmentMessagesArgs by navArgs()
@@ -29,7 +29,7 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), ChatMessageAdapte
         binding = FragmentMessagesBinding.bind(view)
 
         val manager = LinearLayoutManager(requireContext())
-        val adapter = ChatMessageAdapter(dummyMessages, this)
+        val adapter = MessagesAdapter(dummyMessages, this)
 
         adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
             override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {

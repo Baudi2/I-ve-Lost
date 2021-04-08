@@ -40,6 +40,17 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
 
             headerFoundDetails.text = header
             descriptionFoundDetails.text = description
+
+            detailsFoundShowMap.setOnClickListener {
+                val action = FragmentDetailsFoundDirections.actionFragmentDetailsFoundToFragmentGoogleMaps(
+                    args.location, args.northPoint, args.eastPoint
+                )
+                findNavController().navigate(action)
+            }
+
+            chooseCategoryFoundFragment.text = args.category
+            adTypeFoundTextView.text = args.adType
+            adTypeObjectFoundTextView.text = args.adTypeObject
         }
     }
 

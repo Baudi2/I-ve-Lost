@@ -15,32 +15,19 @@ import ru.startandroid.develop.testprojectnavigation.databinding.FragmentFoundBi
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
 import ru.startandroid.develop.testprojectnavigation.utils.shortToast
+import ru.startandroid.develop.testprojectnavigation.utils.stringGet
 
 class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnItemClickListener {
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
     private lateinit var binding: FragmentFoundBinding
-    private val exampleItem = generateItemList(30)
+    private lateinit var exampleItem: ArrayList<GridLayoutItem>
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentFoundBinding.bind(view)
 
-        val manager = GridLayoutManager(activity, 2)
-        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
-            override fun getSpanSize(position: Int) = when(position) {
-                0 -> 2
-                else -> 1
-            }
-        }
-
-        //? задаем recyclerView адаптер, для этого нужно передать список данных для заполнения и контекст
-        binding.recyclerFoundView.adapter = GridLayoutAdapter(exampleItem, this, requireContext())
         binding.apply {
-            recyclerFoundView.layoutManager = manager
-            //? оптимизирует работу recyclerView если у его items размер фиксированный
-            recyclerFoundView.setHasFixedSize(true)
-
             bottomNavFound.setupWithNavController(findNavController())
 
             fabFound.setOnClickListener {
@@ -53,6 +40,27 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
         setHasOptionsMenu(true)
     }
 
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+        exampleItem = generateItemList(30)
+
+        val manager = GridLayoutManager(activity, 2)
+        manager.spanSizeLookup = object : GridLayoutManager.SpanSizeLookup() {
+            override fun getSpanSize(position: Int) = when (position) {
+                0 -> 2
+                else -> 1
+            }
+        }
+        val adapter = GridLayoutAdapter(exampleItem, this, requireContext())
+
+        binding.apply {
+            recyclerFoundView.layoutManager = manager
+            recyclerFoundView.adapter = adapter
+                    //? оптимизирует работу recyclerView если у его items размер фиксированный
+            recyclerFoundView.setHasFixedSize(true)
+        }
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
@@ -61,7 +69,7 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
 
-        searchView.setOnQueryTextListener(object: SearchView.OnQueryTextListener {
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
                     // пока просто показываем тост и отображаем строку которую пользователь ввел в поиск
@@ -97,27 +105,27 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
             }
 
             val header = when (i % 5) {
-                0 -> "Нашел паспорт"
-                1 -> "Нашел деньги"
-                2 -> "Нашел кота"
-                3 -> "Нашел самолет"
-                else -> "Нашел телефон"
+                0 -> stringGet(R.string.found_passport)
+                1 -> stringGet(R.string.found_money)
+                2 -> stringGet(R.string.found_cat)
+                3 -> stringGet(R.string.found_airplane)
+                else -> stringGet(R.string.found_phone)
             }
 
             val description = when (i % 5) {
-                0 -> "Найден паспорт гражданина Соединенных Штатов Америки в Висаитовском районе. Если ваша фамилия Brown то отзовитесь!"
-                1 -> "Найдена небольшая сумма денег от 1000руб. до 10000руб. в Заводском районе. Деньги лежали рядом с магазином Магнит, отклинитесь!"
-                2 -> "Найден кот британец по породе рядом с остановкой в Первомайском районе. На коте был розовый ошейник, привел пока домой, съел всю рыбу в доме."
-                3 -> "Найден коллекционный игрушечный самолет 1998 года лимитированного издания в Ленинском районе. Был найдем вчера около 6 вечера."
-                else -> "Найден телефон выглядит новым, марка XiaoMi модель телефона Mi 10T в Октябрьском районе, не смог разблокировать и позвонить родственникам владельца."
+                0 -> stringGet(R.string.found_description_passport)
+                1 -> stringGet(R.string.found_description_money)
+                2 -> stringGet(R.string.found_description_cat)
+                3 -> stringGet(R.string.found_description_airplane)
+                else -> stringGet(R.string.found_description_phone)
             }
 
             val time = when (i % 5) {
-                0 -> "Сегодня, 16:38"
-                1 -> "Вчера, 10:21"
-                2 -> "Завтра, 22:19"
-                3 -> "Сегодня, 15:03"
-                else -> "Вчера, 04:31"
+                0 -> stringGet(R.string.lost_time_stamp_one)
+                1 -> stringGet(R.string.lost_time_stamp_two)
+                2 -> stringGet(R.string.lost_time_stamp_three)
+                3 -> stringGet(R.string.lost_time_stamp_four)
+                else -> stringGet(R.string.lost_time_stamp_five)
             }
 
             val views = when (i % 5) {
@@ -128,8 +136,59 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
                 else -> 152
             }
 
+            val location = when (i % 5) {
+                0 -> stringGet(R.string.lost_location_one)
+                1 -> stringGet(R.string.lost_location_two)
+                2 -> stringGet(R.string.lost_location_three)
+                3 -> stringGet(R.string.lost_location_four)
+                else -> stringGet(R.string.lost_location_five)
+            }
+
+            val northPoint = when (i % 5) {
+                0 -> 43.379217
+                1 -> 43.292014
+                2 -> 43.325446
+                3 -> 43.328427
+                else -> 43.322060
+            }
+
+            val eastPoint = when (i % 5) {
+                0 -> 45.564101
+                1 -> 45.684844
+                2 -> 45.695388
+                3 -> 45.705930
+                else -> 45.694335
+            }
+
+            val adType = when (i % 5) {
+                0 -> stringGet(R.string.ad_type_one)
+                1 -> stringGet(R.string.ad_type_two)
+                2 -> stringGet(R.string.ad_type_three)
+                3 -> stringGet(R.string.ad_type_four)
+                else -> stringGet(R.string.ad_type_five)
+            }
+
+            val adTypeObject = when (i % 5) {
+                0 -> stringGet(R.string.ad_type_object_one)
+                1 -> stringGet(R.string.ad_type_object_two)
+                2 -> stringGet(R.string.ad_type_object_three)
+                3 -> stringGet(R.string.ad_type_object_four)
+                else -> stringGet(R.string.ad_type_object_five)
+            }
+
+            val category = when (i % 5) {
+                0 -> stringGet(R.string.lost_document_text)
+                1 -> stringGet(R.string.lost_money_text)
+                2 -> stringGet(R.string.lost_animal_text)
+                3 -> stringGet(R.string.lost_personal_belongings_text)
+                else -> stringGet(R.string.lost_personal_belongings_text)
+            }
+
             // creates new ExampleItem and passes through its constructor the necessary data
-            val item = GridLayoutItem(drawable, header, description, time, views)
+            val item = GridLayoutItem(
+                drawable, header, description, time, views, location, northPoint, eastPoint,
+                adType = adType, adTypeObject = adTypeObject, category = category
+            )
             list += item
         }
         // after filling the list with data we eventually return it
@@ -139,7 +198,17 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
     override fun onItemClick(position: Int) {
         val clickedItemHeader = exampleItem[position].headerText
         val clickedItemDescription = exampleItem[position].descriptionText
-        val action = FragmentFoundDirections.actionFragmentFoundToFragmentDetailsFound2(clickedItemHeader, clickedItemDescription)
+        val clickedItemLocation = exampleItem[position].location
+        val clickedItemNorthPoint = exampleItem[position].northPoint
+        val clickedItemEastPoint = exampleItem[position].eastPoint
+        val clickedItemAdType = exampleItem[position].adType
+        val clickedItemAdTypeObject = exampleItem[position].adTypeObject
+        val clickedItemCategory = exampleItem[position].category
+        val action = FragmentFoundDirections.actionFragmentFoundToFragmentDetailsFound2(
+            clickedItemHeader, clickedItemDescription,
+            clickedItemLocation, clickedItemNorthPoint.toString(), clickedItemEastPoint.toString(),
+            clickedItemAdType, clickedItemAdTypeObject, clickedItemCategory
+        )
         findNavController().navigate(action)
     }
 }

@@ -24,3 +24,5 @@ fun shortToast(message: String) {
 fun longToast(message: String) {
     Toast.makeText(APP_ACTIVITY, message, Toast.LENGTH_LONG).show()
 }
+
+fun stringGet(id: Int) = APP_ACTIVITY.resources.getString(id)

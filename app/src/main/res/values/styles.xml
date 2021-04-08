@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="fragment_details_text_views">
+        <item name="android:textSize">@dimen/fragment_details_text_views</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+</resources>

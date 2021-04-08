@@ -9,10 +9,10 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentChatsBinding
-import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageFragmentAdapter
+import ru.startandroid.develop.testprojectnavigation.recyclerView.ChatsFragmentAdapter
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
 
-class FragmentChats : Fragment(R.layout.fragment_chats), MessageFragmentAdapter.OnItemClickListener{
+class FragmentChats : Fragment(R.layout.fragment_chats), ChatsFragmentAdapter.OnItemClickListener{
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
     private lateinit var binding : FragmentChatsBinding
     private var dummyData = ArrayList<MessageItem>()
@@ -23,7 +23,7 @@ class FragmentChats : Fragment(R.layout.fragment_chats), MessageFragmentAdapter.
         dummyData = generateItemList(5)
         binding = FragmentChatsBinding.bind(view)
 
-        binding.recyclerMessagesView.adapter = MessageFragmentAdapter(dummyData, this)
+        binding.recyclerMessagesView.adapter = ChatsFragmentAdapter(dummyData, this)
         binding.apply {
             bottomNavMessages.setupWithNavController(findNavController())
 

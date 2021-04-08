@@ -1,5 +1,8 @@
 package ru.startandroid.develop.testprojectnavigation.utils
 
+//! Google cloud with access to api key for google maps for our project
+//? https://console.cloud.google.com/apis/credentials?highlightKey=2da91166-3831-4f9a-b369-fd0c15950d98&project=electric-totem-310006
+
 /**  appBarConfiguration нужен чтобы отметить высокоуровневые фрагменты т.е. те фрагменты после перехода на которые
      не будет на верху показываться backButton. appBarConfiguration нужно передать в setupActionBarWithNavController
      чтобы он заробатал.*/

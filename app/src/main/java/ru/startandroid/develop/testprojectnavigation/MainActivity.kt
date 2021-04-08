@@ -41,7 +41,6 @@ private lateinit var appBarConfiguration: AppBarConfiguration
             R.id.fragmentLogin)
         )
 
-
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
         explainSetSupportActionBar() //!.

@@ -100,6 +100,21 @@
         <argument
             android:name="description"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentDetails_to_fragmentGoogleMaps"
+            app:destination="@id/fragmentGoogleMaps" />
+        <argument
+            android:name="location"
+            app:argType="string" />
+        <argument android:name="northPoint"
+            app:argType="string" />
+        <argument android:name="eastPoint"
+            app:argType="string" />
+        <argument
+            android:name="adType"
+            app:argType="string" />
+        <argument android:name="adTypeObject" />
+        <argument android:name="category" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDetailsFound"
@@ -118,6 +133,27 @@
             app:argType="string" />
         <argument
             android:name="description"
+            app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentDetailsFound_to_fragmentGoogleMaps"
+            app:destination="@id/fragmentGoogleMaps" />
+        <argument
+            android:name="location"
+            app:argType="string" />
+        <argument
+            android:name="northPoint"
+            app:argType="string" />
+        <argument
+            android:name="eastPoint"
+            app:argType="string" />
+        <argument
+            android:name="adType"
+            app:argType="string" />
+        <argument
+            android:name="adTypeObject"
+            app:argType="string" />
+        <argument
+            android:name="category"
             app:argType="string" />
     </fragment>
     <fragment
@@ -256,5 +292,20 @@
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/fragmentProfile"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentGoogleMaps"
+        android:name="ru.startandroid.develop.testprojectnavigation.FragmentGoogleMaps"
+        android:label="Карта"
+        tools:layout="@layout/fragment_google_maps" >
+        <argument
+            android:name="location"
+            app:argType="string" />
+        <argument
+            android:name="northPoint"
+            app:argType="string" />
+        <argument
+            android:name="eastPoint"
+            app:argType="string" />
     </fragment>
 </navigation>

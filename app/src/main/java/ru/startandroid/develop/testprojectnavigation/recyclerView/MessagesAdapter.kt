@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
 
-class ChatMessageAdapter(
+class MessagesAdapter(
     private val messageItem: List<MessageItem>,
     private val listener: OnMessageClickListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
