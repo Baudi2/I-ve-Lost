@@ -8,6 +8,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
+import ru.startandroid.develop.testprojectnavigation.FragmentGoogleMaps
 import ru.startandroid.develop.testprojectnavigation.LinePagerIndicatorDecoration
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsFoundBinding
@@ -41,6 +42,8 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
 
             headerFoundDetails.text = header
             descriptionFoundDetails.text = description
+
+
         }
     }
 

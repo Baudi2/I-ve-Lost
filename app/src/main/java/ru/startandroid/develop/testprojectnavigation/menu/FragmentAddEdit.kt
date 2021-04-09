@@ -16,7 +16,8 @@ class FragmentAddEdit: Fragment(R.layout.fragment_add_edit) {
         binding = FragmentAddEditBinding.bind(view)
         val isLost = args.isLost
 
-       // if (isLost) binding.to_add_an_advert.text = context?.getString(R.string.lost_post)
-       // if (!isLost) binding.textViewLostNotLost.text = context?.getString(R.string.found_post)
+        binding.apply {
+
+        }
     }
 }
