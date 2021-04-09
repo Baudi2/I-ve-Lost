@@ -7,8 +7,9 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
+import ru.startandroid.develop.testprojectnavigation.module.MessageItem
 
-class ChatMessageAdapter(
+class MessagesAdapter(
     private val messageItem: List<MessageItem>,
     private val listener: OnMessageClickListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -51,7 +52,7 @@ class ChatMessageAdapter(
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onMessageClick(position)
+                    listener.onMessageClick(position, itemView)
                 }
             }
         }
@@ -67,7 +68,7 @@ class ChatMessageAdapter(
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onMessageClick(position)
+                    listener.onMessageClick(position, itemView)
                 }
             }
         }
@@ -79,6 +80,21 @@ class ChatMessageAdapter(
     }
 
     interface OnMessageClickListener {
-        fun onMessageClick(position: Int)
+        fun onMessageClick(position: Int, itemView: View)
     }
+
+
+//TODO: Add DiffUtil callback, figure out what to do with primary key id, maybe increment them in bind fun
+    //? video: https://www.youtube.com/watch?v=y31fzLe2Ajw
 }
+
+
+
+
+
+
+
+
+
+
+

@@ -3,17 +3,6 @@
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="fragment_main">Fragment Main</string>
 
-    <string name="lost_1_header">Потерял паспорт</string>
-    <string name="lost_2_header">Потерял деньги</string>
-    <string name="lost_3_header">Потерял кота</string>
-    <string name="lost_4_header">Потерял самолет</string>
-    <string name="lost_5_header">Потерял телефон</string>
-
-    <string name="lost_1_description">Висаитовский район</string>
-    <string name="lost_2_description">Заводской район</string>
-    <string name="lost_3_description">Первомайский район</string>
-    <string name="lost_4_description">Ленинский район</string>
-    <string name="lost_5_description">Октябрьский район</string>
     <string name="lostest">Потерял</string>
     <string name="profiler">Профиль</string>
     <string name="settings">Настройки</string>
@@ -35,13 +24,12 @@
     <string name="fragment_profile">Фрагмент Профиля</string>
     <string name="fragment_wishes">Фрагмент Пожеланий</string>
     <string name="fragment_settings">Фрагмент Настроек</string>
-    <string name="lost_location_one">Висаитовский район</string>
     <string name="what_you_lost">Что вы потеряли?</string>
     <string name="what_you_found">Что вы нашли?</string>
 
 
 
-    <string name="enter_message">Enter message</string>
+    <string name="enter_message">Введите сообщение</string>
     <string name="button_send">Send</string>
     <string name="lost_document_text">Документы</string>
     <string name="lost_money_text">Деньги</string>
@@ -55,24 +43,77 @@
     <string name="found_post">Объявление о находке</string>
     <string name="respond_to_photo">Откликнуться на объявление</string>
 
-
+    <!-- Строки для заголовков в фрагменте потерял -->
     <string name="lost_passport">Потерял паспорт</string>
     <string name="lost_money">Потерял деньги</string>
     <string name="lost_cat">Потерял кота</string>
     <string name="lost_airplane">Потерял самолет</string>
     <string name="lost_phone">Потерял телефон</string>
 
+    <!-- Строки для описания в фрагменте потерял -->
     <string name="lost_description_passport">Потерял паспорт в Висаитовском районе около пару дней назад. Никак не могу найти, пожалуйста помогите!</string>
     <string name="lost_description_money">Потерял деньги в Заводском районе вчера в райное 6 вечера, рядом с магазином "Магнит". Сумма небольшая</string>
     <string name="lost_description_cat">Потерял кота в Первомайском районе. Кот породой британец, около 6 месяцев, также на нем был ошейник розового цвета. Откликается на имя Барсик</string>
     <string name="lost_description_airplane">Потерял коллекционный игрушечный самолет в Ленинском районе 15 сентября 2019 года. Вознраграждение есть!</string>
     <string name="lost_description_phone">Потерял телефон в Октябрьском районе телефон марки XiaoMi модель Mi 10T купил совсем недавно.</string>
 
+    <!-- Строки для времени в фрагменте потерял и нашел -->
     <string name="lost_time_stamp_one">Сегодня, 16:38</string>
     <string name="lost_time_stamp_two">Вчера, 10:21</string>
     <string name="lost_time_stamp_three">Завтра, 22:19</string>
     <string name="lost_time_stamp_four">Сегодня, 15:03</string>
     <string name="lost_time_stamp_five">Вчера, 04:31</string>
+
+    <!-- Строки для локации в фрагменте потерял и нашел -->
+    <string name="lost_location_one">Висаитовский район</string>
+    <string name="lost_location_two">Заводской район</string>
+    <string name="lost_location_three">Первомайский район</string>
+    <string name="lost_location_four">Ленинский район</string>
+    <string name="lost_location_five">Октябрьский район</string>
+
+    <!-- Строки для типа объвлений в фрагменте потерял и нашел -->
+    <string name="ad_type_one">Тип документа</string>
+    <string name="ad_type_two">Сумма денег</string>
+    <string name="ad_type_three">Порода</string>
+    <string name="ad_type_four">Тип вещи</string>
+    <string name="ad_type_five">Модель</string>
+
+    <!-- Строки для типа вещи объвлений в фрагменте потерял и нашел -->
+    <string name="ad_type_object_one">Паспорт</string>
+    <string name="ad_type_object_two">от 2 до 7 тыс</string>
+    <string name="ad_type_object_three">Мейн Кун</string>
+    <string name="ad_type_object_four">Boeing-777</string>
+    <string name="ad_type_object_five">Xiao Mi 10T</string>
+
+    <!-- Строки для заголовков объвлений в фрагменте нашел -->
+    <string name="found_passport">Нашел паспорт</string>
+    <string name="found_money">Нашел деньги</string>
+    <string name="found_cat">Нашел кота</string>
+    <string name="found_airplane">Нашел самолет</string>
+    <string name="found_phone">Нашел телефон</string>
+
+    <!-- Строки для описания в фрагменте потерял -->
+    <string name="found_description_passport">Найден паспорт гражданина Соединенных Штатов Америки в Висаитовском районе. Если ваша фамилия Brown то отзовитесь!</string>
+    <string name="found_description_money">Найдена небольшая сумма денег от 1000руб. до 10000руб. в Заводском районе. Деньги лежали рядом с магазином Магнит, отклинитесь!</string>
+    <string name="found_description_cat">Найден кот британец по породе рядом с остановкой в Первомайском районе. На коте был розовый ошейник, привел пока домой, съел всю рыбу в доме.</string>
+    <string name="found_description_airplane">Найден коллекционный игрушечный самолет 1998 года лимитированного издания в Ленинском районе. Был найдем вчера около 6 вечера.</string>
+    <string name="found_description_phone">Найден телефон выглядит новым, марка XiaoMi модель телефона Mi 10T в Октябрьском районе, не смог разблокировать и позвонить родственникам владельца.</string>
+
+    <!-- Строки для имен в фрагментах чат и сообщения -->
+    <string name="messages_names_one">Хьасан</string>
+    <string name="messages_names_two">Сулиман</string>
+    <string name="messages_names_three">Зайнап</string>
+    <string name="messages_names_four">Адам</string>
+    <string name="messages_names_five">Ильяс</string>
+
+    <!-- Строки для сообщений в фрагментах чат и сообщения -->
+    <string name="messages_messages_one">Нашел твой потерянный документ по адресу Висоитовский район дом 146. Очень длинное сообщение</string>
+    <string name="messages_messages_two">Брат можешь по больше информации предоставить?</string>
+    <string name="messages_messages_three">Какого цвета была найденная кошка?</string>
+    <string name="messages_messages_four">Ассаламу Аллейкум. Объявление всё ещё акутальное?</string>
+    <string name="messages_messages_five">Нашел ваш самолет у себя в гараже.</string>
+
+
     <string name="search_menu">Поиск</string>
     <string name="username_edit_text">Имя пользователя</string>
     <string name="email_edit_text">Электронная почта</string>
@@ -88,5 +129,15 @@
     <string name="register_alert_dialog_negative_button">Отмена</string>
     <string name="register_alert_dialog_negative_toast">К сожалению, вы не можете зайти в профиль без регистрации.</string>
     <string name="fragment_register_login_toast_fill_data">Пожалуйста заполните все данные</string>
+    <string name="chat_fragment_popup_menu_delete">Удалить</string>
+    <string name="delete_me_later">Новое объявление</string>
+    <string name="fragment_choose_lost_direction">Потерял</string>
+    <string name="fragment_choose_found_direction">Нашел</string>
+    <string name="header_for_main_recyclerview">header for main recyclerView</string>
+    <string name="fragment_details_horizontal_recyclerview_item">fragment details horizontal recyclerView item</string>
+    <string name="grid_layout_view_counter">grid layout view counter</string>
+    <string name="grid_layout_item_options_button_menu">Grid layout item options button menu</string>
+    <string name="look_in_the_map">Посмотреть на карте</string>
+    <string name="details_fragment_category_text_view">Категория</string>
 
 </resources>

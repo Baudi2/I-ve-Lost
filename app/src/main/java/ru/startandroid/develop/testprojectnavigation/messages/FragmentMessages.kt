@@ -1,45 +1,105 @@
 package ru.startandroid.develop.testprojectnavigation.messages
 
+import android.annotation.SuppressLint
 import android.os.Bundle
+import android.view.Gravity
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
+import androidx.appcompat.view.menu.MenuBuilder
+import androidx.appcompat.view.menu.MenuPopupHelper
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.findNavController
-import androidx.navigation.ui.setupWithNavController
+import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentMessagesBinding
-import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageFragmentAdapter
-import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageItem
+import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
+import ru.startandroid.develop.testprojectnavigation.recyclerView.MessagesAdapter
+import ru.startandroid.develop.testprojectnavigation.module.MessageItem
+import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 
-class FragmentMessages : Fragment(R.layout.fragment_messages), MessageFragmentAdapter.OnItemClickListener{
-    //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
-    private lateinit var binding : FragmentMessagesBinding
-    private var dummyData = ArrayList<MessageItem>()
+class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.OnMessageClickListener{
+    private lateinit var binding: FragmentMessagesBinding
+    private var dummyMessages = generateChatMessages(7)
+    private val args: FragmentMessagesArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val manager = LinearLayoutManager(activity)
-        dummyData = generateItemList(5)
         binding = FragmentMessagesBinding.bind(view)
 
-        //TODO: передавать при навигации имя юзера чтобы поставить в тулбар
+        val manager = LinearLayoutManager(requireContext())
+        val adapter = MessagesAdapter(dummyMessages, this)
 
-        binding.recyclerMessagesView.adapter = MessageFragmentAdapter(dummyData, this)
-        binding.apply {
-            bottomNavMessages.setupWithNavController(findNavController())
-            bottomNavMessages.itemIconSize = 70
-
-            fabMessages.setOnClickListener {
-                val action = FragmentMessagesDirections.actionGlobalFragmentAddLostFind2()
-                findNavController().navigate(action)
+        adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
+            override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
+                if (itemCount != -1 || itemCount != 0) {
+                    binding.recyclerviewFragmentChat.scrollToPosition(positionStart - itemCount + 1)
+                }
             }
 
-            recyclerMessagesView.layoutManager = manager
-            recyclerMessagesView.setHasFixedSize(true)
+            override fun onItemRangeRemoved(positionStart: Int, itemCount: Int) {
+                binding.recyclerviewFragmentChat.scrollToPosition(itemCount)
+            }
+        })
+
+        binding.recyclerviewFragmentChat.adapter = adapter
+        binding.apply {
+            recyclerviewFragmentChat.setHasFixedSize(true)
+            recyclerviewFragmentChat.layoutManager = manager
+        }
+
+        binding.recyclerviewFragmentChat.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, oldBottom ->
+            if (bottom < oldBottom) {
+                binding.recyclerviewFragmentChat.postDelayed({
+                    if (binding.recyclerviewFragmentChat.adapter!!.itemCount != -1) {
+                        binding.recyclerviewFragmentChat.scrollToPosition(
+                            binding.recyclerviewFragmentChat.adapter!!.itemCount - 1
+                        )
+                    }
+                }, 0)
+            }
         }
     }
 
-    private fun generateItemList(size: Int): ArrayList<MessageItem> {
+    override fun onMessageClick(position: Int, itemView: View) {
+        showPopup(itemView)
+    }
+
+    @SuppressLint("RestrictedApi")
+    private fun showPopup(view: View) {
+        val menuBuilder = MenuBuilder(requireContext())
+        val menuInflater = MenuInflater(requireContext())
+        menuInflater.inflate(R.menu.message_fragment_popup_menu, menuBuilder)
+        val optionsMenu = MenuPopupHelper(requireContext(), menuBuilder, view)
+        optionsMenu.setForceShowIcon(true)
+        optionsMenu.gravity = Gravity.END
+
+
+        menuBuilder.setCallback((object:MenuBuilder.Callback{
+            override fun onMenuItemSelected(menu: MenuBuilder, item: MenuItem): Boolean {
+                return when(item.itemId) {
+                    R.id.chat_fragment_popup_delete -> {
+                        shortToast("Сообщение удалено")
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            override fun onMenuModeChange(menu: MenuBuilder) {}
+        }))
+        optionsMenu.show()
+    }
+
+    override fun onStop() {
+        super.onStop()
+        hideKeyboard(requireView())
+    }
+
+
+
+    private fun generateChatMessages(size: Int): ArrayList<MessageItem> {
         // the we create new empty arrayList<>
         val list = ArrayList<MessageItem>()
 
@@ -48,13 +108,13 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessageFragmentAd
         for (i in 0 until size) {
             // this part is only responsible for alternating between our 5 drawables
             val userImage = when (i % 5) {
-                0 -> R.drawable.av_one
-                1 -> R.drawable.av_two
-                2 -> R.drawable.av_fourer
-                3 -> R.drawable.av_four
-                else -> R.drawable.av_five
+                0 -> R.drawable.av_fourer
+                1 -> R.drawable.current_user
+                2 -> R.drawable.av_four
+                3 -> R.drawable.current_user
+                else -> R.drawable.av_two
             }
-
+// R.drawable.av_one
             val userName = when (i % 5) {
                 0 -> "Хьасан"
                 1 -> "Сулиман"
@@ -71,19 +131,30 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessageFragmentAd
                 else -> "Нашел ваш самолет у себя в гараже."
             }
 
+            val isLeft = when (i % 5) {
+                0 -> 1
+                1 -> 0
+                2 -> 1
+                3 -> 0
+                else -> 1
+            }
+
             // creates new ExampleItem and passes through its constructor the necessary data
-            val item = MessageItem(userImage, userName, lastMessage, 0)
+            val item = MessageItem(userImage, userName, lastMessage, isLeft)
             list += item
         }
         // after filling the list with data we eventually return it
         return list
     }
 
-    override fun onItemClick(position: Int) {
-        val clickedUserName = dummyData[position].userName
-        val clickedUserPhoto = dummyData[position].userImage
-
-        val action = FragmentMessagesDirections.actionFragmentMessagesToFragmentChats(clickedUserName, clickedUserPhoto)
-        findNavController().navigate(action)
-    }
 }
+
+
+
+
+
+
+
+
+
+

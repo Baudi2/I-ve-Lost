@@ -17,5 +17,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_perosn"
-        tools:ignore="VectorDrawableCompat" />
+        tools:ignore="VectorDrawableCompat"
+        android:contentDescription="@string/fragment_details_horizontal_recyclerview_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

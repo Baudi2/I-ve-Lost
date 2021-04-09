@@ -1,4 +1,4 @@
-package ru.startandroid.develop.testprojectnavigation.other
+package ru.startandroid.develop.testprojectnavigation
 
 import android.os.Bundle
 import android.view.View
@@ -8,11 +8,11 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
-import ru.startandroid.develop.testprojectnavigation.LinePagerIndicatorDecoration
-import ru.startandroid.develop.testprojectnavigation.R
+import ru.startandroid.develop.testprojectnavigation.recyclerView.LinePagerIndicatorDecoration
 import ru.startandroid.develop.testprojectnavigation.databinding.DetailsSelectedPhotoBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
-import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalLayoutItem
+import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
+import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 
 class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo),
     HorizontalAdapter.HorizontalItemClickListener {
@@ -23,7 +23,6 @@ class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo),
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = DetailsSelectedPhotoBinding.bind(view)
-        val receivedImage = args.selectedPhoto
 
         val adapter = HorizontalAdapter(dummyData, this)
         val manager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
@@ -35,9 +34,8 @@ class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo),
             detailsSelectedRecyclerView.setHasFixedSize(true)
             snapHelper.attachToRecyclerView(detailsSelectedRecyclerView)
             detailsSelectedRecyclerView.addItemDecoration(LinePagerIndicatorDecoration())
-            detailsSelectedRecyclerView.setBackgroundColor(resources.getColor(R.color.slightly_grey))
             respondToPhotoTextView.setOnClickListener {
-                Toast.makeText(requireContext(), "Перенаправляем на фрагмент с сообещниями", Toast.LENGTH_SHORT).show()
+                shortToast("Перенаправляем на фрагмент с сообещниями")
             }
         }
     }

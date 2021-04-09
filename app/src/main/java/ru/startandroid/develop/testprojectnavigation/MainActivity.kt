@@ -10,6 +10,10 @@ import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import ru.startandroid.develop.testprojectnavigation.databinding.ActivityMainBinding
+import ru.startandroid.develop.testprojectnavigation.utils.APP_ACTIVITY
+import ru.startandroid.develop.testprojectnavigation.utils.explainAppBar
+import ru.startandroid.develop.testprojectnavigation.utils.explainBinding
+import ru.startandroid.develop.testprojectnavigation.utils.explainSetSupportActionBar
 
 class MainActivity : AppCompatActivity() {
 private lateinit var navController: NavController
@@ -20,25 +24,26 @@ private lateinit var appBarConfiguration: AppBarConfiguration
         super.onCreate(savedInstanceState)
 
         binding = ActivityMainBinding.inflate(layoutInflater)
-        explain_binding() //!.
+        explainBinding() //!.
         val view = binding.root
         setContentView(view)
+
+        APP_ACTIVITY = this
 
         //? объявляем host для фрагментов и находим navController
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
         navController = navHostFragment.findNavController()
 
-        explain_AppBar() //!.
+        explainAppBar() //!.
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.fragmentFound, R.id.fragmentLost,
             R.id.fragmentMessages, R.id.fragmentProfile,
             R.id.fragmentLogin)
         )
 
-
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
-        explain_setSupportActionBar() //!.
+        explainSetSupportActionBar() //!.
 
         //? тут пока недоделано, это должен был быть drawerLayout т.е. бургер, но пока не понятно.
         binding.navView.setupWithNavController(navController)

@@ -1,15 +1,13 @@
 package ru.startandroid.develop.testprojectnavigation.registration
 
-import android.content.Context
 import android.os.Bundle
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentLoginBinding
-import java.lang.Exception
+import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
 
 //? макет фрагмента готов, остается подключить логику.
 class FragmentLogin: Fragment(R.layout.fragment_login) {
@@ -42,17 +40,6 @@ class FragmentLogin: Fragment(R.layout.fragment_login) {
             hideKeyboard(view)
         } else {
             Toast.makeText(requireContext(), R.string.fragment_register_login_toast_fill_data, Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    //? Чтобы скрыть клавиатуру после нажатия кнопки
-    private fun hideKeyboard(view: View) {
-        try {
-            val imn =
-                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imn.hideSoftInputFromWindow(view.windowToken, 0)
-        } catch (e: Exception) {
-            e.printStackTrace()
         }
     }
 }

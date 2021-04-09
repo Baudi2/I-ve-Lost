@@ -8,12 +8,11 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
-import ru.startandroid.develop.testprojectnavigation.FragmentGoogleMaps
-import ru.startandroid.develop.testprojectnavigation.LinePagerIndicatorDecoration
+import ru.startandroid.develop.testprojectnavigation.recyclerView.LinePagerIndicatorDecoration
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsFoundBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
-import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalLayoutItem
+import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
 
 class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), HorizontalAdapter.HorizontalItemClickListener{
 
@@ -38,12 +37,20 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
             snapHelper.attachToRecyclerView(detailtFoundRecyclerView)
             // pager indicator
             detailtFoundRecyclerView.addItemDecoration(LinePagerIndicatorDecoration())
-            detailtFoundRecyclerView.setBackgroundColor(resources.getColor(R.color.slightly_grey))
 
             headerFoundDetails.text = header
             descriptionFoundDetails.text = description
 
+            detailsFoundShowMap.setOnClickListener {
+                val action = FragmentDetailsFoundDirections.actionFragmentDetailsFoundToFragmentGoogleMaps(
+                    args.location, args.northPoint, args.eastPoint
+                )
+                findNavController().navigate(action)
+            }
 
+            chooseCategoryFoundFragment.text = args.category
+            adTypeFoundTextView.text = args.adType
+            adTypeObjectFoundTextView.text = args.adTypeObject
         }
     }
 

@@ -2,39 +2,44 @@ package ru.startandroid.develop.testprojectnavigation.messages
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
+import androidx.navigation.fragment.findNavController
+import androidx.navigation.ui.setupWithNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
-import ru.startandroid.develop.testprojectnavigation.databinding.FragmentChatBinding
-import ru.startandroid.develop.testprojectnavigation.recyclerView.ChatMessageAdapter
-import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageItem
+import ru.startandroid.develop.testprojectnavigation.databinding.FragmentChatsBinding
+import ru.startandroid.develop.testprojectnavigation.recyclerView.ChatsFragmentAdapter
+import ru.startandroid.develop.testprojectnavigation.module.MessageItem
+import ru.startandroid.develop.testprojectnavigation.utils.stringGet
 
-class FragmentChats : Fragment(R.layout.fragment_chat), ChatMessageAdapter.OnMessageClickListener{
-    private lateinit var binding: FragmentChatBinding
-    private var dummyMessages = generateChatMessages(5)
-    private val args: FragmentChatsArgs by navArgs()
+class FragmentChats : Fragment(R.layout.fragment_chats), ChatsFragmentAdapter.OnItemClickListener{
+    //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
+    private lateinit var binding : FragmentChatsBinding
+    private var dummyData = ArrayList<MessageItem>()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        binding = FragmentChatBinding.bind(view)
+        val manager = LinearLayoutManager(activity)
+        dummyData = generateItemList(5)
+        binding = FragmentChatsBinding.bind(view)
 
-        val manager = LinearLayoutManager(requireContext())
-
-
-        binding.recyclerviewFragmentChat.adapter = ChatMessageAdapter(dummyMessages, this)
+        binding.recyclerMessagesView.adapter = ChatsFragmentAdapter(dummyData, this)
         binding.apply {
-            recyclerviewFragmentChat.setHasFixedSize(true)
-            recyclerviewFragmentChat.layoutManager = manager
+            bottomNavMessages.setupWithNavController(findNavController())
+
+            fabMessages.setOnClickListener {
+                val action = FragmentMessagesDirections.actionGlobalFragmentAddLostFind2()
+                findNavController().navigate(action)
+            }
+
+            recyclerMessagesView.layoutManager = manager
+            recyclerMessagesView.setHasFixedSize(true)
+            recyclerMessagesView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
     }
 
-    override fun onMessageClick(position: Int) {
-        Toast.makeText(requireContext(), dummyMessages[position].lastMessageText, Toast.LENGTH_SHORT).show()
-    }
-
-    private fun generateChatMessages(size: Int): ArrayList<MessageItem> {
+    private fun generateItemList(size: Int): ArrayList<MessageItem> {
         // the we create new empty arrayList<>
         val list = ArrayList<MessageItem>()
 
@@ -43,53 +48,42 @@ class FragmentChats : Fragment(R.layout.fragment_chat), ChatMessageAdapter.OnMes
         for (i in 0 until size) {
             // this part is only responsible for alternating between our 5 drawables
             val userImage = when (i % 5) {
-                0 -> R.drawable.av_fourer
-                1 -> R.drawable.current_user
-                2 -> R.drawable.av_four
-                3 -> R.drawable.current_user
-                else -> R.drawable.av_two
+                0 -> R.drawable.av_one
+                1 -> R.drawable.av_two
+                2 -> R.drawable.av_fourer
+                3 -> R.drawable.av_four
+                else -> R.drawable.av_five
             }
-// R.drawable.av_one
+
             val userName = when (i % 5) {
-                0 -> "Хьасан"
-                1 -> "Сулиман"
-                2 -> "Зайнап"
-                3 -> "Адам"
-                else -> "Ильяс"
+                0 -> stringGet(R.string.messages_names_one)
+                1 -> stringGet(R.string.messages_names_two)
+                2 -> stringGet(R.string.messages_names_three)
+                3 -> stringGet(R.string.messages_names_four)
+                else -> stringGet(R.string.messages_names_five)
             }
 
             val lastMessage = when (i % 5) {
-                0 -> "Нашел твой потерянный документ по адресу Висоитовский район дом 146. Очень длинное сообщение"
-                1 -> "Брат можешь по больше информации предоставить?"
-                2 -> "Какого цвета была найденная кошка?"
-                3 -> "Ассаламу Аллейкум. Объявление всё ещё акутальное?"
-                else -> "Нашел ваш самолет у себя в гараже."
-            }
-
-            val isLeft = when (i % 5) {
-                0 -> 1
-                1 -> 0
-                2 -> 1
-                3 -> 0
-                else -> 1
+                0 -> stringGet(R.string.messages_messages_one)
+                1 -> stringGet(R.string.messages_messages_two)
+                2 -> stringGet(R.string.messages_messages_three)
+                3 -> stringGet(R.string.messages_messages_four)
+                else -> stringGet(R.string.messages_messages_five)
             }
 
             // creates new ExampleItem and passes through its constructor the necessary data
-            val item = MessageItem(userImage, userName, lastMessage, isLeft)
+            val item = MessageItem(userImage, userName, lastMessage, 0)
             list += item
         }
         // after filling the list with data we eventually return it
         return list
     }
 
+    override fun onItemClick(position: Int) {
+        val clickedUserName = dummyData[position].userName
+        val clickedUserPhoto = dummyData[position].userImage
+
+        val action = FragmentChatsDirections.actionFragmentMessagesToFragmentChats(clickedUserName, clickedUserPhoto)
+        findNavController().navigate(action)
+    }
 }
-
-
-
-
-
-
-
-
-
-

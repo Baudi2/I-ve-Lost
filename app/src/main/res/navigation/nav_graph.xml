@@ -3,29 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/nav_graph"
-    android:label="Пожиланий"
     app:startDestination="@id/fragmentLost">
 
-    <fragment
-        android:id="@+id/fragmentMain"
-        android:name="ru.startandroid.develop.testprojectnavigation.FragmentMain"
-        android:label="I've Lost"
-        tools:layout="@layout/fragment_main">
-        <action
-            android:id="@+id/action_fragmentMain_to_fragmentSecond"
-            app:destination="@id/fragmentLost"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-        <action
-            android:id="@+id/action_fragmentMain_to_fragmentFound"
-            app:destination="@id/fragmentFound"
-            app:enterAnim="@anim/slide_in_right"
-            app:exitAnim="@anim/slide_out_left"
-            app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right" />
-    </fragment>
     <fragment
         android:id="@+id/fragmentLost"
         android:name="ru.startandroid.develop.testprojectnavigation.lost.FragmentLost"
@@ -64,7 +43,9 @@
             app:popEnterAnim="@anim/slide_in_right"/>
         <action
             android:id="@+id/action_fragmentProfile_to_fragmentLost"
-            app:destination="@id/fragmentLost" />
+            app:destination="@id/fragmentLost"
+            app:popUpToInclusive="true"
+            app:popUpTo="@+id/fragmentLost"/>
         <argument
             android:name="isRegistered"
             app:argType="boolean"
@@ -105,7 +86,7 @@
         android:id="@+id/fragmentDetails"
         android:name="ru.startandroid.develop.testprojectnavigation.lost.FragmentDetailsLost"
         android:label="Описание"
-        tools:layout="@layout/fragment_details">
+        tools:layout="@layout/fragment_details" >
         <action
             android:id="@+id/action_fragmentDetails_to_fragmentDetailsSelectedPhoto"
             app:destination="@id/fragmentDetailsSelectedPhoto"
@@ -119,12 +100,27 @@
         <argument
             android:name="description"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentDetails_to_fragmentGoogleMaps"
+            app:destination="@id/fragmentGoogleMaps" />
+        <argument
+            android:name="location"
+            app:argType="string" />
+        <argument android:name="northPoint"
+            app:argType="string" />
+        <argument android:name="eastPoint"
+            app:argType="string" />
+        <argument
+            android:name="adType"
+            app:argType="string" />
+        <argument android:name="adTypeObject" />
+        <argument android:name="category" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDetailsFound"
         android:name="ru.startandroid.develop.testprojectnavigation.found.FragmentDetailsFound"
         android:label="Описание"
-        tools:layout="@layout/fragment_details_found">
+        tools:layout="@layout/fragment_details_found" >
         <action
             android:id="@+id/action_fragmentDetailsFound_to_fragmentDetailsSelectedPhoto"
             app:destination="@id/fragmentDetailsSelectedPhoto"
@@ -138,11 +134,32 @@
         <argument
             android:name="description"
             app:argType="string" />
+        <action
+            android:id="@+id/action_fragmentDetailsFound_to_fragmentGoogleMaps"
+            app:destination="@id/fragmentGoogleMaps" />
+        <argument
+            android:name="location"
+            app:argType="string" />
+        <argument
+            android:name="northPoint"
+            app:argType="string" />
+        <argument
+            android:name="eastPoint"
+            app:argType="string" />
+        <argument
+            android:name="adType"
+            app:argType="string" />
+        <argument
+            android:name="adTypeObject"
+            app:argType="string" />
+        <argument
+            android:name="category"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/fragmentReview"
         android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentReview"
-        android:label="Пожиланий"
+        android:label="fragment_review"
         tools:layout="@layout/fragment_review" />
     <action
         android:id="@+id/action_global_fragmentReview"
@@ -153,9 +170,9 @@
         app:popExitAnim="@anim/slide_out_top" />
     <fragment
         android:id="@+id/fragmentMessages"
-        android:name="ru.startandroid.develop.testprojectnavigation.messages.FragmentMessages"
+        android:name="ru.startandroid.develop.testprojectnavigation.messages.FragmentChats"
         android:label="Сообщения"
-        tools:layout="@layout/fragment_messages">
+        tools:layout="@layout/fragment_chats" >
         <action
             android:id="@+id/action_fragmentMessages_to_fragmentChats"
             app:destination="@id/fragmentChats"
@@ -173,25 +190,25 @@
         app:popExitAnim="@anim/slide_out_top"
         app:popUpToInclusive="false" />
     <fragment
-        android:id="@+id/fragmentAdd"
-        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAdd"
+        android:id="@+id/fragmentAddChooseCategory"
+        android:name="ru.startandroid.develop.testprojectnavigation.add.FragmentAddChooseCategory"
         android:label="Категории"
-        tools:layout="@layout/fragment_add">
+        tools:layout="@layout/fragment_add_choose_category" >
         <argument
             android:name="lost_found"
             app:argType="string" />
         <action
             android:id="@+id/action_fragmentAdd_to_fragmentAddEdit"
-            app:destination="@id/fragmentAddEdit" />
+            app:destination="@id/fragmentAdd" />
         <argument
             android:name="isLost"
             app:argType="boolean" />
     </fragment>
     <fragment
         android:id="@+id/fragmentChats"
-        android:name="ru.startandroid.develop.testprojectnavigation.messages.FragmentChats"
+        android:name="ru.startandroid.develop.testprojectnavigation.messages.FragmentMessages"
         android:label="{userName}"
-        tools:layout="@layout/fragment_chat">
+        tools:layout="@layout/fragment_messages">
         <argument
             android:name="userName"
             app:argType="string" />
@@ -201,12 +218,12 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentAddLostFind2"
-        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAddLostFind"
+        android:name="ru.startandroid.develop.testprojectnavigation.add.FragmentAddLostFind"
         android:label="Выбор"
         tools:layout="@layout/fragment_choose_lost_found">
         <action
             android:id="@+id/action_fragmentAddLostFind2_to_fragmentAdd"
-            app:destination="@id/fragmentAdd" />
+            app:destination="@id/fragmentAddChooseCategory" />
     </fragment>
     <action
         android:id="@+id/action_global_fragmentAddLostFind2"
@@ -216,10 +233,10 @@
         app:popEnterAnim="@anim/fade_in"
         app:popExitAnim="@anim/fade_out" />
     <fragment
-        android:id="@+id/fragmentAddEdit"
-        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAddEdit"
+        android:id="@+id/fragmentAdd"
+        android:name="ru.startandroid.develop.testprojectnavigation.add.FragmentAdd"
         android:label="{topic}"
-        tools:layout="@layout/fragment_add_edit">
+        tools:layout="@layout/fragment_add">
         <argument
             android:name="topic"
             app:argType="string" />
@@ -229,7 +246,7 @@
     </fragment>
     <fragment
         android:id="@+id/fragmentDetailsSelectedPhoto"
-        android:name="ru.startandroid.develop.testprojectnavigation.other.FragmentDetailsSelectedPhoto"
+        android:name="ru.startandroid.develop.testprojectnavigation.FragmentDetailsSelectedPhoto"
         android:label="Фото"
         tools:layout="@layout/details_selected_photo">
         <argument
@@ -275,5 +292,20 @@
             app:popExitAnim="@anim/slide_out_right"
             app:popUpTo="@id/fragmentProfile"
             app:popUpToInclusive="true" />
+    </fragment>
+    <fragment
+        android:id="@+id/fragmentGoogleMaps"
+        android:name="ru.startandroid.develop.testprojectnavigation.FragmentGoogleMaps"
+        android:label="Карта"
+        tools:layout="@layout/fragment_google_maps" >
+        <argument
+            android:name="location"
+            app:argType="string" />
+        <argument
+            android:name="northPoint"
+            app:argType="string" />
+        <argument
+            android:name="eastPoint"
+            app:argType="string" />
     </fragment>
 </navigation>

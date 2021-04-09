@@ -2,15 +2,17 @@ package ru.startandroid.develop.testprojectnavigation.recyclerView
 
 import android.annotation.SuppressLint
 import android.content.Context
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
+import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
-import android.widget.Toast
+import androidx.appcompat.view.menu.MenuBuilder
+import androidx.appcompat.view.menu.MenuPopupHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
+import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
+import ru.startandroid.develop.testprojectnavigation.module.HeaderItem
+import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 import java.lang.IllegalArgumentException
 
 class GridLayoutAdapter(
@@ -43,7 +45,7 @@ class GridLayoutAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == TYPE_HEADER) {
-            (holder as HeaderViewHolder).bind(gridLayoutList[position])
+            (holder as HeaderViewHolder).bind()
         } else {
             (holder as ItemViewHolder).bind(gridLayoutList[position])
         }
@@ -52,17 +54,17 @@ class GridLayoutAdapter(
     override fun getItemCount() = gridLayoutList.size
 
     override fun getItemViewType(position: Int): Int {
-        if (position == 0) {
-            return TYPE_HEADER
+        return if (position == 0) {
+            TYPE_HEADER
         } else {
-            return TYPE_ITEM
+            TYPE_ITEM
         }
     }
 
     @SuppressLint("CutPasteId")
     inner class HeaderViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView),
         HeaderAdapter.HeaderItemListener {
-        val theList: List<HeaderItem>
+        private val theList: List<HeaderItem>
 
         init {
             theList = generateItemListHorizontalLayout(8)
@@ -76,10 +78,10 @@ class GridLayoutAdapter(
                 headerAdapter
         }
 
-        fun bind(gridLayoutList: GridLayoutItem) {}
+        fun bind() {}
 
         override fun onHeaderItemListener(position: Int) {
-            Toast.makeText(context, theList[position].headerTopic, Toast.LENGTH_SHORT).show()
+            shortToast(theList[position].headerTopic)
         }
 
         private fun generateItemListHorizontalLayout(size: Int): ArrayList<HeaderItem> {
@@ -130,6 +132,9 @@ class GridLayoutAdapter(
                     listener.onItemClick(position)
                 }
             }
+            itemView.findViewById<ImageView>(R.id.grid_layout_item_options).setOnClickListener {
+                showPopup(it, context)
+            }
         }
 
         fun bind(gridLayoutList: GridLayoutItem) {
@@ -146,5 +151,30 @@ class GridLayoutAdapter(
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
+    }
+
+    @SuppressLint("RestrictedApi")
+    private fun showPopup(view: View, context: Context) {
+        val menuBuilder = MenuBuilder(context)
+        val menuInflater = MenuInflater(context)
+        menuInflater.inflate(R.menu.menu_grid_layout_options, menuBuilder)
+        val optionsMenu = MenuPopupHelper(context, menuBuilder, view)
+        optionsMenu.setForceShowIcon(true)
+
+
+        menuBuilder.setCallback((object: MenuBuilder.Callback{
+            override fun onMenuItemSelected(menu: MenuBuilder, item: MenuItem): Boolean {
+                return when(item.itemId) {
+                    R.id.chat_fragment_popup_delete -> {
+                        shortToast("Объявление скрыто")
+                        true
+                    }
+                    else -> false
+                }
+            }
+
+            override fun onMenuModeChange(menu: MenuBuilder) {}
+        }))
+        optionsMenu.show()
     }
 }

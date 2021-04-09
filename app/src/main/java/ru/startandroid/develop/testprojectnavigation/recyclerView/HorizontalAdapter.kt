@@ -4,14 +4,12 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
-import android.widget.TextView
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
+import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
 
 class HorizontalAdapter(private val horizontalItem: List<HorizontalLayoutItem>,
-    val listener: HorizontalItemClickListener)
+                        private val listener: HorizontalItemClickListener)
     : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
@@ -20,13 +18,12 @@ class HorizontalAdapter(private val horizontalItem: List<HorizontalLayoutItem>,
     }
     
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-        if (viewType == DETAILS_REGULAR_VIEW_HOLDER) {
+        return if (viewType == DETAILS_REGULAR_VIEW_HOLDER) {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.horizontal_recycler_view_item, parent, false)
-            return DetailsViewHolder(view, listener)
-        }
-        else {
+            DetailsViewHolder(view, listener)
+        } else {
             val view = LayoutInflater.from(parent.context).inflate(R.layout.selected_photo_row_item, parent, false)
-            return SelectedDetailsPhotoViewHolder(view)
+            SelectedDetailsPhotoViewHolder(view)
         }
     }
 
@@ -42,11 +39,10 @@ class HorizontalAdapter(private val horizontalItem: List<HorizontalLayoutItem>,
     override fun getItemCount() = horizontalItem.size
 
     override fun getItemViewType(position: Int): Int {
-        if (horizontalItem[position].isZoomable == 0) {
-            return DETAILS_REGULAR_VIEW_HOLDER
-        }
-        else {
-            return ZOOMABLE_PHOTO_VIEW_HOLDER
+        return if (horizontalItem[position].isZoomable == 0) {
+            DETAILS_REGULAR_VIEW_HOLDER
+        } else {
+            ZOOMABLE_PHOTO_VIEW_HOLDER
         }
     }
 

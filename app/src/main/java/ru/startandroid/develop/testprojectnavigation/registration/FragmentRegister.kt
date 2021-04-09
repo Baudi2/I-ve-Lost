@@ -1,7 +1,6 @@
 package ru.startandroid.develop.testprojectnavigation.registration
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.graphics.ImageDecoder
 import android.net.Uri
@@ -9,13 +8,13 @@ import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
 import android.view.View
-import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentRegisterBinding
-import ru.startandroid.develop.testprojectnavigation.explain_activtyForResultPhoto
+import ru.startandroid.develop.testprojectnavigation.utils.explainActivityForResultPhoto
+import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
 import java.lang.Exception
 
 //? макет фрагмента готов, остается подключить логику.
@@ -81,7 +80,7 @@ class FragmentRegister: Fragment(R.layout.fragment_register) {
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             //? продолжаем и проверяем, какое было выбранное изображение
 
-            explain_activtyForResultPhoto() //!.
+            explainActivityForResultPhoto() //!.
             selectedPhotoUri = data.data
 
             try {
@@ -109,15 +108,9 @@ class FragmentRegister: Fragment(R.layout.fragment_register) {
         }
     }
 
-    //? Чтобы скрыть клавиатуру после нажатия кнопки
-    private fun hideKeyboard(view: View) {
-        try {
-            val imn =
-                activity?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-            imn.hideSoftInputFromWindow(view.windowToken, 0)
-        } catch (e: Exception) {
-            e.printStackTrace()
-        }
+    override fun onStop() {
+        super.onStop()
+        hideKeyboard(requireView())
     }
 }
 
