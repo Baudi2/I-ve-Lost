@@ -159,7 +159,7 @@
     <fragment
         android:id="@+id/fragmentReview"
         android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentReview"
-        android:label="fragment_review"
+        android:label="Пожелания"
         tools:layout="@layout/fragment_review" />
     <action
         android:id="@+id/action_global_fragmentReview"

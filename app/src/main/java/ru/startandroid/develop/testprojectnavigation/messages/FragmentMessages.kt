@@ -1,13 +1,8 @@
 package ru.startandroid.develop.testprojectnavigation.messages
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Gravity
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.view.menu.MenuBuilder
-import androidx.appcompat.view.menu.MenuPopupHelper
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -17,7 +12,7 @@ import ru.startandroid.develop.testprojectnavigation.databinding.FragmentMessage
 import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
 import ru.startandroid.develop.testprojectnavigation.recyclerView.MessagesAdapter
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
-import ru.startandroid.develop.testprojectnavigation.utils.shortToast
+import ru.startandroid.develop.testprojectnavigation.utils.showPopup
 
 class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.OnMessageClickListener{
     private lateinit var binding: FragmentMessagesBinding
@@ -62,34 +57,11 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.O
         }
     }
 
-    override fun onMessageClick(position: Int, itemView: View) {
-        showPopup(itemView)
-    }
-
-    @SuppressLint("RestrictedApi")
-    private fun showPopup(view: View) {
-        val menuBuilder = MenuBuilder(requireContext())
-        val menuInflater = MenuInflater(requireContext())
-        menuInflater.inflate(R.menu.message_fragment_popup_menu, menuBuilder)
-        val optionsMenu = MenuPopupHelper(requireContext(), menuBuilder, view)
-        optionsMenu.setForceShowIcon(true)
-        optionsMenu.gravity = Gravity.END
-
-
-        menuBuilder.setCallback((object:MenuBuilder.Callback{
-            override fun onMenuItemSelected(menu: MenuBuilder, item: MenuItem): Boolean {
-                return when(item.itemId) {
-                    R.id.chat_fragment_popup_delete -> {
-                        shortToast("Сообщение удалено")
-                        true
-                    }
-                    else -> false
-                }
-            }
-
-            override fun onMenuModeChange(menu: MenuBuilder) {}
-        }))
-        optionsMenu.show()
+    override fun onMessageClick(position: Int, itemView: View, textView: TextView) {
+        showPopup(itemView, R.menu.message_fragment_popup_menu,
+            "Сообщение удалено", "Сообщение скопировано",
+            R.id.chat_fragment_delete_message, R.id.chat_fragment_popup_copy,
+        textView)
     }
 
     override fun onStop() {
