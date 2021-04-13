@@ -140,4 +140,30 @@
     <string name="look_in_the_map">Посмотреть на карте</string>
     <string name="details_fragment_category_text_view">Категория</string>
 
+    <!-- Fragment About Us -->
+    <string name="who_are_we_text_view">Кто мы?</string>
+    <string name="frequent_questions">Часто задаваемые вопросы</string>
+    <string name="about_us_desc">Мы небольшая группа разработчиков из Чечни у которых зародилась эта идея о создании данного приложения и мы решили заняться её реализацией.
+    Мы занимаемся разработкой приложений под андроид относительно недавно и решили сделать этот проект нашим первым "крупным" проектом
+    над которым мы работаем вместе.
+    </string>
+    <string name="goal_of_app">Цель Приложения</string>
+    <string name="contact_us_about_us">Обратная связь</string>
+    <string name="our_email">Наша почта</string>
+    <string name="our_telegram">Наш телеграм</string>
+    <string name="our_whatsapp">Наш WhatsApp</string>
+    <string name="app_permissions">Разрешения приложения</string>
+    <string name="goal_of_the_app">Цель "I've lost" -  ускорить нахождения потерянных предметов посредством размещения объявлений
+        \nПриложение "I've lost" создано для выполнения роли связующего звена между человеком потерявшим и нашедшим предмет и построения отношений  между этими лицами на уважительной основе.
+    </string>
+    <string name="app_permission_desc">Приложению требуется доступ к вашей локации для того чтобы размещать объявления о находке или потери вещи
+    более аккуртно. \nТакже для использования нащего приложения необходим доступ к интернету.</string>
+    <string name="our_email_desc">engno_95@mail.ru</string>
+    <string name="our_telegram_desc">somebaudi</string>
+    <string name="our_whatapp_desc">+7 (963)–584–49–02</string>
+    <string name="copy_text">Копировать</string>
+    <string name="hide_ad_options_menu">Скрыть объявление</string>
+    <string name="favorite_ad_lost_found_menu">Избранные</string>
+
+
 </resources>

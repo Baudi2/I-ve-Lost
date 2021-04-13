@@ -5,14 +5,13 @@ import android.content.Context
 import android.view.*
 import android.widget.ImageView
 import android.widget.TextView
-import androidx.appcompat.view.menu.MenuBuilder
-import androidx.appcompat.view.menu.MenuPopupHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
 import ru.startandroid.develop.testprojectnavigation.module.HeaderItem
 import ru.startandroid.develop.testprojectnavigation.utils.shortToast
+import ru.startandroid.develop.testprojectnavigation.utils.showPopup
 import java.lang.IllegalArgumentException
 
 class GridLayoutAdapter(
@@ -133,7 +132,9 @@ class GridLayoutAdapter(
                 }
             }
             itemView.findViewById<ImageView>(R.id.grid_layout_item_options).setOnClickListener {
-                showPopup(it, context)
+                showPopup(it, R.menu.menu_grid_layout_options,
+                    "Объявление скрыто", "Объявление добавлено в избранные",
+                    R.id.found_lost_hide_ad, R.id.found_lost_favorite_ad, null)
             }
         }
 
@@ -151,30 +152,5 @@ class GridLayoutAdapter(
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)
-    }
-
-    @SuppressLint("RestrictedApi")
-    private fun showPopup(view: View, context: Context) {
-        val menuBuilder = MenuBuilder(context)
-        val menuInflater = MenuInflater(context)
-        menuInflater.inflate(R.menu.menu_grid_layout_options, menuBuilder)
-        val optionsMenu = MenuPopupHelper(context, menuBuilder, view)
-        optionsMenu.setForceShowIcon(true)
-
-
-        menuBuilder.setCallback((object: MenuBuilder.Callback{
-            override fun onMenuItemSelected(menu: MenuBuilder, item: MenuItem): Boolean {
-                return when(item.itemId) {
-                    R.id.chat_fragment_popup_delete -> {
-                        shortToast("Объявление скрыто")
-                        true
-                    }
-                    else -> false
-                }
-            }
-
-            override fun onMenuModeChange(menu: MenuBuilder) {}
-        }))
-        optionsMenu.show()
     }
 }

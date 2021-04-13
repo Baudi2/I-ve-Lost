@@ -1,9 +1,16 @@
 package ru.startandroid.develop.testprojectnavigation.utils
 
+import android.annotation.SuppressLint
+import android.content.ClipData
+import android.content.ClipboardManager
 import android.content.Context
-import android.view.View
+import android.content.Context.CLIPBOARD_SERVICE
+import android.view.*
 import android.view.inputmethod.InputMethodManager
+import android.widget.TextView
 import android.widget.Toast
+import androidx.appcompat.view.menu.MenuBuilder
+import androidx.appcompat.view.menu.MenuPopupHelper
 import java.lang.Exception
 
 //? Чтобы скрыть клавиатуру после нажатия кнопки
@@ -26,3 +33,72 @@ fun longToast(message: String) {
 }
 
 fun stringGet(id: Int) = APP_ACTIVITY.resources.getString(id)
+
+//? копирует текст из textView и сохраняет в буфер, i.e. clipboard
+fun copyText(textView: TextView) {
+    val manager = APP_ACTIVITY.getSystemService(CLIPBOARD_SERVICE) as ClipboardManager
+    val clipData = ClipData.newPlainText("text", textView.text)
+    manager.setPrimaryClip(clipData)
+}
+
+//? функция вызова popupMenu, используется в нашёл, потерял и фрагменте сообщений
+@SuppressLint("RestrictedApi")
+fun showPopup(
+    view: View,
+    menu: Int,
+    message: String,
+    secondMessage: String,
+    menuItemId: Int,
+    secondMenuItemId: Int,
+    textView: TextView?
+) {
+    val menuBuilder = MenuBuilder(APP_ACTIVITY)
+    val menuInflater = MenuInflater(APP_ACTIVITY)
+    menuInflater.inflate(menu, menuBuilder)
+    val optionsMenu = MenuPopupHelper(APP_ACTIVITY, menuBuilder, view)
+    optionsMenu.setForceShowIcon(true)
+    //? если textView не равен нулю значит мы в фрагменте сообщений, а там нужен аттрибут гравитации
+    if (textView != null) optionsMenu.gravity = Gravity.END
+
+
+    menuBuilder.setCallback((object : MenuBuilder.Callback {
+        override fun onMenuItemSelected(menu: MenuBuilder, item: MenuItem): Boolean {
+            return when (item.itemId) {
+                menuItemId -> {
+                    shortToast(message)
+                    true
+                }
+                secondMenuItemId -> {
+                    shortToast(secondMessage)
+                    if (textView != null) {
+                        copyText(textView)
+                    }
+                    true
+                }
+                else -> false
+            }
+        }
+
+        override fun onMenuModeChange(menu: MenuBuilder) {}
+    }))
+    optionsMenu.show()
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -79,4 +79,7 @@ dependencies {
 
     // Picasso
     implementation 'com.squareup.picasso:picasso:2.71828'
+
+    // Expandable layout
+    implementation 'com.github.cachapa:ExpandableLayout:2.9.2'
 }
