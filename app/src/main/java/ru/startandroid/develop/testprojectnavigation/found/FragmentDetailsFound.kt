@@ -13,6 +13,8 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsFoundBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
+import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
+import ru.startandroid.develop.testprojectnavigation.utils.unlockDrawer
 
 class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), HorizontalAdapter.HorizontalItemClickListener{
 
@@ -55,6 +57,10 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
     }
 
 
+    override fun onStart() {
+        super.onStart()
+        lockDrawer()
+    }
 
     override fun onHorizontalItemClickListener(position: Int) {
         val clickedItem = dummyData[position].image

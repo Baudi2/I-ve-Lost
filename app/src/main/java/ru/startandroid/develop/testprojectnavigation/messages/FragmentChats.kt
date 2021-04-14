@@ -11,6 +11,8 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentChatsBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.ChatsFragmentAdapter
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
+import ru.startandroid.develop.testprojectnavigation.utils.hideDrawer
+import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
 import ru.startandroid.develop.testprojectnavigation.utils.stringGet
 
 class FragmentChats : Fragment(R.layout.fragment_chats), ChatsFragmentAdapter.OnItemClickListener{
@@ -37,6 +39,12 @@ class FragmentChats : Fragment(R.layout.fragment_chats), ChatsFragmentAdapter.On
             recyclerMessagesView.setHasFixedSize(true)
             recyclerMessagesView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        lockDrawer()
+        hideDrawer()
     }
 
     private fun generateItemList(size: Int): ArrayList<MessageItem> {

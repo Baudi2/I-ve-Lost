@@ -10,6 +10,8 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentProfileBinding
+import ru.startandroid.develop.testprojectnavigation.utils.hideDrawer
+import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
 
 class FragmentProfile : Fragment(R.layout.fragment_profile){
 
@@ -18,18 +20,19 @@ class FragmentProfile : Fragment(R.layout.fragment_profile){
     private lateinit var binding : FragmentProfileBinding
     //? тут мы принимаем аргумент из фрагменты регистрации или логина об успешной регистрации чтобы больше не показывать диалог
     private val args: FragmentProfileArgs by navArgs()
+    private var dialog: AlertDialog? = null
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
 
-            //? apply - делает так что все внутри попадет под binding т.е. не нужно каждый раз перед доступом ко view
-            //? писать binding. просто сокращает код
+        //? apply - делает так что все внутри попадет под binding т.е. не нужно каждый раз перед доступом ко view
+        //? писать binding. просто сокращает код
         binding.apply {
             //? подключаем bottomNavigation к нашему фрагменту и задаем размер иконок
             bottomNavProfile.setupWithNavController(findNavController())
 
-                //? ставим слушатель нажатий на наш floatingActionButton коротко "fab" и переходим на фрагмент добавить при нажатии.
+            //? ставим слушатель нажатий на наш floatingActionButton коротко "fab" и переходим на фрагмент добавить при нажатии.
             fabProfile.setOnClickListener {
                 val action = FragmentProfileDirections.actionGlobalFragmentAddLostFind2()
                 findNavController().navigate(action)
@@ -43,6 +46,8 @@ class FragmentProfile : Fragment(R.layout.fragment_profile){
         if (!args.isRegistered) {
             registerDialog()
         }
+        lockDrawer()
+        hideDrawer()
     }
 
     //? Создаем алерт диалог который будет появляться если пользователь попытается зайти в
@@ -72,14 +77,17 @@ class FragmentProfile : Fragment(R.layout.fragment_profile){
         }
 
         //? создаем и запускаем диалог
-        alertDialog.create()
-            .show()
+        dialog = alertDialog.create()
+        dialog!!.show()
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (dialog != null) {
+            dialog!!.dismiss()
+        }
     }
 }
-
-
-
-
 
 
 

@@ -2,6 +2,8 @@ package ru.startandroid.develop.testprojectnavigation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -9,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationView
 import ru.startandroid.develop.testprojectnavigation.databinding.ActivityMainBinding
 import ru.startandroid.develop.testprojectnavigation.utils.APP_ACTIVITY
 import ru.startandroid.develop.testprojectnavigation.utils.explainAppBar
@@ -19,6 +22,9 @@ class MainActivity : AppCompatActivity() {
 private lateinit var navController: NavController
 private lateinit var binding : ActivityMainBinding
 private lateinit var appBarConfiguration: AppBarConfiguration
+lateinit var drawer: DrawerLayout
+lateinit var toolbar: Toolbar
+lateinit var navView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +35,9 @@ private lateinit var appBarConfiguration: AppBarConfiguration
         setContentView(view)
 
         APP_ACTIVITY = this
+        drawer = binding.drawerLayout
+        toolbar = binding.toolbar
+        navView = binding.navView
 
         //? объявляем host для фрагментов и находим navController
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
@@ -38,10 +47,20 @@ private lateinit var appBarConfiguration: AppBarConfiguration
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.fragmentFound, R.id.fragmentLost,
             R.id.fragmentMessages, R.id.fragmentProfile,
-            R.id.fragmentLogin)
+            R.id.fragmentSettings, R.id.fragmentAbout,
+            R.id.fragmentReview),
+            drawer
         )
 
-        setSupportActionBar(binding.toolbar)
+        binding.navView.menu.findItem(R.id.home_drawer).setOnMenuItemClickListener {
+            onBackPressed()
+            drawer.close()
+            true
+        }
+
+        //binding.navView.menu = R.menu.bottom_nav_found_menu
+
+        setSupportActionBar(toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
         explainSetSupportActionBar() //!.
 

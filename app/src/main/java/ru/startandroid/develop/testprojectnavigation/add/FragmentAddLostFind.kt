@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentChooseLostFoundBinding
+import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
 
 class FragmentAddLostFind : Fragment(R.layout.fragment_choose_lost_found){
     private lateinit var binding : FragmentChooseLostFoundBinding
@@ -48,6 +49,7 @@ class FragmentAddLostFind : Fragment(R.layout.fragment_choose_lost_found){
             textLost.startAnimation(anim)
             textFound.startAnimation(animDelay230)
         }
+        lockDrawer()
     }
 }
 

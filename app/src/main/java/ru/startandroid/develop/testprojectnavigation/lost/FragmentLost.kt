@@ -13,8 +13,7 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentLostBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
-import ru.startandroid.develop.testprojectnavigation.utils.shortToast
-import ru.startandroid.develop.testprojectnavigation.utils.stringGet
+import ru.startandroid.develop.testprojectnavigation.utils.*
 
 class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemClickListener {
 
@@ -59,6 +58,12 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
             recyclerLostView.layoutManager = manager
             recyclerLostView.setHasFixedSize(true)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        unlockDrawer()
+        hideHome()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
