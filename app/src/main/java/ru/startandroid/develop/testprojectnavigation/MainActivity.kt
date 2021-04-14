@@ -11,6 +11,7 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.navigation.NavigationView
 import ru.startandroid.develop.testprojectnavigation.databinding.ActivityMainBinding
 import ru.startandroid.develop.testprojectnavigation.utils.APP_ACTIVITY
 import ru.startandroid.develop.testprojectnavigation.utils.explainAppBar
@@ -23,6 +24,7 @@ private lateinit var binding : ActivityMainBinding
 private lateinit var appBarConfiguration: AppBarConfiguration
 lateinit var drawer: DrawerLayout
 lateinit var toolbar: Toolbar
+lateinit var navView: NavigationView
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,6 +37,7 @@ lateinit var toolbar: Toolbar
         APP_ACTIVITY = this
         drawer = binding.drawerLayout
         toolbar = binding.toolbar
+        navView = binding.navView
 
         //? объявляем host для фрагментов и находим navController
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
@@ -43,9 +46,19 @@ lateinit var toolbar: Toolbar
         explainAppBar() //!.
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.fragmentFound, R.id.fragmentLost,
-            R.id.fragmentMessages, R.id.fragmentProfile),
+            R.id.fragmentMessages, R.id.fragmentProfile,
+            R.id.fragmentSettings, R.id.fragmentAbout,
+            R.id.fragmentReview),
             drawer
         )
+
+        binding.navView.menu.findItem(R.id.home_drawer).setOnMenuItemClickListener {
+            onBackPressed()
+            drawer.close()
+            true
+        }
+
+        //binding.navView.menu = R.menu.bottom_nav_found_menu
 
         setSupportActionBar(toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)

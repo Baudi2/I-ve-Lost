@@ -13,10 +13,7 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentFoundBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
-import ru.startandroid.develop.testprojectnavigation.utils.hideDrawer
-import ru.startandroid.develop.testprojectnavigation.utils.shortToast
-import ru.startandroid.develop.testprojectnavigation.utils.stringGet
-import ru.startandroid.develop.testprojectnavigation.utils.unlockDrawer
+import ru.startandroid.develop.testprojectnavigation.utils.*
 
 class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnItemClickListener {
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
@@ -65,6 +62,7 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
     override fun onStart() {
         super.onStart()
         unlockDrawer()
+        hideHome()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

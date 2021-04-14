@@ -11,8 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.view.menu.MenuPopupHelper
-import androidx.core.view.GravityCompat
 import androidx.drawerlayout.widget.DrawerLayout
+import ru.startandroid.develop.testprojectnavigation.R
 import java.lang.Exception
 
 //? Чтобы скрыть клавиатуру после нажатия кнопки
@@ -96,6 +96,14 @@ fun unlockDrawer() {
 
 fun hideDrawer() {
     APP_ACTIVITY.toolbar.setNavigationIcon(null)
+}
+
+fun hideHome() {
+    APP_ACTIVITY.navView.menu.findItem(R.id.home_drawer).setVisible(false)
+}
+
+fun showHome() {
+    APP_ACTIVITY.navView.menu.findItem(R.id.home_drawer).setVisible(true)
 }
 
 

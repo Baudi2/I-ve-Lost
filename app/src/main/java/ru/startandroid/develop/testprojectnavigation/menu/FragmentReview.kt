@@ -5,7 +5,9 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentReviewBinding
+import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
 import ru.startandroid.develop.testprojectnavigation.utils.shortToast
+import ru.startandroid.develop.testprojectnavigation.utils.showHome
 
 class FragmentReview : Fragment(R.layout.fragment_review){
 
@@ -73,6 +75,11 @@ class FragmentReview : Fragment(R.layout.fragment_review){
                 shortToast("Направляем либо в майл либо в фрагмент для написания письма.")
             }
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        showHome()
     }
 }
 
