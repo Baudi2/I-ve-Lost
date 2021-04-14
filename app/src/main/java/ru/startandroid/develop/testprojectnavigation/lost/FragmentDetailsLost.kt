@@ -2,6 +2,7 @@ package ru.startandroid.develop.testprojectnavigation.lost
 
 import android.os.Bundle
 import android.view.View
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -13,6 +14,9 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
+import ru.startandroid.develop.testprojectnavigation.utils.APP_ACTIVITY
+import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
+import ru.startandroid.develop.testprojectnavigation.utils.unlockDrawer
 
 class FragmentDetailsLost : Fragment(R.layout.fragment_details), HorizontalAdapter.HorizontalItemClickListener{
 
@@ -53,6 +57,14 @@ class FragmentDetailsLost : Fragment(R.layout.fragment_details), HorizontalAdapt
             adTypeLostTextView.text = args.adType
             adTypeObjectLostTextView.text = args.adTypeObject
         }
+    }
+
+
+
+    override fun onStart() {
+        super.onStart()
+        //? убираем возможность вытягивать drawer
+        lockDrawer()
     }
 
     override fun onHorizontalItemClickListener(position: Int) {

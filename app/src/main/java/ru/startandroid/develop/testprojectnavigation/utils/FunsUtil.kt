@@ -11,6 +11,8 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.view.menu.MenuPopupHelper
+import androidx.core.view.GravityCompat
+import androidx.drawerlayout.widget.DrawerLayout
 import java.lang.Exception
 
 //? Чтобы скрыть клавиатуру после нажатия кнопки
@@ -83,6 +85,19 @@ fun showPopup(
     }))
     optionsMenu.show()
 }
+
+fun lockDrawer() {
+    APP_ACTIVITY.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_LOCKED_CLOSED)
+}
+
+fun unlockDrawer() {
+    APP_ACTIVITY.drawer.setDrawerLockMode(DrawerLayout.LOCK_MODE_UNLOCKED)
+}
+
+fun hideDrawer() {
+    APP_ACTIVITY.toolbar.setNavigationIcon(null)
+}
+
 
 
 

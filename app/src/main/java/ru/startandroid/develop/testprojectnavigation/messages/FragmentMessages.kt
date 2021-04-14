@@ -12,6 +12,8 @@ import ru.startandroid.develop.testprojectnavigation.databinding.FragmentMessage
 import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
 import ru.startandroid.develop.testprojectnavigation.recyclerView.MessagesAdapter
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
+import ru.startandroid.develop.testprojectnavigation.utils.hideDrawer
+import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 import ru.startandroid.develop.testprojectnavigation.utils.showPopup
 
 class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.OnMessageClickListener{
@@ -42,6 +44,10 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.O
         binding.apply {
             recyclerviewFragmentChat.setHasFixedSize(true)
             recyclerviewFragmentChat.layoutManager = manager
+            sendButtonFragmentChat.setOnClickListener {
+                shortToast(edittextChatLog.text.toString())
+                edittextChatLog.setText("")
+            }
         }
 
         binding.recyclerviewFragmentChat.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, oldBottom ->
@@ -61,7 +67,7 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.O
         showPopup(itemView, R.menu.message_fragment_popup_menu,
             "Сообщение удалено", "Сообщение скопировано",
             R.id.chat_fragment_delete_message, R.id.chat_fragment_popup_copy,
-        textView)
+            textView)
     }
 
     override fun onStop() {
@@ -120,8 +126,6 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.O
     }
 
 }
-
-
 
 
 

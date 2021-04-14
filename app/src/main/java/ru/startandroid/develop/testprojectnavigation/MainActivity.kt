@@ -2,6 +2,8 @@ package ru.startandroid.develop.testprojectnavigation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.widget.Toolbar
+import androidx.drawerlayout.widget.DrawerLayout
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -19,6 +21,8 @@ class MainActivity : AppCompatActivity() {
 private lateinit var navController: NavController
 private lateinit var binding : ActivityMainBinding
 private lateinit var appBarConfiguration: AppBarConfiguration
+lateinit var drawer: DrawerLayout
+lateinit var toolbar: Toolbar
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,6 +33,8 @@ private lateinit var appBarConfiguration: AppBarConfiguration
         setContentView(view)
 
         APP_ACTIVITY = this
+        drawer = binding.drawerLayout
+        toolbar = binding.toolbar
 
         //? объявляем host для фрагментов и находим navController
         val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
@@ -37,11 +43,11 @@ private lateinit var appBarConfiguration: AppBarConfiguration
         explainAppBar() //!.
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.fragmentFound, R.id.fragmentLost,
-            R.id.fragmentMessages, R.id.fragmentProfile,
-            R.id.fragmentLogin)
+            R.id.fragmentMessages, R.id.fragmentProfile),
+            drawer
         )
 
-        setSupportActionBar(binding.toolbar)
+        setSupportActionBar(toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
         explainSetSupportActionBar() //!.
 

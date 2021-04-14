@@ -15,6 +15,7 @@ import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdap
 import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
 import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 import ru.startandroid.develop.testprojectnavigation.utils.stringGet
+import ru.startandroid.develop.testprojectnavigation.utils.unlockDrawer
 
 class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemClickListener {
 
@@ -59,6 +60,11 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
             recyclerLostView.layoutManager = manager
             recyclerLostView.setHasFixedSize(true)
         }
+    }
+
+    override fun onStart() {
+        super.onStart()
+        unlockDrawer()
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

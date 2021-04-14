@@ -12,6 +12,7 @@ import ru.startandroid.develop.testprojectnavigation.recyclerView.LinePagerIndic
 import ru.startandroid.develop.testprojectnavigation.databinding.DetailsSelectedPhotoBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
+import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
 import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 
 class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo),
