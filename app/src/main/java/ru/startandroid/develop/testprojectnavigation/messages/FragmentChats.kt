@@ -41,6 +41,7 @@ class FragmentChats : Fragment(R.layout.fragment_chats), ChatsFragmentAdapter.On
         }
     }
 
+    //? убираем иконку бургер и также блокируем выдвижение drawerLayout
     override fun onStart() {
         super.onStart()
         lockDrawer()

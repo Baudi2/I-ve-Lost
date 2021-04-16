@@ -19,6 +19,8 @@ class FragmentAddLostFind : Fragment(R.layout.fragment_choose_lost_found){
         val sentStringFound = context?.getString(R.string.what_you_found)
         var sentIsLost: Boolean
 
+        //? в зависимости от того нажали мы на "потерял" или "нашел" передаем нужную строку и меняем значение
+        //? sentIsLost на true если нажали на "потерял"
         binding.apply {
             textLost.setOnClickListener {
                 sentIsLost = true
@@ -40,6 +42,7 @@ class FragmentAddLostFind : Fragment(R.layout.fragment_choose_lost_found){
         }
     }
 
+    //? загружаем и присваимваем анимации также блокируем drawer layout чтобы его нельзя было вытянуть
     override fun onResume() {
         super.onResume()
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.text_show_up)

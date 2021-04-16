@@ -7,12 +7,6 @@
     <group android:checkableBehavior="single">
 
         <item
-            android:id="@+id/fragmentSettings"
-            android:icon="@drawable/ic_settings"
-            android:title="@string/settings"
-            app:showAsAction="never" />
-
-        <item
             android:id="@+id/fragmentAbout"
             android:icon="@drawable/ic_about_us"
             android:title="@string/about_us"
@@ -25,10 +19,15 @@
             app:showAsAction="never" />
 
         <item
-            android:id="@+id/home_drawer"
-            android:title="Домой"
-            android:icon="@drawable/ic_home_menu"/>
+            android:id="@+id/changeTheme"
+            android:icon="@drawable/ic_dark_mode"
+            android:title="@string/dark_theme"
+            app:showAsAction="never" />
 
+        <item
+            android:id="@+id/home_drawer"
+            android:icon="@drawable/ic_home_menu"
+            android:title="@string/home_menu" />
     </group>
 
 </menu>

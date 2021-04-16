@@ -19,6 +19,7 @@ class FragmentAddChooseCategory : Fragment(R.layout.fragment_add_choose_category
         binding = FragmentAddChooseCategoryBinding.bind(view)
         val sentBoolean = args.isLost
 
+        //? устанавливаем слушатели нажатий на каждую кнопку которая производит навигацию
         binding.apply {
             textViewLostDocument.setOnClickListener {
                 val sent = context?.getString(R.string.lost_document_text)
@@ -71,8 +72,10 @@ class FragmentAddChooseCategory : Fragment(R.layout.fragment_add_choose_category
         }
     }
 
+    //? тут мы включаем анимации на наши textView каждая анимация с разной задержкой
     override fun onResume() {
         super.onResume()
+        //? определеяем анимации
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.text_show_up)
         val animDelay230 = AnimationUtils.loadAnimation(requireContext(), R.anim.text_show_up_delay_230)
         val animDelay260 = AnimationUtils.loadAnimation(requireContext(), R.anim.text_show_up_delay_260)
@@ -83,6 +86,7 @@ class FragmentAddChooseCategory : Fragment(R.layout.fragment_add_choose_category
         val animDelay410 = AnimationUtils.loadAnimation(requireContext(), R.anim.text_show_up_delay_410)
 
 
+        //? присваиваем их к нужным textView
         binding.apply {
             textViewWhatYouLost.startAnimation(anim)
             textViewLostDocument.startAnimation(animDelay230)
@@ -93,6 +97,7 @@ class FragmentAddChooseCategory : Fragment(R.layout.fragment_add_choose_category
             textViewLostEquipment.startAnimation(animDelay380)
             textViewLostOther.startAnimation(animDelay410)
 
+            //? меняем назваие в зависимости от того зашли мы через нашел или потерял
             textViewWhatYouLost.text = args.lostFound
         }
     }

@@ -83,6 +83,8 @@ class FragmentRegister: Fragment(R.layout.fragment_register) {
             explainActivityForResultPhoto() //!.
             selectedPhotoUri = data.data
 
+            //? в зависимости от версии устройства используем два разных метода для обработки и выставления
+            //? в imageView картинки которую выбрал юзер
             try {
                 selectedPhotoUri?.let {
                     if (Build.VERSION.SDK_INT < 28) {
@@ -108,6 +110,7 @@ class FragmentRegister: Fragment(R.layout.fragment_register) {
         }
     }
 
+    //? прячем клавиатуру при выходе с фрагмента
     override fun onStop() {
         super.onStop()
         hideKeyboard(requireView())

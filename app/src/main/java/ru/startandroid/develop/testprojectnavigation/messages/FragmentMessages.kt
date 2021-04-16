@@ -12,7 +12,6 @@ import ru.startandroid.develop.testprojectnavigation.databinding.FragmentMessage
 import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
 import ru.startandroid.develop.testprojectnavigation.recyclerView.MessagesAdapter
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
-import ru.startandroid.develop.testprojectnavigation.utils.hideDrawer
 import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 import ru.startandroid.develop.testprojectnavigation.utils.showPopup
 
@@ -28,6 +27,7 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.O
         val manager = LinearLayoutManager(requireContext())
         val adapter = MessagesAdapter(dummyMessages, this)
 
+        //? также относится к методу для прокручивания recyclerView на 0 позицию при изменении в layout
         adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
             override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
                 if (itemCount != -1 || itemCount != 0) {
@@ -44,12 +44,15 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.O
         binding.apply {
             recyclerviewFragmentChat.setHasFixedSize(true)
             recyclerviewFragmentChat.layoutManager = manager
+            //? по нажатию кнопки отправить очищаем editText и показываем тост с введенным сообщением
             sendButtonFragmentChat.setOnClickListener {
                 shortToast(edittextChatLog.text.toString())
                 edittextChatLog.setText("")
             }
         }
 
+        //? при изменении layout а мы возвращаем recyclerView на 0 позицию т.е. самый низ, это нужно
+        //? чтобы при открытии клавиатуры сообщения были сдвинуты вниз а также при появлении нового сообщения на экране
         binding.recyclerviewFragmentChat.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, oldBottom ->
             if (bottom < oldBottom) {
                 binding.recyclerviewFragmentChat.postDelayed({
@@ -63,6 +66,7 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.O
         }
     }
 
+    //? по нажатию на сообщение показываем popupMenu
     override fun onMessageClick(position: Int, itemView: View, textView: TextView) {
         showPopup(itemView, R.menu.message_fragment_popup_menu,
             "Сообщение удалено", "Сообщение скопировано",
@@ -70,6 +74,7 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.O
             textView)
     }
 
+    //? при выходе из фрагмент скрываем клавиатуру
     override fun onStop() {
         super.onStop()
         hideKeyboard(requireView())

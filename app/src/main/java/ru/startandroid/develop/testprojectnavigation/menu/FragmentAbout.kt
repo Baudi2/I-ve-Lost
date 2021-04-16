@@ -6,10 +6,7 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentAboutBinding
-import ru.startandroid.develop.testprojectnavigation.utils.copyText
-import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
-import ru.startandroid.develop.testprojectnavigation.utils.shortToast
-import ru.startandroid.develop.testprojectnavigation.utils.showHome
+import ru.startandroid.develop.testprojectnavigation.utils.*
 
 class FragmentAbout : Fragment(R.layout.fragment_about){
 
@@ -19,6 +16,7 @@ class FragmentAbout : Fragment(R.layout.fragment_about){
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAboutBinding.bind(view)
 
+        explainExpandableViews()    //!..
         binding.apply {
             fragmentAboutWhoAreWe.setOnClickListener {
                 if (expandTextWhoAreWe.isExpanded) {
@@ -85,6 +83,7 @@ class FragmentAbout : Fragment(R.layout.fragment_about){
         }
     }
 
+    //? показываем иконку home в drawerLayout
     override fun onStart() {
         super.onStart()
         showHome()
