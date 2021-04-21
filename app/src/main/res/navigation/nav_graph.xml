@@ -243,6 +243,9 @@
         <argument
             android:name="isLost"
             app:argType="boolean" />
+        <action
+            android:id="@+id/action_fragmentAdd_to_fragmentGoogleMaps"
+            app:destination="@id/fragmentGoogleMaps" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDetailsSelectedPhoto"

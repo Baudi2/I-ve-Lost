@@ -8,21 +8,24 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
 
-class HorizontalAdapter(private val horizontalItem: List<HorizontalLayoutItem>,
-                        private val listener: HorizontalItemClickListener)
-    : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HorizontalAdapter(
+    private val horizontalItem: List<HorizontalLayoutItem>,
+    private val listener: HorizontalItemClickListener
+) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     companion object {
         private const val ZOOMABLE_PHOTO_VIEW_HOLDER = 0
         private const val DETAILS_REGULAR_VIEW_HOLDER = 1
     }
-    
+
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         return if (viewType == DETAILS_REGULAR_VIEW_HOLDER) {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.horizontal_recycler_view_item, parent, false)
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.horizontal_recycler_view_item, parent, false)
             DetailsViewHolder(view, listener)
         } else {
-            val view = LayoutInflater.from(parent.context).inflate(R.layout.selected_photo_row_item, parent, false)
+            val view = LayoutInflater.from(parent.context)
+                .inflate(R.layout.selected_photo_row_item, parent, false)
             SelectedDetailsPhotoViewHolder(view)
         }
     }
@@ -30,8 +33,7 @@ class HorizontalAdapter(private val horizontalItem: List<HorizontalLayoutItem>,
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         if (getItemViewType(position) == DETAILS_REGULAR_VIEW_HOLDER) {
             (holder as DetailsViewHolder).bind(horizontalItem[position])
-        }
-        else  {
+        } else {
             (holder as SelectedDetailsPhotoViewHolder).bind(horizontalItem[position])
         }
     }
@@ -46,10 +48,13 @@ class HorizontalAdapter(private val horizontalItem: List<HorizontalLayoutItem>,
         }
     }
 
-    class DetailsViewHolder(itemView: View, listener: HorizontalItemClickListener): RecyclerView.ViewHolder(itemView) {
+    class DetailsViewHolder(itemView: View, listener: HorizontalItemClickListener) :
+        RecyclerView.ViewHolder(itemView) {
         fun bind(horizontalItem: HorizontalLayoutItem) {
-            itemView.findViewById<ImageView>(R.id.horizontal_image_recycle).setImageResource(horizontalItem.image)
+            itemView.findViewById<ImageView>(R.id.horizontal_image_recycle)
+                .setImageResource(horizontalItem.image)
         }
+
         init {
             itemView.setOnClickListener {
                 val position = adapterPosition
@@ -60,9 +65,10 @@ class HorizontalAdapter(private val horizontalItem: List<HorizontalLayoutItem>,
         }
     }
 
-    class SelectedDetailsPhotoViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+    class SelectedDetailsPhotoViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
         fun bind(horizontalItem: HorizontalLayoutItem) {
-            itemView.findViewById<ImageView>(R.id.details_selected_zoomable_image_view).setImageResource(horizontalItem.image)
+            itemView.findViewById<ImageView>(R.id.details_selected_zoomable_image_view)
+                .setImageResource(horizontalItem.image)
         }
     }
 
