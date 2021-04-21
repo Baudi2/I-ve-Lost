@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentLostBinding
+import ru.startandroid.develop.testprojectnavigation.module.ClickedItemDescription
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
 import ru.startandroid.develop.testprojectnavigation.utils.*
@@ -213,24 +214,17 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
 
     //? описание в FragmentFound
     override fun onItemClick(position: Int) {
-        val clickedItemHeader = exampleList[position].headerText
-        val clickedItemDescription = exampleList[position].descriptionText
-        val clickedItemLocation = exampleList[position].location
-        val clickedItemNorthPoint = exampleList[position].northPoint
-        val clickedItemEastPoint = exampleList[position].eastPoint
-        val clickedItemAdType = exampleList[position].adType
-        val clickedItemAdTypeObject = exampleList[position].adTypeObject
-        val clickedItemCategory = exampleList[position].category
-        val action = FragmentLostDirections.actionFragmentLostToОписание(
-            clickedItemHeader,
-            clickedItemDescription,
-            clickedItemLocation,
-            clickedItemNorthPoint.toString(),
-            clickedItemEastPoint.toString(),
-            clickedItemAdType,
-            clickedItemAdTypeObject,
-            clickedItemCategory
+        val clickedItem = ClickedItemDescription(
+            exampleList[position].headerText,
+            exampleList[position].descriptionText,
+            exampleList[position].location,
+            exampleList[position].northPoint,
+            exampleList[position].eastPoint,
+            exampleList[position].adType,
+            exampleList[position].adTypeObject,
+            exampleList[position].category
         )
+        val action = FragmentLostDirections.actionFragmentLostToОписание(clickedItem)
         findNavController().navigate(action)
     }
 }
