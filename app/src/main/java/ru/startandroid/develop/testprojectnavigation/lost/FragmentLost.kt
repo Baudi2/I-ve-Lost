@@ -66,6 +66,7 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
         hideHome()
     }
 
+    //? описание в FragmentFound
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
@@ -93,6 +94,7 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
         })
     }
 
+    //? метод для генерации временных данных
     private fun generateItemListGridLayout(size: Int): ArrayList<GridLayoutItem> {
         // the we create new empty arrayList<>
         val list = ArrayList<GridLayoutItem>()
@@ -209,6 +211,7 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
         return list
     }
 
+    //? описание в FragmentFound
     override fun onItemClick(position: Int) {
         val clickedItemHeader = exampleList[position].headerText
         val clickedItemDescription = exampleList[position].descriptionText

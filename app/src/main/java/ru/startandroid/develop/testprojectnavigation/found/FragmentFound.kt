@@ -34,7 +34,7 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
             }
         }
 
-        // подключаем поиск на тулбар с иконкой поиска
+        //? подключаем поиск на тулбар с иконкой поиска
         setHasOptionsMenu(true)
     }
 
@@ -59,16 +59,18 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
         }
     }
 
+    //? убираем видимость у иконки home из drawerLayout и разблокируем его выдвижение
     override fun onStart() {
         super.onStart()
         unlockDrawer()
         hideHome()
     }
 
+    //? создаем меню с лупой которая при нажатии становится поисковым меню в toolbar
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         super.onCreateOptionsMenu(menu, inflater)
 
-        // инициализируем поисковое меню
+        //? инициализируем поисковое меню
         inflater.inflate(R.menu.menu_search, menu)
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
@@ -76,16 +78,16 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
                 if (query != null) {
-                    // пока просто показываем тост и отображаем строку которую пользователь ввел в поиск
+                    //? пока просто показываем тост и отображаем строку которую пользователь ввел в поиск
                     shortToast(query)
 
-                    // убирает клавиатуру с видимости как только запрос был завершен
+                    //? убирает клавиатуру с видимости как только запрос был завершен
                     searchView.clearFocus()
                 }
                 return true
             }
 
-            // здесь ничего не делаем потому что мы не хотем выполнять запрос пока мы все ещё пишем
+            //? здесь ничего не делаем потому что мы не хотем выполнять запрос пока мы все ещё пишем
             override fun onQueryTextChange(newText: String?): Boolean {
                 return true
             }
@@ -199,7 +201,9 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
         return list
     }
 
+    //? для перехода на фрагмент детали нам нужно передать следующие аргументы туда
     override fun onItemClick(position: Int) {
+        explainClickedArguments()   //!.
         val clickedItemHeader = exampleItem[position].headerText
         val clickedItemDescription = exampleItem[position].descriptionText
         val clickedItemLocation = exampleItem[position].location

@@ -35,6 +35,8 @@ lateinit var navView: NavigationView
         setContentView(view)
 
         APP_ACTIVITY = this
+        //? к этим переменным можно получить в любом месте через APP_ACTIVITY,
+        //? это нужно чтобы прописать функции в funsUtils для использования по всему приложению
         drawer = binding.drawerLayout
         toolbar = binding.toolbar
         navView = binding.navView
@@ -47,12 +49,14 @@ lateinit var navView: NavigationView
         appBarConfiguration = AppBarConfiguration(
             setOf(R.id.fragmentFound, R.id.fragmentLost,
             R.id.fragmentMessages, R.id.fragmentProfile,
-            R.id.fragmentSettings, R.id.fragmentAbout,
-            R.id.fragmentReview),
+            R.id.fragmentAbout, R.id.fragmentReview),
             drawer
         )
 
+        //? определяем что произойдет по нажатию меню элемента home
         binding.navView.menu.findItem(R.id.home_drawer).setOnMenuItemClickListener {
+            //? по нажатию вызываем метод onBackPressed() который работает как обычная кнопка назад
+            //? и скрываем drawer чтобы он не был открыт после перехода обратно
             onBackPressed()
             drawer.close()
             true

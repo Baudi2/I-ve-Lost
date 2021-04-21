@@ -4,6 +4,8 @@ import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -41,13 +43,18 @@ class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo),
         }
     }
 
+    //? при входе в этот фрагмент мы перемещаем recyclerView на ту картинку через которую
+    //? юзер перешел сюда
     override fun onResume() {
         super.onResume()
         binding.detailsSelectedRecyclerView.layoutManager?.scrollToPosition(args.startPosition)
     }
 
+    //? этот метод ничего не делает но нам нужно его переопределить т.к. мы пользуемся адаптером
+    //? для которого необходимо реализация данного метода
     override fun onHorizontalItemClickListener(position: Int) {}
 
+    //? генерирует временные данные
     private fun generateItemList(size: Int): ArrayList<HorizontalLayoutItem> {
         // the we create new empty arrayList<>
         val list = ArrayList<HorizontalLayoutItem>()

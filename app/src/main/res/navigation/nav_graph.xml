@@ -59,18 +59,6 @@
         app:popEnterAnim="@anim/slide_in_bottom"
         app:popExitAnim="@anim/slide_out_top" />
     <fragment
-        android:id="@+id/fragmentSettings"
-        android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentSettings"
-        android:label="Настройки"
-        tools:layout="@layout/fragment_settings" />
-    <action
-        android:id="@+id/action_global_fragmentSettings"
-        app:destination="@id/fragmentSettings"
-        app:enterAnim="@anim/slide_in_top"
-        app:exitAnim="@anim/slide_out_bottom"
-        app:popEnterAnim="@anim/slide_in_bottom"
-        app:popExitAnim="@anim/slide_out_top" />
-    <fragment
         android:id="@+id/fragmentAbout"
         android:name="ru.startandroid.develop.testprojectnavigation.menu.FragmentAbout"
         android:label="О нас"
