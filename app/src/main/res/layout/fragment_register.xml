@@ -78,7 +78,8 @@
             app:boxCornerRadiusTopEnd="32dp"
             app:boxCornerRadiusTopStart="32dp"
             app:counterEnabled="true"
-            app:counterMaxLength="12"
+            app:endIconMode="clear_text"
+            app:counterMaxLength="16"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="1.0"
             app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +91,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:lines="1"
-                android:maxLength="12" />
+                android:maxLength="16" />
         </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -105,6 +106,7 @@
             app:boxCornerRadiusBottomStart="32dp"
             app:boxCornerRadiusTopEnd="32dp"
             app:boxCornerRadiusTopStart="32dp"
+            app:endIconMode="clear_text"
             app:layout_constraintEnd_toEndOf="@+id/username_edit_text_register_layout"
             app:layout_constraintStart_toStartOf="@+id/username_edit_text_register_layout"
             app:layout_constraintTop_toBottomOf="@+id/username_edit_text_register_layout"
@@ -128,6 +130,7 @@
             app:boxCornerRadiusBottomStart="32dp"
             app:boxCornerRadiusTopEnd="32dp"
             app:boxCornerRadiusTopStart="32dp"
+            app:endIconMode="password_toggle"
             app:layout_constraintEnd_toEndOf="@+id/email_edit_text_register"
             app:layout_constraintStart_toStartOf="@+id/email_edit_text_register"
             app:layout_constraintTop_toBottomOf="@+id/email_edit_text_register"
@@ -137,6 +140,7 @@
                 android:id="@+id/t_i_e_t_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:inputType="textPassword"
                 android:lines="1" />
         </com.google.android.material.textfield.TextInputLayout>
 
