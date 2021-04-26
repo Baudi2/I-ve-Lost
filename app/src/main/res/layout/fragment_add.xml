@@ -83,6 +83,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/to_add_an_advert" />
 
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/add_photo_recycler_view"
             android:layout_width="0dp"
@@ -118,6 +119,8 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/specify_an_animal" />
+
+
 
         <TextView
             android:id="@+id/text_view_reward"

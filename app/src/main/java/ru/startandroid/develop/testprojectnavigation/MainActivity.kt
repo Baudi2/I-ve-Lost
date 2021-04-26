@@ -11,6 +11,9 @@ import androidx.navigation.ui.AppBarConfiguration
 import androidx.navigation.ui.navigateUp
 import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
+import com.esafirm.imagepicker.features.ImagePickerCallback
+import com.esafirm.imagepicker.features.registerImagePicker
+import com.esafirm.imagepicker.model.Image
 import com.google.android.material.navigation.NavigationView
 import ru.startandroid.develop.testprojectnavigation.databinding.ActivityMainBinding
 import ru.startandroid.develop.testprojectnavigation.utils.APP_ACTIVITY
@@ -25,6 +28,8 @@ private lateinit var appBarConfiguration: AppBarConfiguration
 lateinit var drawer: DrawerLayout
 lateinit var toolbar: Toolbar
 lateinit var navView: NavigationView
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
