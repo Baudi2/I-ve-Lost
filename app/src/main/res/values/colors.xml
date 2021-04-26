@@ -9,11 +9,14 @@
     <color name="white">#FFFFFFFF</color>
     <color name="top">#34495E</color>
     <color name="bottom">#BDC3C7</color>
+    <color name="light_grey">#E6E6E6</color>
     <color name="the_grey">#808080</color>
     <color name="slightly_grey">#FBFBFB</color>
     <color name="light_dark">#595959</color>
     <color name="test_color">#5AB577</color>
+    <color name="dark_green">#016237</color>
     <color name="cyan">#BCECE0</color>
     <color name="logo_background_color">#C2D0D0</color>
     <color name="support_project_color">#FEF200</color>
+
 </resources>

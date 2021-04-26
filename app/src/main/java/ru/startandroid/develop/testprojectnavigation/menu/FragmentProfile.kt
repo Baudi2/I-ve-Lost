@@ -19,7 +19,9 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentProfileBinding
 import ru.startandroid.develop.testprojectnavigation.registration.FragmentRegisterDirections
 import ru.startandroid.develop.testprojectnavigation.utils.explainActivityForResultPhoto
+import ru.startandroid.develop.testprojectnavigation.utils.hideDrawer
 import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
+import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
 import java.lang.Exception
 
 class FragmentProfile : Fragment(R.layout.fragment_profile) {
@@ -31,6 +33,7 @@ class FragmentProfile : Fragment(R.layout.fragment_profile) {
     //? тут мы принимаем аргумент из фрагменты регистрации или логина об успешной регистрации чтобы больше не показывать диалог
     private val args: FragmentProfileArgs by navArgs()
     private var selectedPhotoUri: Uri? = null
+    private var dialogRegister: AlertDialog? = null
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -59,6 +62,9 @@ class FragmentProfile : Fragment(R.layout.fragment_profile) {
         if (!args.isRegistered) {
             registerDialog()
         }
+        //? прячем иконку бургер и убираем возможность вытягивать drawerLayout
+        lockDrawer()
+        hideDrawer()
     }
 
     //? Создаем алерт диалог который будет появляться если пользователь попытается зайти в
@@ -92,8 +98,8 @@ class FragmentProfile : Fragment(R.layout.fragment_profile) {
         }
 
         //? создаем и запускаем диалог
-        alertDialog.create()
-            .show()
+        dialogRegister = alertDialog.create()
+        dialogRegister!!.show()
     }
 
 
@@ -149,6 +155,13 @@ class FragmentProfile : Fragment(R.layout.fragment_profile) {
         hideKeyboard(requireView())
     }
 
+    //? тут закрываем диалог если он был не закрыт на момент срабатывания этого метода
+    override fun onPause() {
+        super.onPause()
+        if (dialogRegister != null) {
+            dialogRegister!!.dismiss()
+        }
+    }
 }
 
 
