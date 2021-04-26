@@ -20,5 +20,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:srcCompat="@drawable/icon_perosn"
         tools:ignore="VectorDrawableCompat"
+        android:adjustViewBounds="true"
+        android:scaleType="fitCenter"
         android:contentDescription="@string/fragment_details_horizontal_recyclerview_item" />
 </androidx.constraintlayout.widget.ConstraintLayout>

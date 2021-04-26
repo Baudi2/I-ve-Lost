@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupWithNavController
 import androidx.recyclerview.widget.GridLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentFoundBinding
+import ru.startandroid.develop.testprojectnavigation.module.ClickedItemDescription
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
 import ru.startandroid.develop.testprojectnavigation.utils.*
@@ -74,6 +75,7 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
         inflater.inflate(R.menu.menu_search, menu)
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
+        searchView.queryHint = "Поиск..."
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
@@ -204,19 +206,17 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
     //? для перехода на фрагмент детали нам нужно передать следующие аргументы туда
     override fun onItemClick(position: Int) {
         explainClickedArguments()   //!.
-        val clickedItemHeader = exampleItem[position].headerText
-        val clickedItemDescription = exampleItem[position].descriptionText
-        val clickedItemLocation = exampleItem[position].location
-        val clickedItemNorthPoint = exampleItem[position].northPoint
-        val clickedItemEastPoint = exampleItem[position].eastPoint
-        val clickedItemAdType = exampleItem[position].adType
-        val clickedItemAdTypeObject = exampleItem[position].adTypeObject
-        val clickedItemCategory = exampleItem[position].category
-        val action = FragmentFoundDirections.actionFragmentFoundToFragmentDetailsFound2(
-            clickedItemHeader, clickedItemDescription,
-            clickedItemLocation, clickedItemNorthPoint.toString(), clickedItemEastPoint.toString(),
-            clickedItemAdType, clickedItemAdTypeObject, clickedItemCategory
+        val clickedItem = ClickedItemDescription(
+            exampleItem[position].headerText,
+            exampleItem[position].descriptionText,
+            exampleItem[position].location,
+            exampleItem[position].northPoint,
+            exampleItem[position].eastPoint,
+            exampleItem[position].adType,
+            exampleItem[position].adTypeObject,
+            exampleItem[position].category
         )
+        val action = FragmentFoundDirections.actionFragmentFoundToFragmentDetailsFound2(clickedItem)
         findNavController().navigate(action)
     }
 }

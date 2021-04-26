@@ -31,8 +31,8 @@ class FragmentLogin: Fragment(R.layout.fragment_login) {
 
     //? почти тоже самое что и при регистрации, проверяем поля, перекидываем в профиль
     private fun performLogin(view: View) {
-        val email = binding.emailEdittextLogin.text.toString()
-        val password = binding.passwordEdittextLogin.text.toString()
+        val email = binding.tIETLoginMail.text.toString()
+        val password = binding.tIETLoginPassword.text.toString()
         val isRegistered = true
 
         if (email.isNotEmpty() && password.isNotEmpty()) {

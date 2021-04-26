@@ -25,8 +25,8 @@ class FragmentDetailsLost : Fragment(R.layout.fragment_details), HorizontalAdapt
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailsBinding.bind(view)
 
-        val header = args.header
-        val description = args.description
+        val header = args.clickedItem.header
+        val description = args.clickedItem.description
 
         val manager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         val snapHelper: SnapHelper = PagerSnapHelper()
@@ -45,15 +45,16 @@ class FragmentDetailsLost : Fragment(R.layout.fragment_details), HorizontalAdapt
             detailsLostShowMap.setOnClickListener {
 
                 val action = FragmentDetailsLostDirections.actionFragmentDetailsToFragmentGoogleMaps(
-                    args.location, args.northPoint, args.eastPoint
+                    args.clickedItem.location, args.clickedItem.northPoint.toString(),
+                    args.clickedItem.eastPoint.toString()
                 )
                 findNavController().navigate(action)
             }
 
             //? описание в FragmentDetailsFound
-            detailsLostCategoryTypeTextView.text = args.category
-            adTypeLostTextView.text = args.adType
-            adTypeObjectLostTextView.text = args.adTypeObject
+            detailsLostCategoryTypeTextView.text = args.clickedItem.category
+            adTypeLostTextView.text = args.clickedItem.adType
+            adTypeObjectLostTextView.text = args.clickedItem.adTypeObject
         }
     }
 

@@ -254,7 +254,8 @@
                 android:layout_marginTop="16dp"
                 android:orientation="horizontal"
                 tools:layout_editor_absoluteX="87dp"
-                tools:layout_editor_absoluteY="538dp">
+                tools:layout_editor_absoluteY="538dp"
+                android:layout_marginBottom="8dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imageView5"
