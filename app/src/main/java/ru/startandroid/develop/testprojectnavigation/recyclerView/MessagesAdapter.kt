@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
 
-class ChatMessageAdapter(
+class MessagesAdapter(
     private val messageItem: List<MessageItem>,
     private val listener: OnMessageClickListener
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
@@ -48,39 +48,43 @@ class ChatMessageAdapter(
     }
 
     inner class FromLeftViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        var textView: TextView? = null
         init {
+            textView = itemView.findViewById(R.id.textview_chat_left_from)
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onMessageClick(position, itemView)
+                    listener.onMessageClick(position, itemView, textView!!)
                 }
             }
         }
 
         fun bind(messageItem: MessageItem) {
             itemView.findViewById<ImageView>(R.id.imageview_receiving_person).setImageResource(messageItem.userImage)
-            itemView.findViewById<TextView>(R.id.textview_chat_left_from).text = messageItem.lastMessageText
+            textView!!.text = messageItem.lastMessageText
         }
     }
 
     inner class ToRightViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
+        var textView: TextView? = null
         init {
+            textView = itemView.findViewById(R.id.textview_chat_right_to)
             itemView.setOnClickListener {
                 val position = adapterPosition
                 if (position != RecyclerView.NO_POSITION) {
-                    listener.onMessageClick(position, itemView)
+                    listener.onMessageClick(position, itemView, textView!!)
                 }
             }
         }
 
         fun bind(messageItem: MessageItem) {
             itemView.findViewById<ImageView>(R.id.current_user_chat_imageview).setImageResource(messageItem.userImage)
-            itemView.findViewById<TextView>(R.id.textview_chat_right_to).text = messageItem.lastMessageText
+            textView!!.text = messageItem.lastMessageText
         }
     }
 
     interface OnMessageClickListener {
-        fun onMessageClick(position: Int, itemView: View)
+        fun onMessageClick(position: Int, itemView: View, textView: TextView)
     }
 
 

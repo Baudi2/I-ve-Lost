@@ -3,16 +3,19 @@ package ru.startandroid.develop.testprojectnavigation.found
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Observer
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.SnapHelper
+import ru.startandroid.develop.testprojectnavigation.FragmentDetailsSelectedPhoto
 import ru.startandroid.develop.testprojectnavigation.recyclerView.LinePagerIndicatorDecoration
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsFoundBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
+import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
 
 class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), HorizontalAdapter.HorizontalItemClickListener{
 
@@ -34,23 +37,45 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
         binding.apply {
             detailtFoundRecyclerView.setHasFixedSize(true)
             detailtFoundRecyclerView.layoutManager = manager
+            //? при перемещении элементы четко встают в свою позицию т.е. не гуляют свободно
             snapHelper.attachToRecyclerView(detailtFoundRecyclerView)
-            // pager indicator
+            //? связываем наш индикатор элементов с recyclerView
             detailtFoundRecyclerView.addItemDecoration(LinePagerIndicatorDecoration())
 
             headerFoundDetails.text = header
             descriptionFoundDetails.text = description
+
+            //? при нажатии показать на карте передаем в фрагмент с картой имя места и его координаты
+            detailsFoundShowMap.setOnClickListener {
+                val action = FragmentDetailsFoundDirections.actionFragmentDetailsFoundToFragmentGoogleMaps(
+                    args.location, args.northPoint, args.eastPoint
+                )
+                findNavController().navigate(action)
+            }
+
+            //? меняем тип описания в зависимости от того на какое объявление мы перешли
+            //? если объявление о документах то будет описание про то что потерян докумен и его тип и т.д.
+            chooseCategoryFoundFragment.text = args.category
+            adTypeFoundTextView.text = args.adType
+            adTypeObjectFoundTextView.text = args.adTypeObject
         }
     }
 
+//? блокируем появление drawerLayout при заходе в этот фрагмент
+    override fun onStart() {
+        super.onStart()
+        lockDrawer()
+    }
 
-
+    //? слушатель нажатий на нашем recyclerView, при нажатии переходим на фрагмент где можно зумить фото
+    //? также передаем позицию нажетого фото чтобы там recyclerView открылся на нужном месте.
     override fun onHorizontalItemClickListener(position: Int) {
         val clickedItem = dummyData[position].image
         val action = FragmentDetailsFoundDirections.actionFragmentDetailsFoundToFragmentDetailsSelectedPhoto(clickedItem, position)
         findNavController().navigate(action)
     }
 
+    //? метод для генерации временных данных
     private fun generateItemList(size: Int): ArrayList<HorizontalLayoutItem> {
         // the we create new empty arrayList<>
         val list = ArrayList<HorizontalLayoutItem>()

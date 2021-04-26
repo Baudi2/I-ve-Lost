@@ -50,7 +50,7 @@
             android:layout_marginTop="2dp"
             android:ellipsize="end"
             android:maxLines="1"
-            android:text="@string/lost_location_one"
+            tools:text="Висаитовский район"
             android:textSize="@dimen/text_view_location_time"
             app:layout_constraintEnd_toEndOf="@+id/text_view_header"
             app:layout_constraintHorizontal_bias="0.0"

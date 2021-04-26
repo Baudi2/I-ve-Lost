@@ -13,6 +13,7 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
+import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
 
 class FragmentDetailsLost : Fragment(R.layout.fragment_details), HorizontalAdapter.HorizontalItemClickListener{
 
@@ -40,9 +41,31 @@ class FragmentDetailsLost : Fragment(R.layout.fragment_details), HorizontalAdapt
 
             headerDetailsLost.text = header
             descriptionDetailsLost.text = description
+
+            detailsLostShowMap.setOnClickListener {
+
+                val action = FragmentDetailsLostDirections.actionFragmentDetailsToFragmentGoogleMaps(
+                    args.location, args.northPoint, args.eastPoint
+                )
+                findNavController().navigate(action)
+            }
+
+            //? описание в FragmentDetailsFound
+            detailsLostCategoryTypeTextView.text = args.category
+            adTypeLostTextView.text = args.adType
+            adTypeObjectLostTextView.text = args.adTypeObject
         }
     }
 
+
+
+    override fun onStart() {
+        super.onStart()
+        //? убираем возможность вытягивать drawer
+        lockDrawer()
+    }
+
+    //? описание в FragmentDetailsFound
     override fun onHorizontalItemClickListener(position: Int) {
         //clicked item
         val clickedItem = dummyData[position].image
@@ -50,6 +73,7 @@ class FragmentDetailsLost : Fragment(R.layout.fragment_details), HorizontalAdapt
         findNavController().navigate(action)
     }
 
+    //? метод для генерации временных данных
     private fun generateItemList(size: Int): ArrayList<HorizontalLayoutItem> {
         // the we create new empty arrayList<>
         val list = ArrayList<HorizontalLayoutItem>()

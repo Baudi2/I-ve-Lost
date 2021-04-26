@@ -8,13 +8,18 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
+import ru.startandroid.develop.testprojectnavigation.utils.explainOnItemClickListener
 
-class MessageFragmentAdapter (private val messageItemList: List<MessageItem>,
-                              private val listener: OnItemClickListener) : RecyclerView.Adapter<MessageFragmentAdapter.MessageViewHolder>() {
+class ChatsFragmentAdapter(
+    private val messageItemList: List<MessageItem>,
+    private val listener: OnItemClickListener
+) : RecyclerView.Adapter<ChatsFragmentAdapter.MessageViewHolder>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MessageViewHolder {
-        val itemView = LayoutInflater.from(parent.context).inflate(R.layout.message_item,
-        parent, false)
+        val itemView = LayoutInflater.from(parent.context).inflate(
+            R.layout.message_item,
+            parent, false
+        )
 
         return MessageViewHolder(itemView)
     }
@@ -43,6 +48,8 @@ class MessageFragmentAdapter (private val messageItemList: List<MessageItem>,
             }
         }
     }
+
+    fun explain() {explainOnItemClickListener()} //!. .
 
     interface OnItemClickListener {
         fun onItemClick(position: Int)

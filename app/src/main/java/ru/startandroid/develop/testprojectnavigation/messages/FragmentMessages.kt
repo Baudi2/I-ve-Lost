@@ -1,13 +1,8 @@
 package ru.startandroid.develop.testprojectnavigation.messages
 
-import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Gravity
-import android.view.MenuInflater
-import android.view.MenuItem
 import android.view.View
-import androidx.appcompat.view.menu.MenuBuilder
-import androidx.appcompat.view.menu.MenuPopupHelper
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -15,11 +10,12 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentMessagesBinding
 import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
-import ru.startandroid.develop.testprojectnavigation.recyclerView.ChatMessageAdapter
+import ru.startandroid.develop.testprojectnavigation.recyclerView.MessagesAdapter
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
 import ru.startandroid.develop.testprojectnavigation.utils.shortToast
+import ru.startandroid.develop.testprojectnavigation.utils.showPopup
 
-class FragmentMessages : Fragment(R.layout.fragment_messages), ChatMessageAdapter.OnMessageClickListener{
+class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.OnMessageClickListener{
     private lateinit var binding: FragmentMessagesBinding
     private var dummyMessages = generateChatMessages(7)
     private val args: FragmentMessagesArgs by navArgs()
@@ -29,8 +25,9 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), ChatMessageAdapte
         binding = FragmentMessagesBinding.bind(view)
 
         val manager = LinearLayoutManager(requireContext())
-        val adapter = ChatMessageAdapter(dummyMessages, this)
+        val adapter = MessagesAdapter(dummyMessages, this)
 
+        //? также относится к методу для прокручивания recyclerView на 0 позицию при изменении в layout
         adapter.registerAdapterDataObserver(object : RecyclerView.AdapterDataObserver() {
             override fun onItemRangeInserted(positionStart: Int, itemCount: Int) {
                 if (itemCount != -1 || itemCount != 0) {
@@ -47,8 +44,15 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), ChatMessageAdapte
         binding.apply {
             recyclerviewFragmentChat.setHasFixedSize(true)
             recyclerviewFragmentChat.layoutManager = manager
+            //? по нажатию кнопки отправить очищаем editText и показываем тост с введенным сообщением
+            sendButtonFragmentChat.setOnClickListener {
+                shortToast(edittextChatLog.text.toString())
+                edittextChatLog.setText("")
+            }
         }
 
+        //? при изменении layout а мы возвращаем recyclerView на 0 позицию т.е. самый низ, это нужно
+        //? чтобы при открытии клавиатуры сообщения были сдвинуты вниз а также при появлении нового сообщения на экране
         binding.recyclerviewFragmentChat.addOnLayoutChangeListener { _, _, _, _, bottom, _, _, _, oldBottom ->
             if (bottom < oldBottom) {
                 binding.recyclerviewFragmentChat.postDelayed({
@@ -62,36 +66,15 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), ChatMessageAdapte
         }
     }
 
-    override fun onMessageClick(position: Int, itemView: View) {
-        showPopup(itemView)
+    //? по нажатию на сообщение показываем popupMenu
+    override fun onMessageClick(position: Int, itemView: View, textView: TextView) {
+        showPopup(itemView, R.menu.message_fragment_popup_menu,
+            "Сообщение удалено", "Сообщение скопировано",
+            R.id.chat_fragment_delete_message, R.id.chat_fragment_popup_copy,
+            textView)
     }
 
-    @SuppressLint("RestrictedApi")
-    private fun showPopup(view: View) {
-        val menuBuilder = MenuBuilder(requireContext())
-        val menuInflater = MenuInflater(requireContext())
-        menuInflater.inflate(R.menu.message_fragment_popup_menu, menuBuilder)
-        val optionsMenu = MenuPopupHelper(requireContext(), menuBuilder, view)
-        optionsMenu.setForceShowIcon(true)
-        optionsMenu.gravity = Gravity.END
-
-
-        menuBuilder.setCallback((object:MenuBuilder.Callback{
-            override fun onMenuItemSelected(menu: MenuBuilder, item: MenuItem): Boolean {
-                return when(item.itemId) {
-                    R.id.chat_fragment_popup_delete -> {
-                        shortToast("Сообщение удалено")
-                        true
-                    }
-                    else -> false
-                }
-            }
-
-            override fun onMenuModeChange(menu: MenuBuilder) {}
-        }))
-        optionsMenu.show()
-    }
-
+    //? при выходе из фрагмент скрываем клавиатуру
     override fun onStop() {
         super.onStop()
         hideKeyboard(requireView())
@@ -148,8 +131,6 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), ChatMessageAdapte
     }
 
 }
-
-
 
 
 

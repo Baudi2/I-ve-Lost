@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentChooseLostFoundBinding
+import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
 
 class FragmentAddLostFind : Fragment(R.layout.fragment_choose_lost_found){
     private lateinit var binding : FragmentChooseLostFoundBinding
@@ -18,6 +19,8 @@ class FragmentAddLostFind : Fragment(R.layout.fragment_choose_lost_found){
         val sentStringFound = context?.getString(R.string.what_you_found)
         var sentIsLost: Boolean
 
+        //? в зависимости от того нажали мы на "потерял" или "нашел" передаем нужную строку и меняем значение
+        //? sentIsLost на true если нажали на "потерял"
         binding.apply {
             textLost.setOnClickListener {
                 sentIsLost = true
@@ -39,6 +42,7 @@ class FragmentAddLostFind : Fragment(R.layout.fragment_choose_lost_found){
         }
     }
 
+    //? загружаем и присваимваем анимации также блокируем drawer layout чтобы его нельзя было вытянуть
     override fun onResume() {
         super.onResume()
         val anim = AnimationUtils.loadAnimation(requireContext(), R.anim.text_show_up)
@@ -48,6 +52,7 @@ class FragmentAddLostFind : Fragment(R.layout.fragment_choose_lost_found){
             textLost.startAnimation(anim)
             textFound.startAnimation(animDelay230)
         }
+        lockDrawer()
     }
 }
 

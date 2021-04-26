@@ -9,10 +9,13 @@ import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentChatsBinding
-import ru.startandroid.develop.testprojectnavigation.recyclerView.MessageFragmentAdapter
+import ru.startandroid.develop.testprojectnavigation.recyclerView.ChatsFragmentAdapter
 import ru.startandroid.develop.testprojectnavigation.module.MessageItem
+import ru.startandroid.develop.testprojectnavigation.utils.hideDrawer
+import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
+import ru.startandroid.develop.testprojectnavigation.utils.stringGet
 
-class FragmentChats : Fragment(R.layout.fragment_chats), MessageFragmentAdapter.OnItemClickListener{
+class FragmentChats : Fragment(R.layout.fragment_chats), ChatsFragmentAdapter.OnItemClickListener{
     //? binding; apply; bottomNavigation; fab clickListener, все это законментировано в FragmentProfile.kt
     private lateinit var binding : FragmentChatsBinding
     private var dummyData = ArrayList<MessageItem>()
@@ -23,7 +26,7 @@ class FragmentChats : Fragment(R.layout.fragment_chats), MessageFragmentAdapter.
         dummyData = generateItemList(5)
         binding = FragmentChatsBinding.bind(view)
 
-        binding.recyclerMessagesView.adapter = MessageFragmentAdapter(dummyData, this)
+        binding.recyclerMessagesView.adapter = ChatsFragmentAdapter(dummyData, this)
         binding.apply {
             bottomNavMessages.setupWithNavController(findNavController())
 
@@ -36,6 +39,13 @@ class FragmentChats : Fragment(R.layout.fragment_chats), MessageFragmentAdapter.
             recyclerMessagesView.setHasFixedSize(true)
             recyclerMessagesView.addItemDecoration(DividerItemDecoration(context, DividerItemDecoration.VERTICAL))
         }
+    }
+
+    //? убираем иконку бургер и также блокируем выдвижение drawerLayout
+    override fun onStart() {
+        super.onStart()
+        lockDrawer()
+        hideDrawer()
     }
 
     private fun generateItemList(size: Int): ArrayList<MessageItem> {
@@ -55,19 +65,19 @@ class FragmentChats : Fragment(R.layout.fragment_chats), MessageFragmentAdapter.
             }
 
             val userName = when (i % 5) {
-                0 -> "Хьасан"
-                1 -> "Сулиман"
-                2 -> "Зайнап"
-                3 -> "Адам"
-                else -> "Ильяс"
+                0 -> stringGet(R.string.messages_names_one)
+                1 -> stringGet(R.string.messages_names_two)
+                2 -> stringGet(R.string.messages_names_three)
+                3 -> stringGet(R.string.messages_names_four)
+                else -> stringGet(R.string.messages_names_five)
             }
 
             val lastMessage = when (i % 5) {
-                0 -> "Нашел твой потерянный документ по адресу Висоитовский район дом 146. Очень длинное сообщение"
-                1 -> "Брат можешь по больше информации предоставить?"
-                2 -> "Какого цвета была найденная кошка?"
-                3 -> "Ассаламу Аллейкум. Объявление всё ещё акутальное?"
-                else -> "Нашел ваш самолет у себя в гараже."
+                0 -> stringGet(R.string.messages_messages_one)
+                1 -> stringGet(R.string.messages_messages_two)
+                2 -> stringGet(R.string.messages_messages_three)
+                3 -> stringGet(R.string.messages_messages_four)
+                else -> stringGet(R.string.messages_messages_five)
             }
 
             // creates new ExampleItem and passes through its constructor the necessary data
