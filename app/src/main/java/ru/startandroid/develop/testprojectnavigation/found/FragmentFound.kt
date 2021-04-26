@@ -75,6 +75,7 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
         inflater.inflate(R.menu.menu_search, menu)
         val searchItem = menu.findItem(R.id.action_search)
         val searchView = searchItem.actionView as SearchView
+        searchView.queryHint = "Поиск..."
 
         searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
             override fun onQueryTextSubmit(query: String?): Boolean {
