@@ -18,5 +18,6 @@
     <color name="cyan">#BCECE0</color>
     <color name="logo_background_color">#C2D0D0</color>
     <color name="support_project_color">#FEF200</color>
+    <color name="the_greyer">#666666</color>
 
 </resources>
