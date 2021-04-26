@@ -119,7 +119,7 @@
     <string name="password_edit_text">Пароль</string>
     <string name="button_register">Регистрация</string>
     <string name="already_have_an_account_question">У вас уже есть аккаунт?</string>
-    <string name="select_photo_button">Веберите фото</string>
+    <string name="select_photo_button">Выберите фото</string>
     <string name="edit_text_login">Логин</string>
     <string name="back_to_registration">Вернуться на регистрацию</string>
     <string name="register_alert_dialog_header">Внимание!</string>

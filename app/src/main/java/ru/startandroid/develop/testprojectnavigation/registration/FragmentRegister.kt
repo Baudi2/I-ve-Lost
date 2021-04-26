@@ -18,7 +18,7 @@ import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
 import java.lang.Exception
 
 //? макет фрагмента готов, остается подключить логику.
-class FragmentRegister: Fragment(R.layout.fragment_register) {
+class FragmentRegister : Fragment(R.layout.fragment_register) {
 
     private lateinit var binding: FragmentRegisterBinding
     private var selectedPhotoUri: Uri? = null
@@ -52,13 +52,18 @@ class FragmentRegister: Fragment(R.layout.fragment_register) {
 
         if (userName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
             val isRegistered = true
-            val action = FragmentRegisterDirections.actionFragmentRegisterToFragmentProfile(isRegistered)
+            val action =
+                FragmentRegisterDirections.actionFragmentRegisterToFragmentProfile(isRegistered)
             findNavController().navigate(action)
             //? прячем клавиатуру по завершению
             hideKeyboard(view)
         } else {
             //? если поля пустым предупреждаем юзера что их надо заполнить
-            Toast.makeText(requireContext(), R.string.fragment_register_login_toast_fill_data, Toast.LENGTH_SHORT).show()
+            Toast.makeText(
+                requireContext(),
+                R.string.fragment_register_login_toast_fill_data,
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
@@ -76,7 +81,7 @@ class FragmentRegister: Fragment(R.layout.fragment_register) {
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         //? убеждаемся, что мы используем правильный код запроса, что получение результата из
-    //? intent прошло успешно и что полученные нами данные не равны null
+        //? intent прошло успешно и что полученные нами данные не равны null
         if (requestCode == 0 && resultCode == Activity.RESULT_OK && data != null) {
             //? продолжаем и проверяем, какое было выбранное изображение
 
