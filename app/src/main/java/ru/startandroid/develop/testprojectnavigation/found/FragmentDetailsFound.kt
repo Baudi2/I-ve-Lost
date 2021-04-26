@@ -27,8 +27,8 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentDetailsFoundBinding.bind(view)
 
-        val header = args.header
-        val description = args.description
+        val header = args.clickedItem.header
+        val description = args.clickedItem.description
 
         val manager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         val snapHelper: SnapHelper = PagerSnapHelper()
@@ -48,16 +48,16 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
             //? при нажатии показать на карте передаем в фрагмент с картой имя места и его координаты
             detailsFoundShowMap.setOnClickListener {
                 val action = FragmentDetailsFoundDirections.actionFragmentDetailsFoundToFragmentGoogleMaps(
-                    args.location, args.northPoint, args.eastPoint
+                    args.clickedItem.location, args.clickedItem.northPoint.toString(), args.clickedItem.eastPoint.toString()
                 )
                 findNavController().navigate(action)
             }
 
             //? меняем тип описания в зависимости от того на какое объявление мы перешли
             //? если объявление о документах то будет описание про то что потерян докумен и его тип и т.д.
-            chooseCategoryFoundFragment.text = args.category
-            adTypeFoundTextView.text = args.adType
-            adTypeObjectFoundTextView.text = args.adTypeObject
+            chooseCategoryFoundFragment.text = args.clickedItem.category
+            adTypeFoundTextView.text = args.clickedItem.adType
+            adTypeObjectFoundTextView.text = args.clickedItem.adTypeObject
         }
     }
 

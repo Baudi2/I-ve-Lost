@@ -46,9 +46,9 @@ class FragmentRegister: Fragment(R.layout.fragment_register) {
     //? метод для проведения регистрации
     private fun performRegister(view: View) {
         //? получаем данные из edit text которые ввел юзер
-        val userName = binding.usernameEditTextRegister.text.toString()
-        val email = binding.emailEditTextRegister.text.toString()
-        val password = binding.passwordEditTextRegister.text.toString()
+        val userName = binding.tIETName.text.toString()
+        val email = binding.tIETEmail.text.toString()
+        val password = binding.tIETPassword.text.toString()
 
         if (userName.isNotEmpty() && email.isNotEmpty() && password.isNotEmpty()) {
             val isRegistered = true
