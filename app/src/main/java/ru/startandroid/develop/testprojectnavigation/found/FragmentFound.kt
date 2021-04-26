@@ -43,6 +43,7 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
 
             bottomNavFound.setupWithNavController(findNavController())
 
+
             fabFound.setOnClickListener {
                 val action = FragmentFoundDirections.actionGlobalFragmentAddLostFind2()
                 findNavController().navigate(action)

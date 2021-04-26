@@ -2,23 +2,359 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/toolbar"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/purple_200"
+    android:background="@color/slightly_grey"
     tools:context=".menu.FragmentProfile">
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/fragment_profile"
-        android:textColor="@color/white"
-        android:textSize="30sp"
-        app:layout_constraintBottom_toTopOf="@id/bottom_nav_profile"
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_header"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@color/dark_green"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
 
-    <!-- bottomNav и floatingActionButton объяснены в fragment_lost-->
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profile_user_photo"
+            android:layout_width="@dimen/profile_user_photo_width"
+            android:layout_height="@dimen/profile_user_photo_height"
+            android:layout_marginStart="@dimen/horizontal_margin"
+            android:src="@drawable/profile_user_photo"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/profile_full_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin"
+            android:layout_marginTop="@dimen/vertical_margin"
+            android:text="@string/profile_user_name"
+            android:textColor="@color/white"
+            android:textSize="@dimen/normal_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/profile_user_photo"
+            app:layout_constraintTop_toTopOf="@id/profile_user_photo" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/horizontal_margin"
+            android:text="@string/profile_default_status"
+            android:textColor="@color/white"
+            android:textSize="@dimen/small_text"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/profile_user_photo"
+            app:layout_constraintTop_toBottomOf="@id/profile_full_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/profile_text_account"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/vertical_large_margin"
+        android:text="@string/profile_text_account"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_text"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/profile_header" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_btn_change_phone_number"
+        style="@style/profile_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_text_account">
+
+        <TextView
+            android:id="@+id/profile_phone_number"
+            style="@style/normal_text"
+            android:text="@string/profile_default_number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profile_btn_change_phone_number" />
+
+        <TextView
+            android:id="@+id/profile_label_phone_number"
+            style="@style/small_text"
+            android:text="@string/profile_label_phone_number"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_phone_number" />
+
+        <View
+            style="@style/small_separator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_label_phone_number" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_btn_change_user_name"
+        style="@style/profile_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_btn_change_phone_number">
+
+        <TextView
+            android:id="@+id/profile_user_name"
+            style="@style/normal_text"
+            android:text="@string/profile_default_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profile_btn_change_user_name" />
+
+        <TextView
+            android:id="@+id/profile_label_user_name"
+            style="@style/small_text"
+            android:text="@string/profile_label_login"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_user_name" />
+
+        <View
+            style="@style/small_separator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_label_user_name" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_btn_change_bio"
+        style="@style/profile_buttons"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_btn_change_user_name">
+
+        <TextView
+            android:id="@+id/profile_bio"
+            style="@style/normal_text"
+            android:text="@string/profile_default_bio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profile_btn_change_bio" />
+
+        <TextView
+            android:id="@+id/profile_label_bio"
+            style="@style/small_text"
+            android:text="@string/profile_label_bio"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_bio" />
+
+        <View
+            style="@style/big_separator"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/profile_label_bio" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/profile_ads"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:layout_marginTop="@dimen/vertical_large_margin"
+        android:text="Ваши объявления"
+        android:textColor="@color/black"
+        android:textSize="@dimen/small_text"
+        android:textStyle="bold"
+        app:layout_constraintTop_toBottomOf="@id/profile_btn_change_bio" />
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:id="@+id/profile_pending"
+        style="@style/profile_buttons"
+        android:layout_marginTop="@dimen/vertical_large_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_ads">
+
+        <ImageView
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_marginStart="@dimen/horizontal_margin"
+            android:src="@drawable/pending_icon"
+            app:layout_constraintStart_toStartOf="@id/profile_pending"
+            app:layout_constraintTop_toTopOf="@id/profile_pending" />
+
+        <TextView
+            android:id="@+id/pending"
+            style="@style/normal_text"
+            android:layout_marginStart="63dp"
+            android:text="@string/profile_default_pending"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profile_pending" />
+
+        <TextView
+            android:id="@+id/profile_quantity_ads"
+            style="@style/small_text"
+            android:layout_marginStart="63dp"
+            android:text="0 объявлений"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/pending" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:src="@drawable/active_icon"
+        app:layout_constraintStart_toStartOf="@id/profile_active"
+        app:layout_constraintTop_toTopOf="@id/profile_active" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_active"
+        style="@style/profile_buttons"
+        android:layout_marginTop="@dimen/vertical_large_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_pending">
+
+        <TextView
+            android:id="@+id/active"
+            style="@style/normal_text"
+            android:layout_marginStart="63dp"
+            android:text="@string/profile_default_active"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profile_active" />
+        <TextView
+            android:id="@+id/profile_quantity_ads_for_active"
+            style="@style/small_text"
+            android:layout_marginStart="63dp"
+            android:text="0 объявлений"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/active" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:src="@drawable/l"
+        app:layout_constraintStart_toStartOf="@+id/profile_completed"
+        app:layout_constraintTop_toTopOf="@+id/profile_completed" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_completed"
+        style="@style/profile_buttons"
+        android:layout_marginTop="@dimen/vertical_large_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_active">
+
+        <TextView
+            android:id="@+id/completed"
+            style="@style/normal_text"
+            android:layout_marginStart="63dp"
+            android:text="@string/profile_default_completed"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profile_completed" />
+        <TextView
+            android:id="@+id/profile_quantity_ads_for_completed"
+            style="@style/small_text"
+            android:layout_marginStart="63dp"
+            android:text="0 объявлений"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/completed" />
+
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:src="@drawable/rejected_icon"
+        app:layout_constraintStart_toStartOf="@+id/profile_rejected"
+        app:layout_constraintTop_toTopOf="@+id/profile_rejected" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_rejected"
+        style="@style/profile_buttons"
+        android:layout_marginTop="@dimen/vertical_large_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_completed">
+
+        <TextView
+            android:id="@+id/rejected"
+            style="@style/normal_text"
+            android:layout_marginStart="63dp"
+            android:text="@string/profile_default_rejected"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profile_rejected" />
+        <TextView
+            android:id="@+id/profile_quantity_ads_for_rejected"
+            style="@style/small_text"
+            android:layout_marginStart="63dp"
+            android:text="0 объявлений"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rejected" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    <ImageView
+        android:layout_width="20dp"
+        android:layout_height="20dp"
+        android:layout_marginStart="@dimen/horizontal_margin"
+        android:src="@drawable/favorite"
+        app:layout_constraintStart_toStartOf="@id/profile_favorites"
+        app:layout_constraintTop_toTopOf="@id/profile_favorites" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/profile_favorites"
+        style="@style/profile_buttons"
+        android:layout_marginTop="@dimen/vertical_large_margin"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/profile_rejected">
+
+        <TextView
+            android:id="@+id/favorites"
+            style="@style/normal_text"
+            android:layout_marginStart="63dp"
+            android:text="Избранное"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/profile_favorites" />
+        <TextView
+            android:id="@+id/profile_quantity_ads_for_favorites"
+            style="@style/small_text"
+            android:layout_marginStart="63dp"
+            android:text="0 объявлений"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/favorites" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+<com.google.android.material.floatingactionbutton.FloatingActionButton
+    android:id="@+id/profile_change_photo"
+    android:layout_width="@dimen/profile_btn_change_photo_width"
+    android:layout_height="@dimen/profile_btn_change_photo_photo_height"
+    android:layout_marginEnd="@dimen/horizontal_margin"
+    app:layout_constraintBottom_toBottomOf="@+id/profile_header"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/profile_header"
+    android:src="@drawable/ic"
+    app:fabCustomSize="45dp"/>
+
+
 
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottom_nav_profile"
@@ -28,8 +364,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_found_menu"
-        android:clipChildren="false">
+        app:menu="@menu/bottom_nav_found_menu">
 
         <com.google.android.material.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_profile"
@@ -46,5 +381,6 @@
             tools:ignore="ContentDescription" />
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
+
 
 </androidx.constraintlayout.widget.ConstraintLayout>

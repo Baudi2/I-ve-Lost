@@ -97,4 +97,20 @@
     <string name="grid_layout_view_counter">grid layout view counter</string>
     <string name="grid_layout_item_options_button_menu">Grid layout item options button menu</string>
 
+
+    <string name="profile_user_name">Сулиман Юсупов</string>
+    <string name="profile_default_status">в сети</string>
+    <string name="profile_text_account">Аккаунт</string>
+    <string name="profile_default_number">+79288888895</string>
+    <string name="profile_label_phone_number">нажмите, чтобы изменить номер телефона</string>
+    <string name="profile_default_login">g@ng$ter_95</string>
+    <string name="profile_label_login">Имя пользователя</string>
+    <string name="profile_default_bio">О себе</string>
+    <string name="profile_label_bio">Напишите немного о себе</string>
+    <string name="profile_default_pending">В ожидании</string>
+    <string name="profile_default_active">Активные</string>
+    <string name="profile_default_completed">Завершенные</string>
+    <string name="profile_default_rejected">Отклоненные</string>
+
+
 </resources>

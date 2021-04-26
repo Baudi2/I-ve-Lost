@@ -35,8 +35,9 @@
         app:labelVisibilityMode="labeled"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav_found_menu" >
+        app:menu="@menu/bottom_nav_found_menu">
 
         <!-- Размер одной иконки нельзя увелечить, только все вместе.
         Поэтому мы не увеличиваем иконку плюс а просто перекрываем её

@@ -2,6 +2,8 @@ package ru.startandroid.develop.testprojectnavigation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.ActionBar
+import androidx.appcompat.app.ActionBarDrawerToggle
 import androidx.navigation.NavController
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.fragment.findNavController
@@ -16,9 +18,11 @@ import ru.startandroid.develop.testprojectnavigation.utils.explainBinding
 import ru.startandroid.develop.testprojectnavigation.utils.explainSetSupportActionBar
 
 class MainActivity : AppCompatActivity() {
-private lateinit var navController: NavController
-private lateinit var binding : ActivityMainBinding
-private lateinit var appBarConfiguration: AppBarConfiguration
+    private lateinit var navController: NavController
+    private lateinit var binding: ActivityMainBinding
+    private lateinit var appBarConfiguration: AppBarConfiguration
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,16 +35,18 @@ private lateinit var appBarConfiguration: AppBarConfiguration
         APP_ACTIVITY = this
 
         //? объявляем host для фрагментов и находим navController
-        val navHostFragment = supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
-        navController = navHostFragment.findNavController()
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.nav_host_fragment_main) as NavHostFragment
+            navController = navHostFragment.findNavController()
 
         explainAppBar() //!.
         appBarConfiguration = AppBarConfiguration(
-            setOf(R.id.fragmentFound, R.id.fragmentLost,
-            R.id.fragmentMessages, R.id.fragmentProfile,
-            R.id.fragmentLogin)
+            setOf(
+                R.id.fragmentFound, R.id.fragmentLost,
+                R.id.fragmentMessages,R.id.fragmentProfile,
+                R.id.fragmentLogin
+            )
         )
-
 
         setSupportActionBar(binding.toolbar)
         setupActionBarWithNavController(navController, appBarConfiguration)
