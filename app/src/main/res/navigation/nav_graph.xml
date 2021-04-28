@@ -198,6 +198,16 @@
         <action
             android:id="@+id/action_fragmentAdd_to_fragmentGoogleMaps"
             app:destination="@id/fragmentGoogleMaps" />
+        <action
+            android:id="@+id/action_fragmentAdd_to_fragmentDialogSelectAdd"
+            app:destination="@id/fragmentDialogSelectAdd" />
+        <argument
+            android:name="selected_item_string"
+            app:argType="string" />
+        <argument
+            android:name="text_view_color"
+            app:argType="integer"
+            android:defaultValue="0" />
     </fragment>
     <fragment
         android:id="@+id/fragmentDetailsSelectedPhoto"
@@ -263,4 +273,18 @@
             android:name="eastPoint"
             app:argType="string" />
     </fragment>
+    <dialog
+        android:id="@+id/fragmentDialogSelectAdd"
+        android:name="ru.startandroid.develop.testprojectnavigation.add.FragmentDialogSelectAdd"
+        android:label="picker_fragment_dialog"
+        tools:layout="@layout/picker_fragment_dialog" >
+        <action
+            android:id="@+id/action_fragmentDialogSelectAdd_to_fragmentAdd"
+            app:destination="@id/fragmentAdd"
+            app:popUpTo="@id/fragmentAdd"
+            app:popUpToInclusive="true" />
+        <argument
+            android:name="selectDialogObject"
+            app:argType="ru.startandroid.develop.testprojectnavigation.module.DialogSelectAdd" />
+    </dialog>
 </navigation>

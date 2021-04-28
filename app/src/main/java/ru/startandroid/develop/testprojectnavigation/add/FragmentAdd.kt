@@ -8,6 +8,7 @@ import com.esafirm.imagepicker.model.Image
 import android.os.Bundle
 import android.os.Environment
 import android.view.View
+import android.view.WindowManager
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -16,11 +17,15 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
 import androidx.recyclerview.widget.RecyclerView
 import com.esafirm.imagepicker.features.*
+import kotlinx.android.synthetic.main.fragment_review.*
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentAddBinding
+import ru.startandroid.develop.testprojectnavigation.module.DialogSelectAdd
 import ru.startandroid.develop.testprojectnavigation.module.HorizontalUriItem
 import ru.startandroid.develop.testprojectnavigation.recyclerView.AddUriHorizontalAdapter
+import ru.startandroid.develop.testprojectnavigation.recyclerView.LinePagerIndicatorDecoration
 import ru.startandroid.develop.testprojectnavigation.utils.APP_ACTIVITY
+import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
 import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 
 
@@ -29,15 +34,15 @@ class FragmentAdd : Fragment(R.layout.fragment_add) {
     private val args: FragmentAddArgs by navArgs()
     private lateinit var array: ArrayList<HorizontalUriItem>
     private lateinit var recyclerView: RecyclerView
-    private lateinit var adapter:  AddUriHorizontalAdapter
+    private lateinit var adapter: AddUriHorizontalAdapter
     private var isRecyclerViewDecoration = false
+
     //! пришлось вынести из за того что launcher не получал контекст
     //! и с val поменять на var
     private lateinit var launcher: ImagePickerLauncher
 
 
     private val images = arrayListOf<Image>()
-
 
 
     //! здесь launcher был прописан потому что при запуске приложения он запускался первым и не получал контекста
@@ -48,6 +53,8 @@ class FragmentAdd : Fragment(R.layout.fragment_add) {
             recyclerView.removeAllViews()
             array.clear()
             adapter.notifyDataSetChanged()
+            if (it.isEmpty()) binding.addPhotoFragment.visibility = View.VISIBLE
+            if (it.isNotEmpty()) binding.addPhotoFragment.visibility = View.GONE
             images.addAll(it)
             displayImages(images)
         }
@@ -83,15 +90,32 @@ class FragmentAdd : Fragment(R.layout.fragment_add) {
             start()
         }
 
-
         //! кнопка при нажатии которой должны быть добавлены данные в базу данных
         binding.apply {
             buttonAddFragment.setOnClickListener {
                 shortToast("Данные добавлены")
             }
 
+            selectTypeAddImageView.setColorFilter(R.color.black)
+            mapsAddImageView.setColorFilter(R.color.black)
+            timeAddImageView.setColorFilter(R.color.black)
+
+            if (args.topic == "Другое" || args.topic == "Личные вещи") {
+                specifyAnAnimal.visibility = View.GONE
+            }
+            if (!args.isLost && args.topic == "Люди") specifyAnAnimal.visibility = View.GONE
+            selectTypeAddTextView.text = args.selectedItemString
+            selectTypeAddImageView.setImageResource(decideImage())
+
+            if (!args.isLost) {
+                textViewReward.visibility = View.GONE
+                switchReward.visibility = View.GONE
+                rewardDescription.visibility = View.GONE
+            }
+
+
             //! карта пока реализована по умолчанию
-            indicateThePlace.setOnClickListener {
+            setMapLocation.setOnClickListener {
                 val northPoint = 43.317596.toString()
                 val eastPoint = 45.693837.toString()
                 val location = "Сердце Чечни"
@@ -102,11 +126,57 @@ class FragmentAdd : Fragment(R.layout.fragment_add) {
                 )
                 findNavController().navigate(action)
             }
+
+            indicateTheTime.setOnClickListener {
+
+            }
+
+            specifyAnAnimal.setOnClickListener {
+                val dialogSent = DialogSelectAdd(
+                    decideTypeOfAdd(), decideHeaderText(),
+                    args.topic, args.isLost, binding.selectTypeAddTextView.text.toString()
+                )
+                val action =
+                    FragmentAddDirections.actionFragmentAddToFragmentDialogSelectAdd(dialogSent)
+                findNavController().navigate(action)
+            }
+            if (args.textViewColor != 0) binding.selectTypeAddTextView.setTextColor(args.textViewColor)
+        }
+    }
+
+    private fun decideTypeOfAdd(): Int {
+        return when (args.topic) {
+            "Животное" -> 1
+            "Документы" -> 2
+            "Драгоценности" -> 3
+            "Люди" -> 4
+            else -> 5
+        }
+    }
+
+    private fun decideHeaderText(): String {
+        return when (args.topic) {
+            "Документы" -> "Тип документа"
+            "Деньги" -> "Сумма Денег"
+            "Животное" -> "Тип животного"
+            "Люди" -> "Ваше родство"
+            else -> "Тип драгоценности"
+        }
+    }
+
+
+    private fun decideImage(): Int {
+        return when (args.topic) {
+            "Документы" -> R.drawable.icon_documents
+            "Деньги" -> R.drawable.icon_money
+            "Животное" -> R.drawable.icon_paw
+            "Люди" -> R.drawable.icon_people
+            else -> R.drawable.icon_jewelry
         }
     }
 
     private fun start() {
-            launcher.launch(createConfig())
+        launcher.launch(createConfig())
     }
 
     private fun createConfig(): ImagePickerConfig {
@@ -129,17 +199,19 @@ class FragmentAdd : Fragment(R.layout.fragment_add) {
 
     }
 
-    private fun displayImages(images: List<com.esafirm.imagepicker.model.Image>?) {
+    private fun displayImages(images: List<Image>?) {
         if (images == null) return
         for (i in 0..images.size - 1) {
             val temp = HorizontalUriItem(images[i].uri)
             array.add(temp)
         }
+
         adapter.inputData(array)
         recyclerView.adapter = adapter
-        //if (!isRecyclerViewDecoration) recyclerView.addItemDecoration(LinePagerIndicatorDecoration())
+        if (!isRecyclerViewDecoration) recyclerView.addItemDecoration(LinePagerIndicatorDecoration())
         isRecyclerViewDecoration = true
     }
+
 }
 
 

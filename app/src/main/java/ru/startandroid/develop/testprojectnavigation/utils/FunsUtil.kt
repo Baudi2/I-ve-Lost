@@ -13,6 +13,7 @@ import androidx.appcompat.view.menu.MenuBuilder
 import androidx.appcompat.view.menu.MenuPopupHelper
 import androidx.drawerlayout.widget.DrawerLayout
 import ru.startandroid.develop.testprojectnavigation.R
+import ru.startandroid.develop.testprojectnavigation.module.HeaderItem
 import java.lang.Exception
 
 //? Чтобы скрыть клавиатуру после нажатия кнопки
@@ -125,7 +126,126 @@ fun showHome() {
     APP_ACTIVITY.navView.menu.findItem(R.id.home_drawer).setVisible(true)
 }
 
+fun selectedListOfTypes(type: Int): ArrayList<HeaderItem> {
+    // the we create new empty arrayList<>
+    val list = ArrayList<HeaderItem>()
 
+    // and it uses the size value in the for loop to fill this list with data
+    // Note: this is a custom algorithm that has nothing to do neither with android nor recyclerView
+        var displayType = ""
+        // this part is only responsible for alternating between our 5 drawables
+        if (type == 1) {
+            for (i in 0..6) {
+                displayType = when (i) {
+                    0 -> "Кот"
+                    1 -> "Собака"
+                    2 -> "Корова"
+                    3 -> "Овца"
+                    4 -> "Попугай"
+                    5 -> "Хомяк"
+                    else -> "Енот"
+                }
+                val item = HeaderItem(displayType, null)
+                list += item
+            }
+        }
+
+        if (type == 2) {
+            for (i in 0..7) {
+                displayType = when (i) {
+                    0 -> "Паспорт"
+                    1 -> "Водительские права"
+                    2 -> "Свидетельство о рождении"
+                    3 -> "ИНН"
+                    4 -> "Страховой полис"
+                    5 -> "Домовая книга"
+                    6 -> "СНИЛС"
+                    else -> "Загран паспорт"
+                }
+                val item = HeaderItem(displayType, null)
+                list += item
+            }
+        }
+
+        if (type == 3) {
+            for (i in 0..11) {
+                displayType = when (i) {
+                    0 -> "Кольцо"
+                    1 -> "Часы"
+                    2 -> "Браслет"
+                    3 -> "Ожерелье"
+                    4 -> "Серьги"
+                    5 -> "Цепочка"
+                    6 -> "Украшение для волос"
+                    7 -> "Бусы"
+                    8 -> "Подвеска, кулон"
+                    9 -> "Подвеска, кулон"
+                    10 -> "Брошь"
+                    else -> "Корона"
+                }
+                val item = HeaderItem(displayType, null)
+                list += item
+            }
+        }
+
+        if (type == 4) {
+            for (i in 0..26) {
+                displayType = when (i) {
+                    0 -> "Отец"
+                    1 -> "Мать"
+                    2 -> "Бабушка"
+                    3 -> "Дедушка"
+                    4 -> "Прадедушка"
+                    5 -> "Прабабушка"
+                    6 -> "Сын"
+                    7 -> "Дочь"
+                    8 -> "Внук"
+                    9 -> "Внучка"
+                    10 -> "Сестра"
+                    11 -> "Брат"
+                    12 -> "Тётя"
+                    13 -> "Дядя"
+                    14 -> "Племянник"
+                    15 -> "Племянница"
+                    16 -> "Двоюродный брат"
+                    17 -> "Двоюродная сестра"
+                    18 -> "Троюродный брат"
+                    19 -> "Троюродная сестра"
+                    20 -> "Жена"
+                    21 -> "Муж"
+                    22 -> "Сноха"
+                    23 -> "Друг"
+                    24 -> "Знакомый"
+                    else -> "Зять"
+                }
+                val item = HeaderItem(displayType, null)
+                list += item
+            }
+        }
+
+        if (type == 5) {
+            for (i in 0..11) {
+                displayType = when (i) {
+                    0 -> "от 500 до 1000"
+                    1 -> "от 1000 до 3000"
+                    2 -> "от 3000 до 7000"
+                    3 -> "от 7000 до 10000"
+                    4 -> "от 10000 до 15000"
+                    5 -> "от 15000 до 20000"
+                    6 -> "от 20000 до 25000"
+                    7 -> "от 25000 до 30000"
+                    8 -> "от 30000 до 35000"
+                    9 -> "от 35000 до 40000"
+                    10 -> "от 40000 до 45000"
+                    else -> "от 50000 и выше"
+                }
+                val item = HeaderItem(displayType, null)
+                list += item
+            }
+        }
+    // after filling the list with data we eventually return it
+    return list
+}
 
 
 

@@ -12,8 +12,7 @@
         android:id="@+id/fragmentFound"/>
 
     <item
-        android:id="@+id/fragmentAddChooseCategory"
-        android:icon="@drawable/icon_right_center_add"
+        android:id="@+id/nothing"
         android:title="" />
     <item
         android:icon="@drawable/icon_messsages"

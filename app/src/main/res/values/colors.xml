@@ -14,11 +14,12 @@
     <color name="slightly_grey">#FBFBFB</color>
     <color name="light_dark">#595959</color>
     <color name="test_color">#5AB577</color>
-    <color name="dark_green">#016237</color>
+    <color name="dark_green">#056A3D</color>
     <color name="cyan">#BCECE0</color>
     <color name="logo_background_color">#C2D0D0</color>
     <color name="support_project_color">#FEF200</color>
     <color name="blue">#03A9F4</color>
     <color name="the_greyer">#666666</color>
+    <color name="dark_greener">#09492C</color>
 
 </resources>

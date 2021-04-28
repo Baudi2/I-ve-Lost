@@ -30,7 +30,7 @@ class FragmentChats : Fragment(R.layout.fragment_chats), ChatsFragmentAdapter.On
         binding.apply {
             bottomNavMessages.setupWithNavController(findNavController())
 
-            fabMessages.setOnClickListener {
+            fabChats.setOnClickListener {
                 val action = FragmentMessagesDirections.actionGlobalFragmentAddLostFind2()
                 findNavController().navigate(action)
             }

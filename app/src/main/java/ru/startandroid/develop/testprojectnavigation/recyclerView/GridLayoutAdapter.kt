@@ -68,7 +68,8 @@ class GridLayoutAdapter(
         init {
             theList = generateItemListHorizontalLayout(8)
 
-            val headerAdapter = HeaderAdapter(context, this, theList)
+            val headerAdapter = HeaderAdapter( this)
+            headerAdapter.inputData(theList)
             val layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
             itemView.findViewById<RecyclerView>(R.id.fragmentLostHorizontalTopicRecyclerView).layoutManager =
