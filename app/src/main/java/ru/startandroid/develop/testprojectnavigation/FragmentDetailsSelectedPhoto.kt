@@ -2,10 +2,7 @@ package ru.startandroid.develop.testprojectnavigation
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.LiveData
-import androidx.lifecycle.MutableLiveData
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.PagerSnapHelper
@@ -14,7 +11,6 @@ import ru.startandroid.develop.testprojectnavigation.recyclerView.LinePagerIndic
 import ru.startandroid.develop.testprojectnavigation.databinding.DetailsSelectedPhotoBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
-import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
 import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 
 class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo),

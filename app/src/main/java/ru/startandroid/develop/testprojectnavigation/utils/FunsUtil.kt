@@ -111,19 +111,19 @@ fun unlockDrawer() {
 
 //? убираем через toolbar иконку бургер там где она нам не нужна
 fun hideDrawer() {
-    APP_ACTIVITY.toolbar.setNavigationIcon(null)
+    APP_ACTIVITY.toolbar.navigationIcon = null
 }
 
 //? через активити получаем доступ к самому выдвижному меню, далее получаем доступ к
 //? элементам его меню, затем находим нужный элемент этого меню и вызываем его метод
 //? setVisibility (поставить видимость) и уставливаем видимость на невидимый
 fun hideHome() {
-    APP_ACTIVITY.navView.menu.findItem(R.id.home_drawer).setVisible(false)
+    APP_ACTIVITY.navView.menu.findItem(R.id.home_drawer).isVisible = false
 }
 
 //? возвращаем видимость этого элемента обратно
 fun showHome() {
-    APP_ACTIVITY.navView.menu.findItem(R.id.home_drawer).setVisible(true)
+    APP_ACTIVITY.navView.menu.findItem(R.id.home_drawer).isVisible = true
 }
 
 fun selectedListOfTypes(type: Int): ArrayList<HeaderItem> {
@@ -132,8 +132,8 @@ fun selectedListOfTypes(type: Int): ArrayList<HeaderItem> {
 
     // and it uses the size value in the for loop to fill this list with data
     // Note: this is a custom algorithm that has nothing to do neither with android nor recyclerView
-        var displayType = ""
-        // this part is only responsible for alternating between our 5 drawables
+    var displayType: String
+    // this part is only responsible for alternating between our 5 drawables
         if (type == 1) {
             for (i in 0..6) {
                 displayType = when (i) {
@@ -245,6 +245,23 @@ fun selectedListOfTypes(type: Int): ArrayList<HeaderItem> {
         }
     // after filling the list with data we eventually return it
     return list
+}
+
+fun monthToString(month: Int): String {
+    return when(month) {
+        0 -> "январь"
+        1 -> "февраль"
+        2 -> "март"
+        3 -> "апрель"
+        4 -> "май"
+        5 -> "июнь"
+        6 -> "июль"
+        7 -> "август"
+        8 -> "сентябрь"
+        9 -> "октябрь"
+        10 -> "ноябрь"
+        else -> "декабрь"
+    }
 }
 
 

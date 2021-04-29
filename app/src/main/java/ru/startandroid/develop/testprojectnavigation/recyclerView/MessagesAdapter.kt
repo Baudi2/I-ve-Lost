@@ -48,7 +48,7 @@ class MessagesAdapter(
     }
 
     inner class FromLeftViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var textView: TextView? = null
+        private var textView: TextView? = null
         init {
             textView = itemView.findViewById(R.id.textview_chat_left_from)
             itemView.setOnClickListener {
@@ -66,7 +66,7 @@ class MessagesAdapter(
     }
 
     inner class ToRightViewHolder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var textView: TextView? = null
+        private var textView: TextView? = null
         init {
             textView = itemView.findViewById(R.id.textview_chat_right_to)
             itemView.setOnClickListener {

@@ -49,8 +49,7 @@ class ChatsFragmentAdapter(
         }
     }
 
-    fun explain() {explainOnItemClickListener()} //!. .
-
+    fun explain() =explainOnItemClickListener() //!. .
     interface OnItemClickListener {
         fun onItemClick(position: Int)
     }

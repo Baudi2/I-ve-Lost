@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.module.HorizontalUriItem
 
-class AddUriHorizontalAdapter() : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class AddUriHorizontalAdapter: RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     //! Вносим данные через отдельный метод а не конструктор чтобы уведомить
     //! recyclerView об изменениях в списке данных для перерисование листа

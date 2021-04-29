@@ -175,6 +175,16 @@
     <string name="edit_profile_dialog_accept_button">Принять</string>
     <string name="edit_profile_dialog_cancel_button">Отмена</string>
 
+    <!-- строки из фрагмента добавить-->
+    <string name="fragment_add_fill_the_data">Заполните данные</string>
+    <string name="fragment_add_specify_place">Укажите место</string>
+    <string name="fragment_add_specify_time">Укажите время</string>
+    <string name="fragment_add_load_photo">Загрузить фото</string>
+    <string name="fragment_add_additional_description">Дополнительное описание</string>
+    <string name="fragment_add_reward">Вознаграждение</string>
+    <string name="fragment_add_reward_description">Наличие вознаграждения увеличит шансы того что на ваше объявление кто нибудь откликниться.</string>
+    <string name="fragment_add_confirm">подтвердить</string>
+
     <string name="copy_text">Копировать</string>
     <string name="hide_ad_options_menu">Скрыть объявление</string>
     <string name="favorite_ad_lost_found_menu">Избранные</string>
@@ -198,6 +208,11 @@
     <string name="profile_default_active">Активные</string>
     <string name="profile_default_completed">Завершенные</string>
     <string name="profile_default_rejected">Отклоненные</string>
+    <string name="drawer_header_user_name">Имя пользователя</string>
+    <string name="drawer_header_user_email">polzovatel@mail.ru</string>
+    <string name="fragment_profile_your_adds">Ваши объявления</string>
+    <string name="fragment_profile_0_adds">0 объявлений</string>
+    <string name="fragment_profile_favorites">Избранное</string>
 
 
 </resources>

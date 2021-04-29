@@ -1,15 +1,17 @@
 package ru.startandroid.develop.testprojectnavigation.add
 
 
+import android.annotation.SuppressLint
+import android.app.DatePickerDialog
 import android.content.Context
 import android.content.pm.PackageManager
 import com.esafirm.imagepicker.model.Image
-
 import android.os.Bundle
 import android.os.Environment
 import android.view.View
-import android.view.WindowManager
+import android.widget.DatePicker
 import androidx.core.app.ActivityCompat
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
@@ -25,17 +27,27 @@ import ru.startandroid.develop.testprojectnavigation.module.HorizontalUriItem
 import ru.startandroid.develop.testprojectnavigation.recyclerView.AddUriHorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.recyclerView.LinePagerIndicatorDecoration
 import ru.startandroid.develop.testprojectnavigation.utils.APP_ACTIVITY
-import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
+import ru.startandroid.develop.testprojectnavigation.utils.monthToString
 import ru.startandroid.develop.testprojectnavigation.utils.shortToast
+import java.util.*
+import kotlin.collections.ArrayList
 
 
-class FragmentAdd : Fragment(R.layout.fragment_add) {
+class FragmentAdd : Fragment(R.layout.fragment_add), DatePickerDialog.OnDateSetListener {
     private lateinit var binding: FragmentAddBinding
     private val args: FragmentAddArgs by navArgs()
     private lateinit var array: ArrayList<HorizontalUriItem>
     private lateinit var recyclerView: RecyclerView
     private lateinit var adapter: AddUriHorizontalAdapter
     private var isRecyclerViewDecoration = false
+
+    private var day = 0
+    private var month = 0
+    private var year = 0
+
+    private var savedDay = 0
+    private var savedMonth = 0
+    private var savedYear = 0
 
     //! пришлось вынести из за того что launcher не получал контекст
     //! и с val поменять на var
@@ -63,7 +75,6 @@ class FragmentAdd : Fragment(R.layout.fragment_add) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentAddBinding.bind(view)
-        val isLost = args.isLost
 
         recyclerView = binding.addPhotoRecyclerView
         array = ArrayList()
@@ -128,7 +139,7 @@ class FragmentAdd : Fragment(R.layout.fragment_add) {
             }
 
             indicateTheTime.setOnClickListener {
-
+                pickDate()
             }
 
             specifyAnAnimal.setOnClickListener {
@@ -201,8 +212,8 @@ class FragmentAdd : Fragment(R.layout.fragment_add) {
 
     private fun displayImages(images: List<Image>?) {
         if (images == null) return
-        for (i in 0..images.size - 1) {
-            val temp = HorizontalUriItem(images[i].uri)
+        for (element in images) {
+            val temp = HorizontalUriItem(element.uri)
             array.add(temp)
         }
 
@@ -212,6 +223,30 @@ class FragmentAdd : Fragment(R.layout.fragment_add) {
         isRecyclerViewDecoration = true
     }
 
+    private fun pickDate() {
+        getDate()
+        DatePickerDialog(APP_ACTIVITY, this, year, month, day).show()
+    }
+
+    private fun getDate() {
+        val cal = Calendar.getInstance()
+        day = cal.get(Calendar.DAY_OF_MONTH)
+        month = cal.get(Calendar.MONTH)
+        year = cal.get(Calendar.YEAR)
+    }
+
+    @SuppressLint("SetTextI18n")
+    override fun onDateSet(p0: DatePicker?, year: Int, month: Int, dayOfMonth: Int) {
+        savedDay = dayOfMonth
+        savedMonth = month
+        val savedMonthString = monthToString(savedMonth)
+        savedYear = year
+
+        binding.timeAddTextView.text = "$savedDay/$savedMonthString/$savedYear года"
+        if (!binding.timeAddTextView.text.contains("Укажите время")) binding.timeAddTextView.setTextColor(
+            ContextCompat.getColor(APP_ACTIVITY,R.color.black)
+        )
+    }
 }
 
 

@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import ru.startandroid.develop.testprojectnavigation.databinding.PickerFragmentDialogBinding
@@ -54,7 +55,7 @@ class FragmentDialogSelectAdd : BottomSheetDialogFragment(), HeaderAdapter.Heade
             FragmentDialogSelectAddDirections.actionFragmentDialogSelectAddToFragmentAdd(
                 args.selectDialogObject.topic,
                 args.selectDialogObject.isLost, data[position].headerTopic,
-                APP_ACTIVITY.resources.getColor(R.color.black)
+                ContextCompat.getColor(APP_ACTIVITY,R.color.black)
             )
         findNavController().navigate(action)
     }

@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentLoginBinding
-import ru.startandroid.develop.testprojectnavigation.utils.hideDrawer
 import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
 
 //? макет фрагмента готов, остается подключить логику.

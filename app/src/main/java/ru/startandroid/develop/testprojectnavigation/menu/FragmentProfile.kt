@@ -8,8 +8,10 @@ import android.net.Uri
 import android.os.Build
 import android.os.Bundle
 import android.provider.MediaStore
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
-import android.widget.ImageView
 import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -17,11 +19,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.navigation.ui.setupWithNavController
 import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentProfileBinding
-import ru.startandroid.develop.testprojectnavigation.registration.FragmentRegisterDirections
-import ru.startandroid.develop.testprojectnavigation.utils.explainActivityForResultPhoto
-import ru.startandroid.develop.testprojectnavigation.utils.hideDrawer
-import ru.startandroid.develop.testprojectnavigation.utils.hideKeyboard
-import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
+import ru.startandroid.develop.testprojectnavigation.utils.*
 import java.lang.Exception
 
 class FragmentProfile : Fragment(R.layout.fragment_profile) {
@@ -34,12 +32,14 @@ class FragmentProfile : Fragment(R.layout.fragment_profile) {
     private val args: FragmentProfileArgs by navArgs()
     private var selectedPhotoUri: Uri? = null
     private var dialogRegister: AlertDialog? = null
+    private var dialogLogout: AlertDialog? = null
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding = FragmentProfileBinding.bind(view)
 
+        setHasOptionsMenu(true)
 
         binding.apply {
 
@@ -161,6 +161,44 @@ class FragmentProfile : Fragment(R.layout.fragment_profile) {
         if (dialogRegister != null) {
             dialogRegister!!.dismiss()
         }
+        if (dialogLogout != null) {
+            dialogLogout!!.dismiss()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        //? объяснено в fragment profile
+        inflater.inflate(R.menu.profile_menu, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when(item.itemId) {
+            R.id.profile_menu_logout -> {
+                logoutDialog()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun logoutDialog() {
+        val alertDialog = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle(R.string.dialog_logout_title)
+        alertDialog.setMessage(R.string.dialog_logout_description)
+        alertDialog.setIcon(R.drawable.icon_alert_dialog)
+        alertDialog.setCancelable(false)
+        alertDialog.setPositiveButton(R.string.dialog_logout_positive) { _, _ ->
+            val action = FragmentProfileDirections.actionFragmentProfileToFragmentLost()
+            findNavController().navigate(action)
+            shortToast(APP_ACTIVITY.getString(R.string.dialog_logout_toast))
+        }
+        alertDialog.setNegativeButton(R.string.dialog_logout_negative) { _, _ ->
+            dialogLogout!!.dismiss()
+        }
+
+        dialogLogout = alertDialog.create()
+        dialogLogout!!.show()
     }
 }
 

@@ -1,6 +1,5 @@
 package ru.startandroid.develop.testprojectnavigation.recyclerView
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -13,7 +12,7 @@ import ru.startandroid.develop.testprojectnavigation.module.HeaderItem
 //? типичный класс адаптер, единственная разница от обычного адаптера то что в качестве viewHolder
 //? мы используем не одноименный класс а RecyclerView.ViewHolder, это позволяет нам использовать в
 //? этом адаптаре более одного viewHolder
-class HeaderAdapter(private val listener: HeaderItemListener,): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
+class HeaderAdapter(private val listener: HeaderItemListener): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
     private lateinit var headerItemList: List<HeaderItem>
 

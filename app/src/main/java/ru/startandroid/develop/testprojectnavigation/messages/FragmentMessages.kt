@@ -4,7 +4,6 @@ import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
-import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ru.startandroid.develop.testprojectnavigation.R
@@ -18,7 +17,7 @@ import ru.startandroid.develop.testprojectnavigation.utils.showPopup
 class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.OnMessageClickListener{
     private lateinit var binding: FragmentMessagesBinding
     private var dummyMessages = generateChatMessages(7)
-    private val args: FragmentMessagesArgs by navArgs()
+    //private val args: FragmentMessagesArgs by navArgs()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView
-    android:layout_height="match_parent"
-    android:layout_width="match_parent"
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/slightly_grey"
     android:fillViewport="true"
-    tools:context=".menu.FragmentProfile"
-    android:background="@color/slightly_grey">
+    tools:context=".menu.FragmentProfile">
 
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -166,7 +165,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/horizontal_margin"
             android:layout_marginTop="@dimen/vertical_large_margin"
-            android:text="Ваши объявления"
+            android:text="@string/fragment_profile_your_adds"
             android:textColor="@color/black"
             android:textSize="@dimen/small_text"
             android:textStyle="bold"
@@ -189,7 +188,8 @@
                 android:layout_marginStart="@dimen/horizontal_margin"
                 android:src="@drawable/pending_icon"
                 app:layout_constraintStart_toStartOf="@id/profile_pending"
-                app:layout_constraintTop_toTopOf="@id/profile_pending" />
+                app:layout_constraintTop_toTopOf="@id/profile_pending"
+                tools:ignore="ContentDescription" />
 
             <TextView
                 android:id="@+id/pending"
@@ -203,7 +203,7 @@
                 android:id="@+id/profile_quantity_ads"
                 style="@style/small_text"
                 android:layout_marginStart="63dp"
-                android:text="0 объявлений"
+                android:text="@string/fragment_profile_0_adds"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/pending" />
 
@@ -217,7 +217,8 @@
             android:layout_marginStart="@dimen/horizontal_margin"
             android:src="@drawable/active_icon"
             app:layout_constraintStart_toStartOf="@id/profile_active"
-            app:layout_constraintTop_toTopOf="@id/profile_active" />
+            app:layout_constraintTop_toTopOf="@id/profile_active"
+            tools:ignore="ContentDescription" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profile_active"
@@ -240,7 +241,7 @@
                 android:id="@+id/profile_quantity_ads_for_active"
                 style="@style/small_text"
                 android:layout_marginStart="63dp"
-                android:text="0 объявлений"
+                android:text="@string/fragment_profile_0_adds"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/active" />
 
@@ -254,7 +255,8 @@
             android:layout_marginStart="@dimen/horizontal_margin"
             android:src="@drawable/l"
             app:layout_constraintStart_toStartOf="@+id/profile_completed"
-            app:layout_constraintTop_toTopOf="@+id/profile_completed" />
+            app:layout_constraintTop_toTopOf="@+id/profile_completed"
+            tools:ignore="ContentDescription" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profile_completed"
@@ -277,7 +279,7 @@
                 android:id="@+id/profile_quantity_ads_for_completed"
                 style="@style/small_text"
                 android:layout_marginStart="63dp"
-                android:text="0 объявлений"
+                android:text="@string/fragment_profile_0_adds"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/completed" />
 
@@ -291,7 +293,8 @@
             android:layout_marginStart="@dimen/horizontal_margin"
             android:src="@drawable/rejected_icon"
             app:layout_constraintStart_toStartOf="@+id/profile_rejected"
-            app:layout_constraintTop_toTopOf="@+id/profile_rejected" />
+            app:layout_constraintTop_toTopOf="@+id/profile_rejected"
+            tools:ignore="ContentDescription" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profile_rejected"
@@ -314,7 +317,7 @@
                 android:id="@+id/profile_quantity_ads_for_rejected"
                 style="@style/small_text"
                 android:layout_marginStart="63dp"
-                android:text="0 объявлений"
+                android:text="@string/fragment_profile_0_adds"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/rejected" />
 
@@ -328,7 +331,8 @@
             android:layout_marginStart="@dimen/horizontal_margin"
             android:src="@drawable/favorite"
             app:layout_constraintStart_toStartOf="@id/profile_favorites"
-            app:layout_constraintTop_toTopOf="@id/profile_favorites" />
+            app:layout_constraintTop_toTopOf="@id/profile_favorites"
+            tools:ignore="ContentDescription" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/profile_favorites"
@@ -343,7 +347,7 @@
                 android:id="@+id/favorites"
                 style="@style/normal_text"
                 android:layout_marginStart="63dp"
-                android:text="Избранное"
+                android:text="@string/fragment_profile_favorites"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@id/profile_favorites" />
 
@@ -351,7 +355,7 @@
                 android:id="@+id/profile_quantity_ads_for_favorites"
                 style="@style/small_text"
                 android:layout_marginStart="63dp"
-                android:text="0 объявлений"
+                android:text="@string/fragment_profile_0_adds"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/favorites" />
 
@@ -371,7 +375,7 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/profile_header"
 
-            />
+            tools:ignore="ContentDescription,UnusedAttribute" />
 
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
@@ -388,20 +392,20 @@
                 android:id="@+id/fab_profile"
                 android:layout_width="86dp"
                 android:layout_height="56dp"
-                app:cardCornerRadius="32dp"
-                app:cardElevation="0dp"
                 android:layout_gravity="center"
+                android:layout_marginBottom="1dp"
                 android:foreground="@drawable/custom_ripple"
-                android:layout_marginBottom="1dp">
+                app:cardCornerRadius="32dp"
+                app:cardElevation="0dp">
 
                 <ImageView
-                    app:maxImageSize="56dp"
-                    android:scaleType="center"
-                    android:background="@drawable/icon_right_center_add"
                     android:layout_width="56dp"
                     android:layout_height="56dp"
-                    tools:ignore="ContentDescription"
-                    android:layout_gravity="center"/>
+                    android:layout_gravity="center"
+                    android:background="@drawable/icon_right_center_add"
+                    android:scaleType="center"
+                    app:maxImageSize="56dp"
+                    tools:ignore="ContentDescription" />
 
             </androidx.cardview.widget.CardView>
 
