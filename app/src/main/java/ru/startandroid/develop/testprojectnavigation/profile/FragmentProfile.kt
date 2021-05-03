@@ -100,7 +100,7 @@ class FragmentProfile : Fragment(R.layout.fragment_profile) {
         alertDialog.setMessage(R.string.register_alert_dialog_message)
         alertDialog.setIcon(R.drawable.icon_alert_dialog)
         //? убераем возможность закрывать диалоговое окно нажитием в сторону
-        alertDialog.setCancelable(true)
+        alertDialog.setCancelable(false)
         //? ставим кнопку в алерт сообщение для подтверждения
         //? в случае подтверждения кидаем на регистрацию
         alertDialog.setPositiveButton(R.string.register_alert_dialog_positive_button) { _, _ ->
