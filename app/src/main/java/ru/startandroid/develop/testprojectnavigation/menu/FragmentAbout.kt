@@ -22,6 +22,12 @@ class FragmentAbout : Fragment(R.layout.fragment_about){
                 if (expandTextWhoAreWe.isExpanded) {
                     expandTextWhoAreWe.collapse()
                 } else {
+                    if (expandTextWhoAreWe2.isExpanded) {
+                        expandTextWhoAreWe2.collapse()
+                    }
+                    if (expandTextWhoAreWe3.isExpanded) {
+                        expandTextWhoAreWe3.collapse()
+                    }
                     expandTextWhoAreWe.expand()
                 }
             }
@@ -30,6 +36,12 @@ class FragmentAbout : Fragment(R.layout.fragment_about){
                 if (expandTextWhoAreWe2.isExpanded) {
                     expandTextWhoAreWe2.collapse()
                 } else {
+                    if (expandTextWhoAreWe.isExpanded) {
+                        expandTextWhoAreWe.collapse()
+                    }
+                    if (expandTextWhoAreWe3.isExpanded) {
+                        expandTextWhoAreWe3.collapse()
+                    }
                     expandTextWhoAreWe2.expand()
                 }
             }
@@ -38,6 +50,12 @@ class FragmentAbout : Fragment(R.layout.fragment_about){
                 if (expandTextWhoAreWe3.isExpanded) {
                     expandTextWhoAreWe3.collapse()
                 } else {
+                    if (expandTextWhoAreWe.isExpanded) {
+                        expandTextWhoAreWe.collapse()
+                    }
+                    if (expandTextWhoAreWe2.isExpanded) {
+                        expandTextWhoAreWe2.collapse()
+                    }
                     expandTextWhoAreWe3.expand()
                 }
             }
