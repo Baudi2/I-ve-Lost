@@ -1,6 +1,10 @@
 package ru.startandroid.develop.testprojectnavigation.found
 
+import android.app.AlertDialog
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
@@ -13,13 +17,20 @@ import ru.startandroid.develop.testprojectnavigation.R
 import ru.startandroid.develop.testprojectnavigation.databinding.FragmentDetailsFoundBinding
 import ru.startandroid.develop.testprojectnavigation.recyclerView.HorizontalAdapter
 import ru.startandroid.develop.testprojectnavigation.module.HorizontalLayoutItem
+import ru.startandroid.develop.testprojectnavigation.profile.FragmentProfileDirections
+import ru.startandroid.develop.testprojectnavigation.utils.APP_ACTIVITY
 import ru.startandroid.develop.testprojectnavigation.utils.lockDrawer
+import ru.startandroid.develop.testprojectnavigation.utils.longToast
+import ru.startandroid.develop.testprojectnavigation.utils.shortToast
 
-class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), HorizontalAdapter.HorizontalItemClickListener{
+class FragmentDetailsFound : Fragment(R.layout.fragment_details_found),
+    HorizontalAdapter.HorizontalItemClickListener {
 
-    private lateinit var binding : FragmentDetailsFoundBinding
+    private lateinit var binding: FragmentDetailsFoundBinding
     private val args: FragmentDetailsFoundArgs by navArgs()
     private val dummyData = generateItemList(6)
+    private var dialogDeleteAdd: AlertDialog? = null
+    private var isYourAdd: Boolean = false
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -30,6 +41,14 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
 
         val manager = LinearLayoutManager(activity, LinearLayoutManager.HORIZONTAL, false)
         val snapHelper: SnapHelper = PagerSnapHelper()
+
+        if (args.youradddata.yourAdDistinction != 0) {
+            setHasOptionsMenu(true)
+        } else {
+            setHasOptionsMenu(false)
+        }
+
+        setInfo(args.youradddata.yourAdDistinction)
 
         binding.detailtFoundRecyclerView.adapter = HorizontalAdapter(dummyData, this)
         binding.apply {
@@ -45,9 +64,12 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
 
             //? при нажатии показать на карте передаем в фрагмент с картой имя места и его координаты
             detailsFoundShowMap.setOnClickListener {
-                val action = FragmentDetailsFoundDirections.actionFragmentDetailsFoundToFragmentGoogleMaps(
-                    args.clickedItem.location, args.clickedItem.northPoint.toString(), args.clickedItem.eastPoint.toString()
-                )
+                val action =
+                    FragmentDetailsFoundDirections.actionFragmentDetailsFoundToFragmentGoogleMaps(
+                        args.clickedItem.location,
+                        args.clickedItem.northPoint.toString(),
+                        args.clickedItem.eastPoint.toString()
+                    )
                 findNavController().navigate(action)
             }
 
@@ -59,7 +81,7 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
         }
     }
 
-//? блокируем появление drawerLayout при заходе в этот фрагмент
+    //? блокируем появление drawerLayout при заходе в этот фрагмент
     override fun onStart() {
         super.onStart()
         lockDrawer()
@@ -69,7 +91,12 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
     //? также передаем позицию нажетого фото чтобы там recyclerView открылся на нужном месте.
     override fun onHorizontalItemClickListener(position: Int) {
         val clickedItem = dummyData[position].image
-        val action = FragmentDetailsFoundDirections.actionFragmentDetailsFoundToFragmentDetailsSelectedPhoto(clickedItem, position)
+        val action =
+            FragmentDetailsFoundDirections.actionFragmentDetailsFoundToFragmentDetailsSelectedPhoto(
+                clickedItem,
+                position,
+                isYourAdd
+            )
         findNavController().navigate(action)
     }
 
@@ -98,5 +125,74 @@ class FragmentDetailsFound : Fragment(R.layout.fragment_details_found), Horizont
         }
         // after filling the list with data we eventually return it
         return list
+    }
+
+    override fun onPause() {
+        super.onPause()
+        if (dialogDeleteAdd != null) {
+            dialogDeleteAdd!!.dismiss()
+        }
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        super.onCreateOptionsMenu(menu, inflater)
+        //? объяснено в fragment profile
+        inflater.inflate(R.menu.menu_you_add_delete, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.your_add_delete_menu -> {
+                deleteDialog()
+                true
+            }
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    private fun deleteDialog() {
+        val alertDialog = AlertDialog.Builder(requireContext())
+        alertDialog.setTitle(R.string.your_add_menu_delete_header)
+        alertDialog.setMessage(R.string.your_add_menu_delete_description)
+        alertDialog.setIcon(R.drawable.icon_alert_dialog)
+        alertDialog.setCancelable(false)
+        alertDialog.setPositiveButton(R.string.your_add_menu_delete_positive) { _, _ ->
+            val action =
+                FragmentDetailsFoundDirections.actionFragmentDetailsFoundToFragmentSelectedAds(
+                    args.youradddata.topic!!,
+                    args.youradddata.size
+                )
+            findNavController().navigate(action)
+            longToast("Объявление было удалено")
+        }
+        alertDialog.setNegativeButton(R.string.your_add_menu_delete_negative) { _, _ ->
+            dialogDeleteAdd!!.dismiss()
+        }
+
+        dialogDeleteAdd = alertDialog.create()
+        dialogDeleteAdd!!.show()
+    }
+
+    private fun setInfo(n: Int) {
+        if (n == 1) {
+            binding.backgroundYourAddInfo.setBackgroundColor(APP_ACTIVITY.resources.getColor(R.color.waiting_add))
+            binding.infoYourAddImage.setImageResource(R.drawable.pending_icon)
+            binding.infoYourAddText.text = "Ожидается подтверждение ващего объявления. Спасибо за понимание!"
+            isYourAdd = true
+        }
+        if (n == 2) isYourAdd
+        if (n == 3) {
+            binding.backgroundYourAddInfo.setBackgroundColor(APP_ACTIVITY.resources.getColor(R.color.complete_add))
+            binding.infoYourAddImage.setImageResource(R.drawable.l)
+            binding.infoYourAddText.text = "Публикация была завершена"
+            isYourAdd = true
+        }
+        if (n == 4) {
+            binding.backgroundYourAddInfo.setBackgroundColor(APP_ACTIVITY.resources.getColor(R.color.rejected_add))
+            binding.infoYourAddImage.setImageResource(R.drawable.rejected_icon)
+            binding.infoYourAddText.text = "Ваша публкация была отклонена по причине: Не соответсвие менталитету!"
+            isYourAdd = true
+        }
+        if (n == 5) isYourAdd = false
     }
 }

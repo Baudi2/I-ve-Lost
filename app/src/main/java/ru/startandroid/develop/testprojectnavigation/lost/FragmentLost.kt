@@ -14,6 +14,7 @@ import ru.startandroid.develop.testprojectnavigation.databinding.FragmentLostBin
 import ru.startandroid.develop.testprojectnavigation.module.ClickedItemDescription
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
+import ru.startandroid.develop.testprojectnavigation.module.YourAddNavigate
 import ru.startandroid.develop.testprojectnavigation.utils.*
 
 class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemClickListener {
@@ -223,7 +224,7 @@ class FragmentLost : Fragment(R.layout.fragment_lost), GridLayoutAdapter.OnItemC
             exampleList[position].eastPoint,
             exampleList[position].adType,
             exampleList[position].adTypeObject,
-            exampleList[position].category
+            exampleList[position].category,
         )
         val action = FragmentLostDirections.actionFragmentLostToОписание(clickedItem)
         findNavController().navigate(action)

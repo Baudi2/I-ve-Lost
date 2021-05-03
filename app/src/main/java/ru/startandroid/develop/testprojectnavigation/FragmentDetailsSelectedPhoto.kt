@@ -44,6 +44,7 @@ class FragmentDetailsSelectedPhoto: Fragment(R.layout.details_selected_photo),
     override fun onResume() {
         super.onResume()
         binding.detailsSelectedRecyclerView.layoutManager?.scrollToPosition(args.startPosition)
+        if (args.isYourAdd) binding.respondToPhotoTextView.visibility = View.GONE
     }
 
     //? этот метод ничего не делает но нам нужно его переопределить т.к. мы пользуемся адаптером

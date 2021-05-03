@@ -185,6 +185,12 @@
     <string name="fragment_add_reward_description">Наличие вознаграждения увеличит шансы того что на ваше объявление кто нибудь откликниться.</string>
     <string name="fragment_add_confirm">подтвердить</string>
 
+    <!-- строки из детали через ваши объявление диалог из меню -->
+    <string name="your_add_menu_delete_header">Удалить</string>
+    <string name="your_add_menu_delete_description">Вы действительно хотите удалить это объявление?</string>
+    <string name="your_add_menu_delete_positive">Удалить</string>
+    <string name="your_add_menu_delete_negative">Отмена</string>
+
     <string name="copy_text">Копировать</string>
     <string name="hide_ad_options_menu">Скрыть объявление</string>
     <string name="favorite_ad_lost_found_menu">Избранные</string>
@@ -213,6 +219,8 @@
     <string name="fragment_profile_your_adds">Ваши объявления</string>
     <string name="fragment_profile_0_adds">0 объявлений</string>
     <string name="fragment_profile_favorites">Избранное</string>
+
+    <string name="ef_msg_no_camera_permission">Sh</string>
 
 
 </resources>

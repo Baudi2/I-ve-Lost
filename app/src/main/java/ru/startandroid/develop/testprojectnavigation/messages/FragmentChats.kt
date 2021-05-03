@@ -59,9 +59,9 @@ class FragmentChats : Fragment(R.layout.fragment_chats), ChatsFragmentAdapter.On
             val userImage = when (i % 5) {
                 0 -> R.drawable.av_one
                 1 -> R.drawable.av_two
-                2 -> R.drawable.av_fourer
+                2 -> R.drawable.av_new_four
                 3 -> R.drawable.av_four
-                else -> R.drawable.av_five
+                else -> R.drawable.ninja
             }
 
             val userName = when (i % 5) {

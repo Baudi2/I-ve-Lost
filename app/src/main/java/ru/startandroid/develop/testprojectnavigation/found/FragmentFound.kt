@@ -14,6 +14,7 @@ import ru.startandroid.develop.testprojectnavigation.databinding.FragmentFoundBi
 import ru.startandroid.develop.testprojectnavigation.module.ClickedItemDescription
 import ru.startandroid.develop.testprojectnavigation.recyclerView.GridLayoutAdapter
 import ru.startandroid.develop.testprojectnavigation.module.GridLayoutItem
+import ru.startandroid.develop.testprojectnavigation.module.YourAddNavigate
 import ru.startandroid.develop.testprojectnavigation.utils.*
 
 class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnItemClickListener {
@@ -214,9 +215,10 @@ class FragmentFound : Fragment(R.layout.fragment_found), GridLayoutAdapter.OnIte
             exampleItem[position].eastPoint,
             exampleItem[position].adType,
             exampleItem[position].adTypeObject,
-            exampleItem[position].category
+            exampleItem[position].category,
         )
-        val action = FragmentFoundDirections.actionFragmentFoundToFragmentDetailsFound2(clickedItem)
+        val emptyObject = YourAddNavigate(null, 0, 0)
+        val action = FragmentFoundDirections.actionFragmentFoundToFragmentDetailsFound2(clickedItem, emptyObject)
         findNavController().navigate(action)
     }
 }

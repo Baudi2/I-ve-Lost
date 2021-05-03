@@ -90,7 +90,7 @@ class FragmentMessages : Fragment(R.layout.fragment_messages), MessagesAdapter.O
         for (i in 0 until size) {
             // this part is only responsible for alternating between our 5 drawables
             val userImage = when (i % 5) {
-                0 -> R.drawable.av_fourer
+                0 -> R.drawable.av_new_four
                 1 -> R.drawable.current_user
                 2 -> R.drawable.av_four
                 3 -> R.drawable.current_user
